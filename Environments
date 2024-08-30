@@ -1,0 +1,165 @@
+->Once developer completes analysis and db design and developement then deploment will happens, who will deploy the code and which envi deploy the code that will be learn here.
+
+DEV Enviroment:
+---------------
+
+->Developer will integrate code in git hub and then deploy in DEV Enviroment
+
+->Enviroment means a platform which is used to run our application.
+
+Note: In real time we have multiple environments to test our application.Application will be Tested in multilple enviroments
+
+->DEV Enviroment means one machine in that server will be available and required softwares will be available to run our application.When application runs on Dev Enviroment, application connect to database
+
+->Specific DEV Enviroment we will be have DEV DataBase.
+
+->When application running DEV Enviroment , application will uses DEV DataBase.
+
+Note : Every Developer has the access to run the application in DEV Enviroment.
+
+->As a developer we develop the code and Integrated in GitHub and if developer wants to push the code from git hub to DEV Enviroment , developer has to create a DEV Job in jenkins
+
+->All the developers has an access to run DEV job , where Application will runs.
+
+->Dev job will do, take the code from github and deploy in DEV Enviroment.
+
+->In DEV Enviroment developer has to perform DIT(Developer Integration Test)
+
+->In DEV Enviroment Developer perform DIT test check all the functionalities developed by developers performing as expected or not.That DIT testing will done by developers.
+
+->Every Developer has to test their code in Local System, then in Dev Enviroment
+
+->DEV Enviroment Means all the developers code will be deployed in one server i,e Remote Server
+
+QA Enviroment:
+-------------
+
+
+->Once The application is tested successfully with out bugs , Then we will give application to Testing Team  i.e SIT(System Integration Testing) Enviroment or QA(Quality Assurance)
+
+->For Testing Team we keep separate a Envi i.e SIT Enviroment OR QA Enviroment
+
+->When our application wants to Test by Testers , Testers will test the application in QA Enviroment
+  for QA separate DB will be available.Separate databse will available
+ 
+->To deploy the code into QA Enviroment ,we create QA job in jenkins to deploy code into QA Enviroment 
+  
+->QA job will run by the Testers , developers has no access to run QA job
+
+->Testers will perform SIT(System Integration Testing) test in QA Enviroment
+
+->All the functionalities performing as expected or not will be done by Tester in QA Enviroment
+
+Note :The main Difference between DIT and SIT is developers will perform DIT test where developer specific Functionalites(Developer developed functionalities) will be tested where as SIT will perform testing team to test the all the functionaliets of application performing as expected or not
+
+Note : Once the SIT completes successfully , QA team will provide a certificate for the code like this project is quality , QA certified.
+       QA certified means the project funcrionalites performing as expected 
+
+Note : Once the QA certification complted, QA Manager will drop Mail to Project Team like QA certified.
+
+UAT Enviroment:
+--------------
+->Once the QA is completed ,we deploy our application into UAT Enviroment
+
+->For UAT Enviroment separate database will be available.
+
+->To deploy the project into UAT Enviroment , UAT job will be available
+
+Note : In jenkins devops people will create UAT job.
+
+->UAT job is to responsible to take the code from GitHub and place in UAT Enviroment
+
+->UAT means User Acceptance Testing
+
+->UAT testing will happens at Client Side and which is done by Client testing team and those testing team not part of company
+
+Note : UAT will always happens at different Location and different company also
+
+->UAT Means End User who access the out appliation
+
+Pilot Enviroment:
+-----------------
+->Once UAT completed , in company will do testing of code in pilot Environment.
+
+->Pilot Enviroment has it's own databse
+
+->Pilot Enviroment means pre production environment
+
+->In pilot Enviroment application will test with live database
+
+->Perform performance testing what is the speed of the applicationa and response time of application and stability of application and with specified users how application working that kind of testing will be done in Pilot Environment
+
+Note : As Industry Standard Every Request should process with in 3 sec otherwise performance is not good for application.
+
+->Performance Testing will be done in Pilot Environment
+
+>Why we need to do the Performance testing due we need to give a report to the client like project developement and testing and UAT completed and based on this number access this is the response time.
+
+Note : When code deployed to Pilot Environment ,Development and Testing Team will get a Mail form PM like CODE FREEZE which means block all permissions for Git Repository we can't commit anycode to repo.We have only read permission like take the updates from git repository and not commit of code
+
+Prod Enviroment:
+---------------
+->Once the project is tested successfully as per requirmenst , then we test in Prod Environment 
+
+->Prod Environment means Live Environment.
+
+->Once the project is submiited to prod environment, prod specific db will be available
+
+-> We can't access the Prod Environment Database , bcz live or end users data will be available
+
+
+Note : For evnvi different Git Hub Branches will be availble like DEV, QA, UAT, RELEASE braches will be available
+
+Note : For every environment we are going to give one branch
+
+Note : PM will be send the email to DevOps team like Do Code Freeze to project team
+
+Cluster SetUp In Prod Envi:
+--------------------------
+
+->Cluster means application will be runs in multiple servers not in one server and all the serever will be connected to LBR 
+
+Note : In real time for our application domain names will be given like www.facebook.com , www.zoom.com 
+
+      For our application als domain name we get www.blogapp.com
+	  
+->In real time our application will runs multiple serevers i.e different machines has different IP address
+
+->All those application servers will connected to LBR Server where Request routing will hapens to servers.Load Balancer LBR server deployed in separate server present on  machine with IP address.
+
+->Each server which runs our applications is called Node
+
+->All Nodes will be connect to LBR server.
+
+->User Will request to Domain not IP address like www.blog.com, then DNS(DOMAIL NAME MAPPING) will be  happens like map the domain to LBR sever IP address,like if request comes DNS will happens and LBR will receives the reuqest and Forward the reauests to Servers in RRB(RoundRobbinTechnique) technique.
+
+->Like that in Real time  application will be deployed.
+
+                               198.18610.38
+                                ______             198.18610.90
+                               |      |============|app|server 1
+                               | LBR  |           198.18610.97
+  www.blog.com ---->DNS -----> |      |============|app|server 2
+                               |______|
+                                       =============|app|server 3
+                                                    198.18610.98
+         
+Note : We can't access any application by it's IP address , we Access it by Domain Name.Domai Shold Mapped to IP address of LBR server by DNS mechanism
+
+Note : DNS mapping will be done by DevOps team in real time
+
+Note : Once we got the domain name , we deploy application and mappe the application  to domain by DNS
+
+Note : Every Environment has it's own database and prodcution Environment application will be deployed in cluster for cluster Load Balancer will be available.Load Balancer URL will be maaped to Domain Name using DNS 
+
+Note : We deploy our application in cloud platform like AWS 
+ 	 
+ 	 
+	  
+
+
+
+
+
+
+

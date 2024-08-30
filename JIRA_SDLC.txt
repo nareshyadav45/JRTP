@@ -1,0 +1,666 @@
+
+
+JIRA : Jira is a project managemnet software and our tasks will be assigned in jira only.
+       ->we have used jira with agile methodology.  
+
+Agile : Agile is a software development life cycle methodolgy to develop and deliver the application
+        ->In agile methodolgy continuoes development and contineous delivery will be there
+		->Developemnt and testing is Iterative approach in agile
+        ->Sprint means one cycle in agile methodology.In that sprint Developement and testing and deployment and delivery will be available
+		->Scurm means daily we update our work progress or status to scrum master
+		->Backlog means pending tasks what are left project
+		->BackLogGrooming means identiyfying pending tasks in project.
+		->Sprint Planning : what are the priority tasks that we need to complete in next sprint.
+ 		->RetroSpective Meeting: In the last two sprints what we have learnt and mistakes and any new ideas we learn in retrospective meeting 
+=========================================
+Software Development Life Cycle (SDLC)
+=========================================
+
+=> From start to end is called as Life Cycle
+
+=>When we are developing a project from start to end is called development life cycle.
+
+=>The process of developing + testing + deployment + delivery of the project to the client is known as "Development Life Cycle".
+
+=> SDLC = Development + Testing + Deployment + Delivery 
+
+=> From project development to till delivery of the application is called as 'developement cycle'.
+
+=> From project start to till project end is called as "SOFTWARE DEVELOPEMNT LIFE CYCLE"
+
+There are different phases in software development life cycle :
+---------------------------------------------------------------
+
+1) Requirements Gathering
+
+2) Requirements Analysis
+
+3) Design (FDD / BRD / SRS )
+
+4) Development
+
+5) Testing
+
+6) Deployment
+
+7) Delivery
+
+8) Support (SLA - Service Line Agreement ) - 6 months
+
+1)Requirements Gathering : Client  wants one software project, so company have to gather the requirements from cleint to develop the project.
+
+-> For every project one fucntional team will available.That fucntional team will gather the requirements from client.
+
+2)Requirements Analysis : What ever the requirements given by client is it possible to implement or not and can we do those requirements or not and we are going to analyse that.
+------------------------
+
+-> What evre the requirements  given by client and analysis team will verify can we implement technically all those requirements
+
+->If any risk is there to implement requirements etc analysis will be done after gathering requirements.
+
+->what are the softwares we use to develope the project and what are the commercial software and free softwares we are going to use as per client requirment and what are the risk factors we may face when we develop project those kind analysis we do submit to the cleint and do take the response and next we go design phase 
+
+3)Design (FDD / BRD / SRS ):In design we need to prepare what is our  project architecture like what we need to use for front end developemnt and what we need to use for backend developement and which database we should use for our project , that design we are going to  prepare.
+---------------------------- 
+-> A template will be prepared like this is how fornt should look like and this is how backend should look like and which databases we use for project and we need to prepare protype to client.In protype specify this is front end will look like anf this is how backend will looklike i.e which framewoks and technologies are used to implement project developement.
+-> We should develope a protype to cleint, show how backend and front end and database look like.
+->If clinet tells any changes after seeing protype ,we should modify those changes in protype and once client satisfied with protype , we will start project development. 
+
+Note :FDD =Fucntional Design Document , BRD = Business Requirment Document , SRS= Software Requirement Specification 
+     -> So design team will prepare the FDD or BRD or SRS and gives to development Team about what are client requirements and how front end backend should looklike and database complete client requirment will be demonstrate.By following FDD or SRS or BRD development will get the cleint reuquirements. 
+
+4)Developement: The project actual development will develops here front end and backend.
+--------------
+
+->Once the design is finallised by client we start developing project code. 
+
+5)Testing : What ever the code or features developed by developement team that code or features will be tested by testing team.
+-----------
+
+->What ever the code we develop as part of client reuirements that code should test like developed code is performing as we expected or not. 
+
+
+6) Deployment: After developement and testing of project will deployed by devOps to production servers.
+-------------
+
+->Once code testing completed and what ever the code we developed devOps team will deploye the project code into servers for excution or running.
+
+7)Delivery : Delivery of the project to the client after above successful operations.
+----------
+
+->Once the project development is completed we nedd to delivery that project to cleint.Delivery check list ie. secuirty like http protocalls and domain name etc  will available and we need to full fill delivery check list and deleivery that project to client.
+
+
+8)Support: When ever we deliver our project to cleint we needt to  provide support to cleint. 
+----------
+
+->The support we provide to cleint that support may be 3months or 6 or 1 year or Life Long we have to provide to the clients
+->The Support depends upon company client agreement.
+->If any problem occurs in the project company will provide support to the clinet based on agreement if comapany had a agreement for 6 months , for first six months after project delivery to cleint if there is any problems occurs company responsible to  provide suppport and fix that problem and solve the issues. 
+
+Note : When we buy a electronic product comapany will provide a warranty to product like that in sofrware, comapany will provide 'SLA' Service Line Agreement to client. Based on that SLA company will support to project which we deliver to the client.
+
+->In SLA period compant will provide free support to client if they face any bugs or issues in project.
+
+->Once SLA period is comoplted clinet has to pay for the company if any issue occurs and if change request and any new feature has to add in project and for any enhancements.   
+
+Note : Every Company should follow the above phases to develope and delivery the project to  the client.
+
+Note : From where we need to start the project and how we need to continue the project development and when we need to deliver the project to client all those information will avaliable step by step in Company SDLC process.
+
+============================================================
+THERE ARE SEVERAL "SDLC METHODLOGIES" AVAILABLE IN project
+=============================================================
+
+1) Waterfall (outdated)
+
+2) Agile (Most Trending)
+
+
+
+
+=======================
+Waterfall methodology
+=======================
+
+-> Linear methodology (Sequential Process)
+   * Developing a project is a sequential process if we go fot waterfall methodology
+
+-> It is a step by step process : It's a step by step process to develope and deliver the project.
+
+-> After one step is completed then only we will move to next step: Like after RG complted then we moves to RA  after RA complted then we moves DESIGN..Suport.
+
+-> Forward Direction
+   *After compiltion RG and RA and when we are in Design phase if clinet added new requirements we can't go back and RG phase so water fall methodology forward direction only.
+
+-> Client involvement is very less
+
+-> Client will see project at the end 
+
+-> requirements fixed & budget fixed
+
+
+Note : When we develop a project by following waterfall methodology, ther are different phases in SDLC like RG,RA,DESIGN,DEV,Testing etc, so when we are development phase to devlopment a project tyen client came changesd his requirments ,then we can't back gather the requirements because water fall methodolgy is a sequential process step by step process after one phase is complted then we moves to next phase, So development of project using waterfall methodology only we move in the farward direction not in backward direction, so it's not good to  go with this methodolgy.Requirements and Budget of project is fixed in waterfall methodlogy. and client involvment is very less and client see project at the end , if client not satisfied with project we deliver ,the time and money of client will waste.
+
+Note :In every project client satisfaction is the most important.If we satisfy client, again client come to us gives new projects in feature.
+
+Note :By water fall methodolgy we face more problems like we should follow sequential process i.e stsp by step process to develop projec like after compltion of phase we should go next phase and it's forward diirection and we can't go previous phase if we are next phase and client invlovement is very less, requirment and budget is fixed and client will project at the end and if client not satisfied with project money and time got wasted , 
+     ,To overcome the what are problems we have faced with Waterfall methodlogy to develope a project, we use Agile methodolgy to develop a project. 
+
+DrawBacks:
+----------
+->Clinet invovlement is very less and Clinet will see the project at the end and requirements won't change once development is started and it's liner process and once one step is complted we can't go back it's a forwars direction
+
+==================
+Agile Methodolgy
+==================
+->In every phase of project development we need to involve the  client where as in waterfall methodology client involvement in every phase of project developement is not allowed.
+
+-> Iterative approach
+
+->Iterative approach means  'Development + Testing + Delivery' - is a cyclic process (Contineous Process)
+
+-> Project will be delivered in multiple phases (Sprint)
+
+-> Client Involment will be there in every phase of the project
+
+-> Requirements are not fixed & Budget is not fixed
+
+Note: Client Satisfaction is most important factor in Agile Methodolgy
+
+Note : In water fall methodology whole project will be delivered in one shot i.e at the end 
+       -> All the reuirements will be developed once and test it at end of developement and deliver to cleint to at the end in one shot 
+	   
+-> In agile methodology what are the requirements given by cleint will be developed in mutiple sprints i.e all the requirments will be divided into sprints , so sprint wise we deliver project to client Where as in water fall methodology all the requirments will be developed at once and deliver project in single shot at the end. 
+
+->In agile methodology we divide the client requirements into multiple sprints  like if cleint given 100 requirements we divide them based on our strategy like we divide 100 requirments into 3 sprints like for each sprint 35 ,35 , 30 and develope first sprint which contains 35 reuirements and in sprint we do analyse the requirements and deesign and develope and test and deploy and deliver the first sprint project to cleint and take client feed back like what ever the requirements given by cleint , we are is expecting or not and cleint is satisfied with our developement or not, if he suggest any changes we should apply and deliver to cleint  so like this project will be develped in multiple phases i.e sprints  
+
+-> If client is not satisfied with some of the requirments what we develop as per spirnt and  not whole requiremnts what we devlope in sprint ,then we add those requiremnts in next sprint and devbelop and deleiver to cleint and take client feedback and if cleint satisfied we go for other requirements.
+
+-> In agile mothodology we deliver the project in multile phases and take the cleint feed back every phase.
+
+->If we are doing first release for the client it's called first sprint , for second release is called second sprint like that for every sprint we release the project so sprint wise we release the project. 
+
+-> In agile methodlogy client involvment will be there in every phase or sprint 
+
+-> In agile methodlogy cleint requirements and budget is not fixed compare to waterfall metodology.When the requirements are changes budget will also change.
+
+Note: When small projects are there like fixed requirments and fixed budget like student management sysytem for small colleage then we choose WaterFall methodlogy to develop the project.
+
+Note : Big Projects like E-commerce and banking projects those projects has don't have fixed requiremnts and requirements will be changed accordingly so budget also changes accordiingly so in that case we use 'Agile Methodolgy' to develope the project and deliver to client.
+
+->In agile methodology project will be delivered in cyclic process. In agile methodology we follow iterative approach which means development and testing and delivery of project is cyclic process.Contineously project developemnt and testing and delivery wil happens.
+
+Note : Client Satisfaction is the important factor in Agile methodology.
+
+Note : We are going to develop and deliver the project to the client in multiple 'releases'.Those releases are called as mutiple sprints
+
+ 
+ PROCESS : 
+ ---------
+ -> When client approach us to develop a project, company funcional team will take project requirements from client 
+ -> After taking requirements from cleint, company project analysis team will do anaysis like what are the softwares we use and free and cost softwares we will use in project and any risk facotor is there in technically etc we discuss and tell to client and once cleint is agree  with  our analysis then we go for design part.
+ ->after analysis we do 'design' i.e prototype how front will looklike and backend will looklike and detail project architecture will be created in design part and that design part will created by Project Architecture.Poject Architect will prepare the design.
+ ->After design is complted, development and testing team will receives the KT from design team analysis and functional tema about what are the requirements of project and risk and solutions for risk etc knowledge will share by functional and analysis and design to develomeent and testing team\
+ ->Between client and development team there is a tema called Functional team which is responsible to tell the project requirements given by clieent to developement.
+ -> Whenever we get any doubts on requirements on we should ask functional team not client.
+ ->after the design part complted , devlopment and testing will KTs or contineous meeting for one month about requirements functional team, if development get's any doubt they will ask in daily tomorrow meeting sesstion , but there is a procedure to ask doubts,Fucntiional Team will Share bellow document.  
+ ->FDD =Fucntional Design Document , BRD = Business Requirment Document , SRS= Software Requirement Specification 
+ -> So functional team will prepare the FDD or BRD or SRS and gives to development Team about what are client requirements and how front end backend should looklike and database complete client requirment will be demonstrate.By following FDD or SRS or BRD development will get the cleint reuquirements. 
+ ->Functional Team will prepare and send FDD documents to developemnt team and development team should understand the FDD and if development team get any doubts ask functional team and dev team should  get doubts should be clarify.After getting clarification development team will starts the development of project 
+ -> We are going to develop and deliver the project to the client in multiple 'releases'.Those releases are called as mutiple sprints.
+ -> After the one sprint is complted and deliver the project to client and take the feed back from client and if client tells any chages we implement those changes in next sprint and deliver the project to client in next sprint
+ ->Project will be delivered in piece by piece.
+ -> Every day client will come up with new ideas so requirments and budget is not fixed in agile methodology.
+ ->Project will not delivered at a time for every two months and every one month deliver the project to client.
+
+Note :In Agile Methodology Developmkent and Testing and Delivery is  cyclic process.
+      ->whole project will not be develope and delivered in single shot.
+
+
+
+NOTE : To Work With Agile Development First We Need To UnderStand The Agile Terminogoly.
+ 
+==================
+Agile Terminogoly
+==================
+
+Product Owner : The person who is responsible to deliver project to client (deliery head) and when we need to deliver and what we need to deliver and what to talk with client and what to talk with client those things can be taken care by PO 
+--------------                ->The Product Owner will interact with client and will decide when to sprints and what to deliver sprints everything will be decided by person called 'PRODUCT OWNER'.
+                              -> We can call product owner as "delivery head"	
+                              ->PO will decide when and what we need to deleivery to the client that kind of information will be decided by "PO" 				
+  
+Scrum Master : Responsible to manage and track  agile team work.(Daily Tracking)
+--------------
+                              ->Daily Tracking i.e who doing what taken care by SM
+							  ->Every day we have a meeting with scrum master that is called Scrum Meeting, In Scrum Meeting we need to explain what we done yesterday and what we have done today and when we will complete our current task and what are the difficulties facing current task and do we need help from project team member all that information we have to explain to scrum master
+                              ->The complete team will be managed by scrum master
+							  ->What I have to do and what you have to do every thing will be decided by scrum master
+							  Note : EveryDay we need to communicate with scrum master in scrum meeting or standup call to update the task work status.
+							  Note :If we want to take any unplanned and planed leaves we should inform to Scrum Master because he is the person who manages and monitor our work
+                              Note : If you want to take contineously more than 3 days we should plannned accordingly and inform Scrum Master. According to leaves SM will manage the work.
+							         If we want to take any leave first we should intimate SM
+							  ->In agile methodology daily Scrum Call will available with SM and daily we need to provide work or task assginment  updates  like yeserday what we did and today what do and how much work is completed and how much work is not completed in given task that updates should intimate to SM	Daily.	 
+									 
+Note : Product Owner and Scrum Master are 99% not technical
+----- 
+Note : Difference between Product Owner and Scrum Master
+       -> we all know that in project we have mutilple teams like development team and production team and CR team and enhancement team, so for every team separate separate SM will avaialble but where as for all the teams in project will have only one manager who is project manager or prodcut owner.     
+	
+Tech Lead : Seniour Resource in Team For Technical help
+-----------
+            ->Tech Lead is senir member in team  or  senior resource for technical help to others in team
+            ->If any team member facing any issue or need any help regarding technically or code wise to implemet new feature with new framework , Tech Lead is the person to help.			
+
+Note : Project Deliverable will manage by project owner and Scrum Master wil manage project team members and their work
+
+Team Members :  Developers + Testers + DB Team + Ops Team
+--------------
+               ->Team memebers will available for technical thing ie. devlopment code and tetsing and deployment of project.
+			   ->Where as Tech Lead is for technical help.
+			   
+			   
+Note : This kind of roles can be available in  agile development proceess 
+
+Note : As a developer we are  belongs to Team Memeber Role.
+
+Note : There is No Managers and Team Leads will not be available in Agile Methodolodgy
+
+In Agile Methodology We Have Some Meetings.
+-------------------------------------------- 
+
+Scrum Meeting : Daily status call ( scrum / status / standup ) - 30 mins
+--------------                ->In scrum call our project team like SM and TL and development team will connect and share their updates in status call.
+                              ->In standup call every team member should speak.	
+                              ->So in standup call we should give our work status to Scrum Master like grertings good morning team and Good Morning Scrum master name!  story num 123 completed and started working on stroy 345 and will complete it in 2 days thank you and if we facing any issues we should address them in  meeting other wise tell like don't have any issues. 				
+                Note :If we unable to attend scrum meeting due to personal reasons and technical issues in that case we should do email to Scrum Master and share yours  work status over there in email. And we should tell scrum master why we are not attending scrum call along with work status in email.
+				
+.....................................Email To Scrum Master and Project Team.................................................................................................................................................................
+
+To : scrummaster-mail-id
+cc : sbiproject@tcs.com(project - dl(Distribution List) where our project team members mails are configured with project dl mail.If we send a mail to project dl all our project team members will receives the mails )
+
+Subject : Standup Call Status - Ashok
+
+Hi Steve,
+
+Today i can't join our standup call due to doctor appointment.
+
+Please find my status below
+
+yesterday : STORY 135 completed, status changed to DONE.
+
+today : I have started working on STORY 231, targeted for Tomorrow EOD.
+
+I don't have any issues.
+
+Thanks,
+Ashok.
+------------------------------------------------------------------------------------------------------------------
+Backlog Grooming Meeting : Meeting To identify pending works in the project
+--------------------------
+->In backlog grooming meeting all our project team  members will attend and identify what are pending tasks or works in the project.
+-> EverTeam member should join in that backlog grooming meeting to identify what are the  pending works are available in project and discuss what are cleint requirements and how many requirements completed in given requiremenst and how many left and what are the pending tasks or activities are there in project.
+
+Note : For every weekly or Bi-Weekly Backlog Grooming Meeting will available and whole project team join and identify what are pending tasks are in project and what pending activites in project assigned tasks  and team member should tell what are pending activities are left in given task like UT and logging etc activities part of api development
+
+Backlog Stories : Pending Stories we have created in JIRA
+-----------------
+->Pending Stories or works in project are called Backlog Stories like EXceptionn Hadnling is pending and Unit Testing is pending for our project and logging is pending etc.
+Note :Backlog story means  pending story we have to work on that.
+Note :Pending Stories will be created in jira
+Note : we use jira software to manage our project work
+
+-> We create BackLog Stories in jira software.
+
+Story : A task
+-------
+-> Story means a task
+->Every task is called as one story.
+->For One Task One Story Will Be created and For Every Stroy One Id will be available.
+    ex: STORY : 131
+
+
+
+Story Points : Represents duration to complete a story
+--------------
+Note : For every story, Story points will be available
+
+Note : Story Points will decide what is the duration story 
+
+
+				3 points  - 1 day
+
+				5 Points  - 2 days
+
+				8 Points  - 3 days
+
+Note : Normally for project to project story points strategy will differ but most project development use "Fabinacci Series" to add story points to story				
+				Fabinacci : 1 , 2 , 3 , 5 , 8 , 13 ....... 
+
+-> If what is  the story we get assigned based on the story point of story we should complete the task.
+
+Note : if we not able to complete story with in given time , we should justify or tell why getting late to complete the story to scrum master in detail in  StandUp call
+      -> if we take extra time to complete the story no problem but we should inform why taking time to complete the story and if we take np but we should provide quality code to team is important by writin proper UT cases to indentify our is perfroming as expected or  not. and iif testers found more bugs in our code what is the use of writing code useless, so write proper code no matter if we take more time but provide quality code. 
+	  
+-> In some project they may use 1 point = 1 day , 2 points = 2 days , 3 points = 3days......				
+				
+Note : If a story taking morethan 3 days of time we will split story  into two stories.We don't give morethan 3 days of time to story.If any story taking morethan 3 days of time we have to split into two stories not one story.
+
+Note : Stroy and story points will be created by every team members not specific team members.
+
+-> Story creation and adding points to story and assigning story and changing status of story all those things can be done in JIRA software 
+->JIRA is a Project Management Software.The complete project work can be managed by using JIRA softe
+
+->Stories are created in BackLog Stories.Backlog Stories means pending wokk or stories in project.	 				
+---------------------------------------------------------------------------------------------------
+Sprint Planning Meeting: To identify priority stories to complete in sprint.
+------------------------
+->Sprint Planning is the process of planning which stories we want to complete in sprint or particular sprint or first sprint.
+-> generally in sprint planning meeting scrum master and team members will join and Scrum Master will decide or identify which stories or priority stories should be complete in sprint.
+
+Note:  The main  difference backlog grooming meeting and sprint planning meeting is to identify what are pending stories available in project where as sprin planning means to identify priority stories to be complete in sprint.
+
+Note : In projec Agile Methodolgy First BackLog Grooming meeting will happens an then Sprint planning meeting will happens to identify set of stories to be prioritize and complte it in given duration of time 
+
+Sprint : Set of stories planned to complete in given duration (2 weeks)
+----------
+->Set of stories to be complete in given durration.Basically sprint will be last to 2 weeks.
+->Mostly in every company project sprint duration will be 2 weeks i.e 10 working days.
+
+Note : Company to Company sprint planning strategy will be different like some comapanies follow each sprint duration will be 3 weeks or 4 weeks
+
+->But mostly in agile methodoly project development will follow 2 week duration sprint. In that sprint we plan set of stories to be complte that can be decided in sprint planning meeting where SM identify what are priority stories to be complete in sprint.
+
+-> Once Sprint started everyday scrum call will be available.
+
+-> Once sprint started everyday we have to take the story and complete the story. 
+
+RetroSpective meeting : Review meeting
+------------------------
+->In project retrospective meeting will be conducted once after one sprint is completed.In retrospective meeting we do take on review what went well previous sprint and what went wrong  and improvements comapare to previous sprint etc. 
+
+						1) What went well
+						2) What went wrong
+						3) Improvements
+						4) Lessons Learnt
+						5) Ideaz Board
+						
+						
+Note : For every sprint retrospective meeting will happens in project development in agile methodolgy
+
+-> In some companies they may follow every 2 sprints they conduct retrospective meeting.
+
+-> In rertrospective meeting we can share our ideas related project tecnical skills or reltaed cultural actvities that can  boostup team members form stress or from continues work. 	
+
+
+Note : Small projects prefer waterfall methodlogy and if client sure that if the reuiremnets are fixed then comapany will choose waater fall sdlc methodology for project development.
+
+Note : If client requiremnts are not fixed and project is big then company will go agile methodology.
+					
+------------------------------------------------------------------------------------------------------------------------------------------------------						
+
+-------------------------------------------------------Email To Scrum Master and Project Team----------------------------------------------------------------------------------------------
+
+-----------------Status Sending in Email Format --------------------
+
+To : scrummaster-mail-id
+cc : sbiproject@tcs.com
+
+Subject : Standup Call Status - Ashok
+
+Hi Steve,
+
+Today i can't join our standup call due to doctor appointment.
+
+Please find my status below
+
+yesterday : FP-1 completed, status changed to DONE.
+
+today : I have started working on FP-2, targeted for Tomorrow EOD.
+
+I don't have any issues.
+
+Thanks,
+Ashok.
+
+------------- Email Request For DevOps team  --------------------------
+
+To : sbidevops@tcs.com
+
+cc: sbiproject@tcs.com
+
+Subject : New Git Repo creation Request | FP-1
+
+Hi,
+
+Please create new git repo for our admIN API development
+
+Repo Name : admin_API_REPO
+
+@Manager - Please approve.
+
+Thanks,
+Ashok.
+
+--------------------------------------Sending Email To DevOps Team--------------------------------------
+
+To : devops@oracle.com
+
+cc: flipkartproject@orcle.com
+
+Subject : Jenkins Pipeline Creation Request | FP-2
+
+Body:
+
+Hi DevOps Team,
+
+Please create Jenkins Pipeline for Admin API deployment in below Environments.
+
+1) DEV
+2) QA
+3) UAT
+
+GIT Repo : <url>
+
+@Manager : Please approve
+
+Thanks,
+Ashok.
+
+-------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+======
+JIRA
+======
+->To Manage our project with agile methodology we use JIRA  software tool in company.
+
+-> JIRA is a project management tool. 
+
+-> JIRA software developed by Atlasian company
+
+-> JIRA is used for Project management.
+   Project Mangement : How many requirements we have in project and for those list of project requirments how many tasks or stories  should create and how much duration is required for each task and who has to work on the which task and what is the status of task and how many sprints are available and in one sprint how many stories are available all that project management will happen in JIRA
+
+-> JIRA is can be used for Bug Reporting 
+   Once our code development completed then developed code will given to Testing Team.If Testing team finds any  bug or issue in our code like code is not performing as expected or not,then testing team tester will create bug in JIRA tool and  assigned to Developert who worked on specific story and developer should fix that bug and change the bug status to complted and assign it to the tester.
+   
+-> Project Work assignments or Project  Task assignments will happens in JIRA software only.Task assignment to team members  in project will happen in JIRA software only.   
+
+-> Project Task assignment will happen in JIRA s/w only
+
+Note: JIRA is a paid software. We can use trail version of JIRA.
+
+Note : If we have account in BitBuckte we don't need to create in JIRA because both JIRA and BitBucket are comes under Atlasian comapany we can login win JIRA with BitBucket Credential vice versa.
+
+URL to Logging : https://start.atlassian.com/
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+JIRA WORKING STEPS:
+----------------------
+
+->When we click on JIRA SOFTWARE option, JIRA opens a page  to create project and JIRA project creation will  taken care by Scrum Master.
+->For example if we clieck on jira software click on CREATE PROJECT and JIRA  will opens dash baorad in dashboard choose software development JIRA  jira will show type of project we want to create like KANBAN and SCRUM and Bug Tracking. we follow SCRUM based type to create and manage the project.Scrum Model means set task will be planned for sprint and daily task status will managed  by SM.
+->After clicking on SCRUM based model it will ask us to which type project we want to create like Team Managed or Company Manged Projct, then click onn Team Managed Project.
+->Then provide project name and verify project type i.e scrum and team managed project and click on next THEN project will be created.
+->Once Project is created in JIRA and JIRA will opens a project DasshBoard.
+->Then click on BackLog to  create stories for project before going to create stories in backlog our team provide a backlog grooming meating to indetify what are pending work available in project, after having discussion with team what are stories to be create then create stories in backlog in JIRA software
+->To create story click on creat issue under backlog and name it according to our requirement
+
+Note : ANY Team Member of project can create story of project in BackLog like developers and testers amnd db team and devOps team and Scrum Master and Product owner also can create stroy in JIRA BackLog.
+       EveryTeam member will have a access to create a stroy in backlog
+->Once we create a story ,our story with story id and Project short cut name will displayed along story name and story id will start from 1,2,3....
+->When we create story it will keep stroy status as To Do which means somebody has to work on this story 
+->Click On created story and specify story points and whom to assign this stroy etc detail we should provide
+
+Note : We always create stories in BackLog not in Sprint.In backlog what are stories available based on that we made sprint. 
+
+Note : The person who is creating story that person is reponsible to add story points to story.  
+
+->Testing related stories will be created by Testing team only 
+
+Note : When BackLogg GRooming Meeting happens development team and testing team will join and development team will identify development related pending work  and testing team will identify testing related pending work and create their respective stories.
+
+->So in backlog 100s of stories will available 
+
+->Once Backlog Grooming and Backlog stories creation completed then Sprint Planning meeting(SM,PO,TEAM MEM) will happens which means to identify priority stories from backlog and completeb it in given duration of time
+->Scrum Master will identify stories from backlog and drag and drop the priotizie stories which are targeted to complete in sprint. 
+->The stories which are in backlog it means stories are in peding state 
+>The stories which are in Sprint they are prioritize and complete it in sprint 
+->Once the Stories moves from BackLog Sprint SM will start the sprint.
+->While Starting a Sprint Scrum Master Will give sprint duration and sprit name etc details.
+->After Sprint is started all the strories available in sprint comes to Board section.
+
+->Once Sprint is started there 3 types of tasks will apear Board like TODO and PROGRESS and DONE 
+->TODO menas nobody has picked that story and Not Started.
+->PROGRESS means story picked up by team member and started wokring on it but not completed
+->DONE  means Once story work complted and status will change to Done    
+
+Note : From project to project story assignment will differ like in some projects SM OR Tech Lead will assign stories to team members and in others projects senior developers in team them self assign task themself like they pick up stroy from board and read it and assign themself.
+       ->Either SM OR TL OR YouSelf can assign stories to wokr on.
+	   
+->In sprint we can't take muitlple stories at a time , once one story is comopleted then take another story to wokr on but can't take multple stories at a time.
+
+->When ever we picked up a story to work on that first we need to change status of story to progress then only other members in team they can't take our if it's in proggress state
+
+-> If we started working on story but not change the story status to progress then other member in team will pick up the story and starts wokring on that and story duplication occurs so to avoid that once we started working on story change the status from TODO to PROGREES. 	   
+	   
+->Once the story work got complted by team member and team member should add a comment to the story and change the story status to DONE ,it indicates that story got completed.
+
+->When ever the story got completed then take the story available in sprint and change status of the story to in Progeress and once the story work completed add a comment in strory and changge the status to Done so like this we have to do it's cyclic process.
+
+Note : Once the sprint is started we can't change the story points of story. 
+
+Note : Bug will created by testers in project team.
+
+-> If any bug avaliable in developed story testing team member will create bug by click on create issue where testers will create bug and assign to developer then developer has to read the story what is the bug and starts working on it and chnage the status to InProgress and after the completion bug fixing issue they developer change status to DONE and assign back to Tester who created that bug and now tester will test and verify it and close the bug in sprint jira.
+
+-> Once the stories got complted then we click on complte sprint it will show what are the pending stories ara available and what are the stories got completed 
+
+Note : If sprint duration comoplted but few stories are left those stories will add to next sprint and work on those stories in next sprint.
+
+Note : Project Creation and Sprint creatin and Starting and sprint completion  will be Done By Scrum Master.
+
+Note: Developers has to crete the story and adding story points and changing the story status and complte the story.
+
+Note : In daily stand up call we have to shareb the work updates with STROY NUMBER AND STORY NAME but not share with only story name.
+
+Note : We can change the story points once story created in  Backlog but when story moved to Sprint we can't change story points.Before Sprint we can change story points.
+
+Note : Mostly we use Scrum Methodology to develope projects.There are methodologies also available like kanban etc to develope projects.
+
+Note : When we are assigning story points we have to consider the experince of all the developers and assign it.  
+
+Note : In Real Time if we have duplicate stories in jira we can't have a access to delete the story, scrum master will delete the story.	
+
+Note : Anybody in team like fresher or experinced member can create create story and add story points.
+
+Remember : We can't take source code and put it files in story but we can keep screen shot and FDD document etc in story.The project member who is wokring on that story that member gonna be see the files and starts woking on it.   
+
+Note : DAILY basis we have to push our developed code to repository.
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+1) What is SDLC ?
+2) What are SDLC phases ?
+3) Waterfall Methodology
+4) Agile Methodology
+5) Agile Terminology
+6) What is JIRA ?
+7) What is Backlog ? A. The stories which are pending is called backlog.
+8) Who will create Story in Backlog ? A. Any Team Member can create story in backlog.
+   Note : We create stories in backlog. 
+9) What is Story Point ?
+10) How to create Sprint ? A. Drag and Drop the Stories from backlog to sprint in backlog tab or section. Sprint Will be created by Scrum Master. 
+11) Task Assignment in JIRA 
+12) Task Status Change in JIRA
+13) How Create Bug in JIRA ? A. we need to select story type has a "BUG" while creating stroy automatically BUG will create.Testers will create the bug and assign it to developer and developer has to fix the bug and assign it back to tester for bug testing.
+
+
+=====================================================
+Which Ticketing Tool you are using in your project ?
+=====================================================
+
+-> "Service Now" we are using as ticketing tool.
+
+-> To send softwaree like java,mysql etc installations  requests to IT team we will create tickets using Ticketing Tool.
+
+
+Note : JIRA is a Project Management Tool and SERVICE NOW is a Ticketin Tool.	
+
+-> For example we have to set envi varibale for maven and java in company laptop we can't set the envi varible because in company provided laptops admin feature won't work for us , so in order set path varibles we have use SERVICE NOW tool to send create ticket like hey team I want to set the envi varibles for my project please providee admin access , then IT team react to our ticket and give permission to us for specified time for set the environment varibles or IT team member will share our screen and do environment variables change
+
+-> If we want to install any softwares in our system and want to make admin level changes we use SERVICE NOW to create tickets and  get the softwaes and get admin level access for specified time. 
+
+ ->To send softwares installation requests  or get admin level changes access we should raise a ticket to a IT team , those tickets can be created by using SERVICE NOW tool.
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1278 @@
+
+========================================================
+Source Code Repository Tools (or) Version Control Softwares
+========================================================
+
+-> Multiple developers will work for project development
+
+-> Developers will be working from multiple locations
+
+-> All developers code should be integrated or  stored at one place (Code Integration Should Happen)
+
+-> To integrate all the developers source code at one place we will use Source Code Repository Softwares
+Note:1)The Biggest problem while development of project is Code Integration at one place
+     2)Monitoring Code Changes(who when why what modifying our project source code that can be track it) 
+	 
+	 ->In order to overcome from above problems we use Version Control Systems 
+
+
+==============================================================================
+Advantages with Source code repository sofwares OR Version Control Softwares
+==============================================================================
+
+
+1) All the developers can connect to repository server and can integrate the code
+
+2) Code Integration will become easy
+
+3) Repository server will provide monitored access
+
+				- Who
+			        - When
+				- Why
+				- What
+
+
+==================================
+Version Control Softwares Or Tools 
+==================================
+
+SVN (outdated)
+
+Git Hub
+
+BitBucket
+
+Note : by using above version control softwares we can easily integrate our project source code at one place and Monitor code changes in our project. 
+
+=================================
+Environment Setup to work with Git Hub
+=================================
+
+1) Create Github account ( www.github.com )
+
+2) Download and install Git Client software ( https://git-scm.com/downloads )
+   Note: Whatever the Git client software we are downloading that will work for both git hub repository and BitBucket Repository.
+   
+   -> By using this git client we can communicate with the git hub repository or BitBucket Repository
+
+3) Once installation completed, right click on the mouse and verify git options display (If git options displaying our git client installation completed successfully)
+   ->Git Bash Or Git Client acting as a client to communicate with github repository.  
+   
+-------------------------------------------------------------------------------------------------------------------------------------------------
+*Git Repository present in git hub.com and every developer has to intall git client software in their local machine to communiiacte with git repository.
+
+*To connect with git repository we need to install git client softrware.
+
+Note:In real time git repository will create by DevOps team and git repository url will be shared to project team members.
+     -> developers won't create any repositores in  git hub. 
+
+=====================
+Working with GitHub
+=====================
+
+-> Login into github account with your credentials
+
+-> Create Repository in github
+
+-> Whatevr the repository we have created in git hub website is called Source Code Repository.
+  
+
+Note: Repository or Source Code Repository  is used to store project source code at one place. 
+      Every Project will have one repository.
+
+-> When we create a repository, unique URL will be generated with Repository Name (i.e Repo URL)
+
+		Ex: https://github.com/ashokitschool/hdfc_bank_app.git
+
+->And that generated git repository url will be shared to Project Team Members or Developers. 		
+
+-> All the developers will connect to repository using Repository URL
+
+-> Then each developer will intergrate his code to source code repository or repository 
+
+Git Repository: It's a place where project source code can be integrated at one place.
+---------------
+->For every repository git hub will geneate a url is called Repository Url.  
+  
+-> We can create 2 types of Repositories in Git Hub
+	
+			1) public repository 
+
+			2) private repository
+
+-> Public Repository means everybody can access but we can choose who can modify or Commit changes in our repository
+
+-> Private Repository means nobody can see,  we will choose who can access and who can modify or Commite the changes in our repository
+
+Note: In Real Time Company will prefer only private repositories because no will see and commit and modify the changes in repository.Company will choose who can access our repository and modify our repository.
+        
+        **For Every Repository Unique Url Will Be Generated. Repository Url will point to Repository.
+		Repo URL : https://github.com/ashokitschool/01-devops-app.git
+		
+->Project Name Will be taken as Git Repository Name while creating git repository. Generally we maintain project name as git repository name.
+
+Note: When we go for Git hub free account unlimited public repositores we can create but limited private repositories we able to create
+
+Note: There is no differnce in perfrming git operations on public repository and private repository , operations will be same 
+
+-> Every day we nedd to integrate our indiviual code should in git hub repository and Every day we have to take latest code from git hub repository integrated by other developers.
+
+-> Everyday developers has to push the devloped code into repository from local and pull the latest code from repository to local those are called git operations.		
+		
+Note: To perform the operations with git hub repository we need to be install git client software in our local machine
+ 
+->Generate a token to communicate with git repository and to perform git operations and save that token otherwise we can't connect to git hub.
+  if we want to store our source code in git repository we need that token.
+  
+-> Token is a password it is screatly connect to the repository
+   Note: When ever we excute push command then git will ask git credenetilas or token to push our changes to repository
+   Note : Token Creation will take care by DevOps Team will create token and give to us 
+   
+->when we are doing push for first ftime then we use token and our token will be maintain in windows credentails manager, if reomove token from cdred manager again git client will ask us to enter token to perfrom git push opearation  
+
+Note: We don't nedd to enter the token every time while pushing, we need to enter the token first time when we do push  
+
+====================
+Working with Git Bash
+====================
+
+-> Git Bash we can use as Git Client software to perform Git Operations
+
+-> Download and install git client (https://git-scm.com/downloads)
+
+-> Right Click on Mouse and choose "Open Git Bash Here"
+
+
+git help : It will display frequently used git commands
+
+git help <cmd-name> : It will open documentation for given command
+
+
+======================================================================
+Configure Our Details Like our Email and UserName in Git Bash OR Git Client with Commands
+======================================================================
+
+Note : Who wants to be commuincate with git hub and perform operations in git hub repository by git client they sholud configure their details in git client. 
+
+$ git config --global user.email "youremail@yourdomain.com"
+
+$ git config --global user.name "name"
+
+Note: email and name we will configure only for first time.
+     ->Git Config Command is a one time activity , every day we don't need to do.
+
+Note: From IDE(Eclipse , IntelliJ, STS) also we can perform git operations. IDE also can act as git client 
+
+-> Git Client i.e git bash or Eclipse will act as a mediator between developer and git repository 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+NOTE : Before Understanding the git commands, first we sholud understand Git Architecture then only we able to understand git commands  
+
+=================================================
+Git Architecture
+==================================================
+-> The repository we created in github.com is called "Remote Repository" or Repository which present in git hub is called "Remote Repository".
+
+-> From which folder we are doing or developing our code development or project developemnt  is called "Working Tree" or "Working Directory". OR from which folder we are our performing our operations is called "working tree" or "working directory".
+ 
+-> Project Folder we can call it as "working tree" OR "Working Directory".
+
+-> So what are the files we devloped as part project development, we want to send it to remote repository that can't be possible directly or by one coomand  in git.
+
+-> directly we can't send our project developement changes dirctly to the the remote repository from our working tree, which is not possible.
+
+-> Then git introduced a concept called "local repository". Local Repository present in our local system only not in git hub.
+
+->From Working tree or Working Folder we connect to local repository and from Local Repository to Remote Repository we connect and will send files or code changes to remote repository.
+
+->Between Working Tree and Local Repository we have "Staging Area".
+
+->we connect from Working tree to staging area and staging area to local repository and from local repository to remote repository to send the files.
+
+-> Working Tree and Staging Area and Local Repository all are present Local Machine or System Only. But Remote Repository present in Git Hub not in our local systen.
+----------------
+FLOW : 
+----------------
+                             WORKING TREE ----> STAGING AREA ----> LOCAL REPOSITORY ---->  REMOTE REPOSITORY
+                             ------------------------------------------------------  	   -----------------					 
+                                               Local System                                  Git Hub 
+ 
+-> when we execute $ git init: it will initilalize our folder or a folder as git working tree or working directory 
+
+-> Staging area represent which files we want commit, for example as part of project development we developed 10 files, out of 10 files I want to  send 7 files to remote repository , so that's where Staging area comes into picture.      
+
+->Which files we want to commit add that files to staging area
+
+-> To add the files to Staging Area we use $ Git add or $ Git add . command to send files to staging area and $ git add <file name> to add specfic file to staging area and $ git add . to add all files which are present in git working directory or wokring tree 
+
+-> To check whether files are added to staging area or not by a commmand called $ "git status" 
+
+-> When we excute git status command it will show which files are added to staging area by showing files in "GREEN" colour and files are which are not added will show in "RED" colour.
+
+-> The files which are added to staging area eligible for commit and files which are not added to staging area not eligible for commit 
+
+-> Staging means adding file to eligible for commit and files which are added to staging area eligible for commit
+
+->which files we want to commit from working tree to remote repository first we need to add those files to staging area.
+
+-> which files added to staging area those files will be commited and  files  which  not added to staging area those files will not be commited to remote repository
+
+Note:Staging Area Differentiate Which Files We want to commit and which files we don't want to commit to remote repository.
+
+ $ git add command to add files staging area
+
+ $ git Commit -m"message" : when we want to commit files from staging area then we use commit -m and we have specify message for why we doing this commit those files 
+ 
+ -> When we do $ git commit -m"message" our files will be commited to Local repository from staging area
+
+-> Local Repository means .git folder will be available in our local system like .m2 folder for  maven local repository. 
+
+-> when ever we do git commit and push , git will create a .git local repository that will be created in users directory.
+
+-> So staged files will be moved to local repository after git commit command.
+
+->$ git push : to send files from Local Repository to Remote Repository 
+
+-> After Commit Command  we have  to make a connection eshtablishment between our wroking tree folder to git hub remote repository.
+
+-> always make sure that link should be available between our working tree folder and remote repository, so that can be done by git remote add orgin <Remote Reposotiry URl>
+
+-> $ git remote add remote repository url with thsi we made a connection between our working folder to remote repository.Then we can use $ git push command to push or send commited files from local to remote repository.
+
+Note : Generally when we are integrating our maven project we don't push target folder, which contains .class files i.e bite code, we push only source code. 
+ 
+
+
+$ git help : To provide frequently used commnads while performing git operations
+
+$ git help commnad : Which open a web page and give detail info about that particular command
+
+Note : If we want to perform any git operations first we need to excute git init command
+
+$ git init : To initialize our folder or project folder as git working tree folder 
+            ->git init command is used to initialize our folder or  project folder as git working tree folder (Working Tree Folder from where we doing our git operations )
+			->when we excute git init command , it will create a .git hidden folder in our working tree. 
+        
+Note : Whenever we create file we can't send directly to the remote repository first we need to send to the staging area. 		
+
+$ git clone : To clone git repository to our machine from github.com 
+
+		Syntax : $ git clone <project-repo-url>
+
+$ git status : It will display staged , un-staged and un-tracked files
+
+		Syntax : $ git status
+
+		Staged Files : The files which are added for commit
+
+		Un-Staged Files : The files which are modified but not added for commit
+
+		Un-tracked files : Newly created files
+
+Note: To commit a file(s), we should add to staging area first
+
+
+$ git add : It is used to add file(s) to staging area
+
+		Syntax : $ git add <file-name>
+
+				$ git add .
+
+
+$ git commit : It is used to commit staged files to git local repository
+
+		Syntax : $ git commit -m 'reason for commit'
+
+
+$ git push : To push changes from git local repository to git central repository
+
+		Syntax  : $ git push
+
+$ git rm : To remove file(s) from repository
+
+
+
+==================================================
+Steps to push code to github central repository
+==================================================
+
+1) Create one public repository in git hub (take github repo url)
+
+2) Clone github repository using 'git clone' command
+
+		$ git clone 'repo-url'
+
+3) Navigate to repository folder
+
+4) Create one file in repository folder
+
+		$ touch Demo.java
+
+5) Check status of the file using 'git status' command
+
+		$ git status (It will display as untracked file)
+
+6) Add file to staging area using 'git add' command
+
+		$ git add .
+
+7) Commit file to git local repository
+
+		$ git commit -m 'commit-msg'
+
+8) Push file from git local repository to git central repository using 'git push' command
+
+		$ git push
+
+Note: If you are doing 'git push' for first time it will ask to enter your github account password.
+
+
+------------------------------------------------------------------------------------------------------------------
+Note: Git bash will ask our password only for first time. It will save our git credentials in Credential Manager in Windows machine.
+
+-> Go to Credential Manager -> Windows Credentials -> Select Github -> We can modify and delete saved credentials from here
+------------------------------------------------------------------------------------------------------------------
+
+-> When we do git commit then it will geneate a commit-id with 40 characters length
+
+-> From this commit-id it will display first 7 characters in git hub central repository
+
+-> We can check commit history using 'git log' command
+
+==================================================
+Steps to commit Maven Project to Github Repository
+==================================================
+
+1) Create Maven Project
+
+2) Create GitHub Repository
+
+Note: After creating git repository, it will display set of commands to execute
+
+3) Open gitbash from project folder and execute below commands
+
+$ git init (To initialize project folder or folder as a git working tree or folder)
+$ git status (To know which files are added staging area and which files are not added to staging area)
+$ git add . (To add all the new files and all the  modified files to staging area)
+$ git status (To know which files are added staging area and which files are not added to staging area)
+$ git commit -m 'commit-msg' (To move staged files to local repository with message i.e why we commiting this files purpose or exact message we should specify why we doing commiting)
+$ git branch -M main   (To rename the Mater default branch to Main  )     
+$ git remote add origin <repo-url> (To provide link between our project folder local reposiotry to remote repository)
+$ git push -u origin main  ( To push files from local repository to remote repository )
+
+Note: git branch -M main and git remote add origin <RemoteRepo url> and git push -u origin master these 3 commnads are used to provide link between local repositpory or our git working folder to remote repository.
+
+Note : when we execute $ git remote add origin <url> it will made configuration between local repository to remote reposiotory and our git woking folder under .git folder inside .git there is a conf file available where link will be established between local to remote repository.
+
+Note : git branch -M main and git remoote add commnads we do only one time when we do git push first time, from next time onwards when we do commiit any files are and modified files we directly do $ git  push  
+        
+-> -m represents git commiit message and -M reprsemts Main Branch 
+
+Note: When We do push for first time for specific working tree folder we need to exucte below commands 
+ $ git branch -M main   (To rename the Mater default branch to Main  )     
+$ git remote add origin <repo-url> (To provide link between our project folder local reposiotry to remote repository) 
+$ git push -u origin main  ( To push files from local repository to remote repository )
+
+Note : When we do push second or nth time under specific git working tree we do only push 
+  $ Git push
+  
+CHANGING PARTICLULAR COMMIT ID MESSAGE WHICH ALREADY EXISTED IN REMOTE:
+------------------------------------------------------------------------
+
+Case 1: Modifying  the commit message of recenlty or latest comnited changes  which is not pushed to repository
+------
+ $ git commit --amend -m"commit message".
+
+Case 2 : Modifying the commit message which is already pushed to repository.
+------
+Note : If we want to modify particulat commit id commit message we should know the previous  commit id of commit which we want to commit.
+-> then git will open default text editor and replace the pick word reword on which commit id we want to edit message and then save the changes 
+-> Then agin opens another deafault text editor to enter new commit message and enter new message and exist from editor
+Note : after successfully edit message of commit then do git force push to branch we want to do.
+       $ git push -f origin main
+	   
+Case 3:Modifying the latest commit id message 
+------   
+  $ git rebase -i HEAD~1
+  ->then git will opens default text editor and replaces pick keyword with reword or r and enter esc and typw :wq
+  -> git will open default text editor to enter new commit message and after that enter :wq
+  -> Then do the $ git push -f origin main : to do the force push to remote repositoru main branch.
+  
+--------------------------------------------------------------------------------------------------------------------------------------------
+GIT CLONE
+
+$ git clone <reomte repository url where project stored or integrated> :: To Download the Complete project from Remote Repository to Wokring Tree or Working Folder
+
+->To get Remote Repository URL please clieck code button on git hub.
+
+->Clone is used to download or take whole project from remote repository to wrking tree where as $ Git push to send changes from local repository to remote repository
+
+Note: This Commnad execute when newly joined employee wants to wokr with our project, then he has to download that projecct from Reomte reepository to Wokring folder 
+
+Note : When we clone existing repository to working tree or local we get .git hidden file where conf file available wchich contain info regarding link betweeen workign tree to remote repository(so when we pushing we don't need to execute git remote add origin and git branch -M main to make connection b/w local rep to remote repo)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+GIT RESTORE
+
+$git restore : git restore command is a polymorphic command or multi purpose command
+           $ git restore --staged <filename> :: When the file is in staging area, it will unstage it 
+		   $ git restore <filename> :: When the file is in unstaging are it will reomove or discard the changes what we have made in specified file	
+           $ git restore .  :: to unsatge multiple files or all the files  from staging area 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+GIT COMMIT ID:
+
+-> When Ever We execute  commit, one commit id will generate.
+-> what are changes we have made in  particular commit that will be maintained by commit id 
+->Based On the commit id what changes we made and when changes that made and whu made changes in commit and why that changes happedn,  we track it by Commit Id 
+->By commit code integration can be done and code monitoreda access can be done by help of commit id
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Git Log :
+=========
+
+-> $ git log : which is used to get know commit history with commit ids in repository and who ,when, why made that commits  can be displayed.
+->To Fetch the commit history
+->To exist from git log command after viewing git history,  we should enter 'q' keyword
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Git RM :
+========
+
+$ git rm <file name> (after git rm command we need to commit + push): To remove the file from remote repository and working tree
+Note: When we execute git rm command we need to add it staging area and commit it and push then only changes or file we be removed otherwise won't 
+
+->When we execute $ git rm ,git will automatically stages the file or  changes in file  i.e removed file, no need to add to staging area
+
+-> When ever we do git rm, it will remove file from working tree and moves file to staging area
+
+Note: To remove file from remote repository and working tree and we use Git rm <file name> and after excuting git rm command we should commit it and push it remote repository then only changes will be reflected, if we do just git rm file will be removed from working tree only not from repository, so reflect changes in remote we should do commit and push.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Git Revert :
+=============
+$ git revert: Removing the changes what ever we had commited and pushed to remote repository.
+                           Getting back to the previous position.
+				
+-> we do git revert in two ways 
+   1.Manually removing the chnages and commit+push it or  remove the changes from file what we had made and commit it and push it (this approach is preferbale when we made small change and we know where we made changes).
+     
+Note: If we made changes in multple files of working tree and we if modified 100 lines of code in multile files or classes then we choose git revert <commit id>
+   
+Note :For  Every Commit we do git will generate 42 characters lengh commit id and it will fisrt 7 chars of commit id in git hub repository. 
+
+   2. $ git revert <commit id (which commited changes we want to want to revert)>  : reverting the changes we have commited into git hub repository by that particular commit changes id and then we need to push it to remote repository then only our revert command willl be reflected in remote repository. 
+        -> reverting the commit by commit id means we rollback or reverting or  what ever the changes we made it in commmit we removing from repository.
+     Note: After executing git revert command git bash will open a pop up for enter a message for why we want to revertting commit id 
+        -> what ever the changes we commited in particular commmited id we can revert them by git revert <commit id>
+	    -> $ git revert <commit id>: what ever the changes we want to revert of particular committed chanegs by git revert commit id
+    Note: after executing git revert <commit id> it will opens up a message window for provide revert message to why we want to do revert and by default it will provide message in gold text in above pop up fist line about revert, if we want to provide custom message we can remove the message present in gold text and provide message .
+	      -> after providing message we shold enter ESC button then enter coloumn  ":" automatically ":" coloumn will reflected bottom of git revert msg pop up and then enter "wq" keywords, then we will exis from revert msg pop up box and then push it.
+
+           Steps To Do Revert : git revert commit id --> ennter --> opens message pop up box -->enter "I" it will enables write mode to enter git  revert message whay we are doing revert  -->	enter esc keyword --> enter ":wq" then will exist from git revert msg pop up -> git push 
+		   
+		   -> After performing above steps successfully we done git revert successfully.
+		   
+Differencee between REVERT / RM:		   
+--------------------------------
+  ->$ git rm : to removing the files from local and remote repository
+  
+  Note : we can revert removed files also what we done it by git rm command.
+  
+  ->$ git revert :   removing the changes from files what weh had commited in repository using particular commit commit id.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+GIT PULL
+==========
+->$ git pull :To Download the latest changes from project or remote repository to working tree or wokring folder or local repository we use git pull
+Note : Git Clone : To download the whole project to working folder or working tree or local repository 
+
+GIT PULL VS GIT PUSH VS GIT CLONE
+----------------------------------
+$Git Pull: To download the latest changes  not whole project code from remoote repository to local repository or working tree or working folder
+
+$ Git Push : To send files from Local Repository to Remote Repository 
+
+$ Git Clone : To down load the complete project from remote repository to working tree or working folder or local.
+
+
+NOTE : Git pull is the very dangerous command becuase lots of conflicts will occur while many devlopers working on same file and same line then pull command will give us conflicts or problems
+
+IMPORTANT: In Interview interviewer may ask like what are the difficulties or problems you have faced in project.-> we can explain or tell about git pull conflicts issues
+           when I'm trying to push my code to remote repository faced pushconflicts like another developer pushed same file and same line of code, what I'm trying to push, so then pulled alreday commited changes of same file I'm working 
+		   Then I faced some conflicts problems.Then junk will code geneate in our file which we are pulled of same file and at same line we did changes.So when we do the pull we get more conflicts.
+		   If changes are in same line of same file we get conflicts, if changes are in different line of same file we don't get conflicts.So if we get pull conflicts we need to solve it and commit and push it remote repository.
+           Note : Developer responsbility to resolve the conflicts and commit the code to repository with out conflict.
+           Note : Interviewer Ask How to solve "Merge Conflicts"  and How to do the git revert the code which pushed to repository	   
+		   
+Note : There may be a chance to many developers work on same file and same line of file then we face merge conflicts.Like other developer pushed code to repository that we want psuh and when we trying to push our code git will suggest that we unable to push your code alreday othes pushed same file and same line of code, so pull the changes and compare the differnce then push the code and after we pull the code we face merge conflicts occur and we have solve the issues and solve it and push to repository.  		                
+Note : the team member who's pushing late, he has to solve the merge conflicts.The person who got the conflicts he has to solve the conflicts and push it to remote repository
+
+-> when two developers are wrking on same file and same lines, when other developer pushed his changes and when I'm tryiing to push my changes of same of file and same line code then I faced pushing conflicts , gil ask us to pull the changes, then I got the conflicts , then I'm responsible to solve the conflicts and push it to repmote repository
+-> So devlopers when they face merge conflicts they should solve the conflicts like removing junk code and un neccessary code from file and push it repository.
+
+Note: Remember when multiple developers working on same file of project, we may  get merge conflicts when we do push our code to repository, gil will ask us to pull the code firts and compare code and if junk code avaliable remove it and push the code to repository.
+      The developers who is got the conflicts that developer has to slove the conflicts and solve it.
+Note : If we un able to solve the merge conflicts, we should see git log and whoo made the changes and commited recent changes repository and if we also working same file and same lines code ,if  we don't know which code sholud keep and whoch code noo need to keep "SET UP A MEETING WITH TEAM MEMBERS AND SOLVE THE ISSUE LIKE WHICH CODE SHOULD KEEP AND WHICH CODE SHOILDN'T KEEP AND COMMIIT CHANGES AND PUSH IT REPOSITORY"
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Note : when we want to commit  our changes first time we need to execute "git init" command
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+MERGE CONFLICT:	  
+-------------- 
+-> when one of the team member and I wokring on same file and same line of code , when we trying to pull the code then we face merge conflicts.Then developer has to see the conflct file and remove the junk code and un wmated code from file and  keep needed coode and commiit it and push to remote repository
+-> Conflicts will occur if we developers working on same file and same line other can't but when developers differnct files when we trying to commit or push our changes to repository ,first we sholud "PULL" the changes that have pushed to repository by other devlopers and then push it to the remote repository.
+
+Note : When Two members of project working on same file but not on same lines of code of files then we face don't any merge conflicts but when we trying to push our changes of files git will asks us to pull the latest code i.e other memebr of your team wokring on same file and pushed the changes so please pull the code and compare your chanages and resolve if conflicts are present and when we pull code it asks to provide merge message i.e when we don't have any conflitcs when bothe developers working on same file and after that we need to push the code, it will generates two commits id i.e one commit related our chnages and other commiit related to when we merge the changes with out conflicts this commit will pull the changes what we are not pulled.          
+==================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+BRANCHING  STRATEGY   
+--------------------- 
+->In Real time Project , multple developement teams will be involved
+      
+     1.CR Team : Change Request Team typically refers to a group of indiviuals responsible to manage and evaluate the proposed changes to project 
+	 2.Enhancment Team : Enhancment team will work on implementing new features or additions and improvements to existing application or prodcut.
+	 3.R & D Team : Research and Development team responsible for exploring new methodolies and approches and technologies that can  enhance project capabilites and improve it's performance.
+	 4.Prod Team : Prodcution Team or deployment Team resposnbile for application deployment and operations in live environemnet.
+	 
+->When Multiple  teams in project work parallely on code intigration will become difficult.
+	 
+->So Every Team should have separate code base for easy maintainance.
+
+Note : One project will have One Repository in git hub.
+
+->So attain separate code base for each team we can't create separate repositories for one project but we can create multiple branches in one repositories, so we can create team specific branches in repository like for prod tema one branch and Enhancement team one project etc
+
+->for one project one repositorie will be created and for one repositories multiple branches will be created.
+
+Note : which team should use which branch that can be decided by our project managment will decide.  
+
+-> Projct to project branching strategy will be different like
+     
+	  Prod - Main or Release
+	Note: So project to project branching strategy will be different.
+
+->By different branches in repository we can easily track which team making which code easily we can manage and easily we can deploy.
+
+-> Using multiple branches multiple team can work parallely.
+
+Note: Branching strategy will different to project to project like which team should team use which branch that can be different for project to project	
+	
+Note : When we create repository in git hub by default Main Or Master Branch will be available, where we maintain project source code be available
+
+-> So we create a separate called develope  branch from main or master branch and we do our feature or task in develop branch not directly in main branch so it indicates that with out disturbing the existing code or Master branch code we separate branch called develop branch and from main branch we created develop branch and we take main  branch code into develop branch and we do changes acc to new requirment and test the as expected or with existing code or functionality.
+   then Develop branch will merge into Main or Master branch to keep code intigrated.
+
+->why can't we do changes directly in Main brach beacause with out distrurbing exist code or functionality we create separate branch and create new filed and do changes in existing code and test the code working as expecting or not, if we feel everyhing working as expected then we merge our develope branch in to main or master branch.
+
+Note : If we use one branch called main or master for all the teams in project , multiple teams will be wokr on multple files so it's become difficult to know which team making or done  which coding we can't differentiate that.
+
+-> In order to differentiate the code done by the mutiple teams and in order to support parallel developement in project we use "BRANCHES". 
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Repository Vs Braches
+
+-> In repository we keep whole project code where as In branches differentiate the code done by the multiple teams and and in order to support the mutiple teams wokr parallely.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------   
+-> from one brache we can multiple braches like from Main branch we create Develope brach and do changes as per requiremnts and and merge the develope branch into main branch and by this approach we can develop the code with out disturbing existing code in main branch i.e repository.
+	
+Branching Merging :
+--------------------
+Merging the changes from one branch to another branch is called Branch Merging.
+
+Note : when we are merging the changes from one branch to another branch there may be a chance of getting conflicts becuse other team members also mering their code into main branch and my code also merging from my branch and if other team members and we are working or making changes  on same file and same line again conflict will come.Then we need to resolve the changes and merge the code into main branch.
+
+Note : When we create a brach form another branch that branch changes will comes to newly created branch.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+->When we do git clone git will clone the project from main branch not from other branches.
+Note : so we need to do  work on develop branch not on main branch.
+
+$ git checkout <branch name>: In order to switch from one branch to another branch.  
+	
+-> when we do changes in develop branch and pushed, changes will push to develop branch only not in main branch.
+-> when the project want's to deploye the latest code , team will deploy the code from main branch not from other branches
+
+Note: By branches we can easily identify which team is doing which change in the project.
+
+-> So multiple teams in project will have  one  branch to one team  like 	
+      
+	  enhancment team - develope branch 
+	  prod team - release branch 
+	  r&d team - future branch
+	  C&R team - CR branch 
+-> we can create multiple branches for differen teams in project and  can work paralley with out disturbing other team members work.
+
+-> Git clone <repository url >: download whole project from remote repository to local or wokring tree or working folder 
+
+-> Git Branch : It will let us, to which branch our working folder or tree pointing.  
+
+-> Git Checkout <branch name> :  to checkout or shift from one branch to another branch.
+
+Note : when we do cloning by default git will download the project from main branch not from other brnaches.
+-------------------------------------------------------------------------------------------------------------------------------------
+Git Clone -b <branch name> <reomote repo url>
+================================================================================================================================================
+$ git clone -b <brnach name> <url>: to download the project source from specific branch to local or working tree, not tpo clone the project  from by default main branch 
+
+Note: if we want to download particluar branch source code , we use git clone -b branch-name url
+==================================================================================================================================================================
+Brnach Merging:
+=============================================================================================================================================
+-> we can do branch merging in two ways:
+   ------------------------------------
+    1. Git hub.com :
+	   -----------
+	   -> from directly git hub we can merge one branch into another branch 
+	   -> Using concept caled PULL REQUEST we can merge the code from one branch to another branch.
+	   -> when we click on 	"Pull Rquests" tab on git hub it will shows what are changes made under  specific branch.
+	   -> click on "New Pull Request" then specify from which branch we want to merge the changes to which branch.
+	   
+                     base: main   <----  compare : develop	   
+	   -> after specifying from branch to which branch we want merge, gil will mention we are able merge the code or facing any merg conflicts.
+	   ->Then clieck on "Create pull request " and then git will ask us to keep reviewer(TL) to review your branch changes that we want to merge, for experinced peoplw we won't keep any reviewers we directly create pull request by clicking on create pull request.
+       -> Then pull request will be created 
+       -> after creating pull request git will show status of the request like OPEN which means pull request is created not merged as of now.
+       -> Click on "Merge Pull request"	 and if we want provide message why we are merging this PR we can specify in comment section.
+       -> Then git will shows pull request successfully merged and closed.
+       Note:	what ever the changes in develop brach will be pushed to main branch, now branch can has develope branch changes and it own branch changes
+       
+       Note: after pull request merge we can delete develope branch also it's optional.
+     
+       Note : By creating "pull request" we merged the changes from one branch to another branch.
+       -> Using pull request we can merge the one brach to another branch.	
+
+Note : we should care full when we are working with git hub repository if we do any mistakes total project will gone.
+
+Note : In project multiple teams will be work like prod and emhancement and prod team etc so in order to keep separate code base for each team in project we use "branches"  	   
+	
+	2.Git Bash : 
+	  --------
+	  -> from git bash by using commands we can merge one branch into another branch.
+  
+
+
+			
+Note : when our work is completed in develope branch or research branch then we want keep or update our branch changes in main branch then we go "pull request" to merge one branch to another branch. 
+
+->While branch Merging we may get merge conflicts so we have to solve the conflicts and merge it.
+-> We get merge conflicts when team members also working on same file and same line of in project the we face merge conflicts
+
+Note : In real time "Repository" will be created by "DevOps" team and "Branches" will be created by "Developers".
+
+-> we can clone that repository and do changes and pushed to repository and merge the branches.
+==========================================================================================================================================================================================================================================
+
+-> we can create branches directly from remote repository.
+
+->In every repository below branches will available  
+      1.main/master(production)
+	  2.develop.(developers)
+	  3.feature.(enhancement team) 
+	  4.release(prodcution)
+	  5.staging
+	  6.research.(developers)
+	  
+Note : When we clone the repository to working tree by default we get main branch to our local	  
+	    
+Note : Developers can't have access to create repository in git hub, devOps team will create repssitory and give to us 
+
+Note : public repository every can be clone but we choose who modify the project and commit it.
+       private repository we choose wo can clone and who can commit changes
+
+->In real time devOps team will provide acces to private repository and then we able to clone it and do changes for commiiting changes also we need access, so our manager will give our detailas to devops team and devOps team will grant access to us then we able to clone and made changes and push it repository.
+
+-> Normally when we are learing we add who can access and who can commit changes in git hub  repository
+
+       settings --> collabrators --> add people 
+	   
+	Note : after adding people they receive mail for apporve inviataion they should approve it then they will able commit the changes.   
+
+Note : some times we call "feature" branch as "qa" branch					   
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+When we are working on one task suddenly we may get some other priority task.
+
+Usecase
+++++++++
+-> ager assigned task id : 101
+-> I am working on that task (i am in middle of the task)
+-> Managed told that stop the work for 101 and complete 102 on priority. 
+-> Once 102 is completed then resume your work on 101
+
+-> When manager asked me to start 102 task, i have already done few changes for 101 
+  (partially completed)
+  
+-> We can't push partial changes to repository because with our partial changes existing functionality may break.
+
+-> We can't delete our changes because we have spent few hours of time to implement those changes
+
+
+***************  In this scenario we will go for 'git stash' option *********************
+
+=> Git stash is used to save working tree changes to temporary location and make working tree clean.
+
+-> After priority work completed we can get stashed changes back using 'gitstash apply'
+
+
+============
+Git Branches
+============
+
+-> Branches are used to maintain seperate code bases for our project
+
+-> In GiT repository we can create multiple branches
+
+main
+develop
+qa
+release
+research
+
+
+-> development team will integrate the code in 'develop' branch
+
+-> bug-fixing team will integrate the code in 'qa' branch
+
+-> R & D team will integrate the code in 'research' branch
+
+
+-> In github we can create branches
+
+-> To clone particular branch in git repo we will use below command
+
+		$ git clone -b <branch-name> <repo-url>
+
+==============
+Branch Merging
+==============
+
+=> The process of merging changes from one branch to another branch is called as Branch merging
+
+=> We will use Pull Request for Branch Merging
+
+============================
+Steps to do branch merging
+============================
+
+1) Create feature branch from main branch
+
+2) clone feature branch 
+
+3) create new file in feature branch then commit and push to central repo
+
+4) Go to central repository then create pull request to merge feature branch changes to main branch
+
+Note: Once feature branch changes are merged to main branch then we can delete feature branch (if required)
+
+======================================================
+What is .gitignore ?
+=====================================================
+
+-> This .gitignore is used to configure the files or folders which we want to ignore from our commits
+
+-> The files and folders which are not required to commit to central repository those things we can configure in .gitignore file
+
+Ex: In maven project, 'target' folder will be available which is not required to commit to central repository. This we can configure in .gitignore file.
+
+-> When we develope a project as part of project we don't need to push the all the files to repository.
+
+-> any file and folders which we don't want to push in remote repository we keep it in .gitignore.
+
+Note : we should commit only source code to repository not byte code, so generally byte code will available in target folder so we should ignore target folder from our commits.
+
+Note : When we create spirng boot application by default .gitignore file will come where we cinfogure which files and folders we want to ignore as part commits.
+      -> if file not availabe we should create .gitignore file by follwing steps:
+               right click on project working tree -----> create .txt file extension and name it as .gitignore and remove .txt extension
+---------------------------------------.gitignore-------------------------------------------------------
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+BitBucket vs Git 
+================
+-> Like in git hub how we create git repository , we can create repository in bit bucket also
+->But both bitbucket and git are using same clinet i.e "git bash"  
+-> 	What are the commands available in git, same commands applicable for Bit Bucket 
+         Git == Bit Bucket
+		 
+-> In git we called repository as git repository where as in Bit Bucket we call respository as BitBucket Repository.		 
+=======================================================================================================================================================================================================		 
+Interview Related Questions Common For Developers And DevOps Engineers:
+-----------------------------------------------------------------------
+
+1.GIT CLONE vs GIT PULL
+  
+2.GIT PUSH vs GIT PULL
+
+3. GIT STASH vs GIT STASH APPLY
+
+4.GIT FETCH vs GIT PULL
+
+5.GIT MERGE vs GIT REBASE
+
+Note : Every developer should work with git repository to store their code.
+  
+========================================================================================================================================================================================================
+
+Git Fectch:
+===========
+$ git fetch : git fetch command is used to verify whether any changes are available in remote repository.
+ 
+-> git fetch command is used to verify any changes are present in remote repository and download that changes to local repository but not to working tree.
+
+Note : Git fetch command is used to verify any changes are available in remote repository but not to download the changes to working tree.
+       When we execute git fetch command it will download the changes to local not working tree.
+	   
+Note : If we want to  verify and download the changes from remote repository to working tree we "GIT PULL" command 
+Note : If we want verify whether the changes are available or present in remote repository and jush download the changes to local but not to working tree.	   
+
+$ git pull: To verify and want to download the latest changes from remote repository to working tree.
+  Note : When there are no changes present in remote repository, then we execute git pull command, git will resondes to us like "alredy update date" and if we changes present git will take the changes and shows what are changes availabe i.e files and folders
+  
+$ git fetch : To verify any latest changes available in remote repository and only down load the changes local repository not to working tree.
+  Note : When there are no changes are present in remote repository, then we execute git fetch command git will reponds nothing , if we changes availabale it will responds as showing the changes in reomte repository and with commit ids and fetch to localrepository not to wokring tres 
+  
+  Note :Generally git fetch command  downloads only the latest changes from remote repository to local repository not to wokring tree , if we want downnload changes from local reposiotry to working tree then we use git pull command. 
+  
+
+================================================================================================================================================================================================================================================================================================================ 
+Git Rebase:
++++++++++++
+
+Note : Multiple teams in project like r & d , prod team etc, can work parallely on remote repository in git hub using brnaches concept like main and feature and release etc
+
+-> Rebase is also one of the approachh to merge the changes of branch into another branch.
+
+To push the changes from one branch to another branch we have 3 ways:
+----------------------------------------------------------------------
+1.Pull Requests : in real time to merge the changes from one branch to another branch we prefer "Pull Requests".Basically we pull request branch merge in git hub repository not in CLI.
+
+2.Git Merge :To merge the changes of one branch to another branch from CLI and git merge command merge the branch changes into another and maintain commit history along with brach merging.Like it will maintain commit history like when the branch merging happened which file is commited to develop brnach and which file is commited to main branch and will maintain squential order of commit history along with branch merging.
+Note: When we wanto preserve commit history along with branch merging we prefer "git merge" command 
+Note : When we doing git merge from CLI we should checkout to the branch i.e to which branch we merging one branch changes,then we do "git merge feature"
+
+3.Git Rebase :To merge the changes of one branch to another branch but not preserve the commit history i.e remove the commit which are available then we use rebase command.	 
+Note : When we doing git merge from CLI we should checkout to the branch i.e to which branch we merging one branch changes,then we do "git rebase feature"
+
+
+Note : In reality we use PULL REQUEST approach to merge the one brnach changes to another branch 
+
+PULL REQUEST vs GIT MERGE vs GIT REBASE
+-----------------------------------------
+->Pull Requests: PR are used merge the changes of one branch into another branch usign git hub repository or bitbucket repository and this approach will preserve the commit history like when branch merging  happens and what are files are merged to another branch etc.
+->Git Merge : which is used to merge the changes of one  branch to another branch  from CLI and will prerserv commit history like PULL REQUEST approach i.e when the branch is  merged and what are the changes merged to branch those kind information we see throuh commit history.
+->Git Rebase : which is used to merge one branch changes into anothe branch from CLI and will not preserve the commit history like when branch merging happened and what are the files and filder merged to another branch etc.
+
+Note : In Real Time developers prefer "PULL REQUEST" approach to merge the branch.
+ 
+====================================================================================================================================================================================================================
+
+GIT STASH & GIT STASH APPLY :
+============================
+-> when we are working on some task or  specific task and gets assigned with another high priority task and what ever the changes present in working tree those changes we are going to stashed ie. temporarly storing changes at one place  by using "GIT STATSH" command. and then we will work on assingned high priority task, once high priority task changes gets complted and pushed to remote repository, then we use GIT STASH APPLY to what ever the changes we stashed from working tree, those changes will get backs to working tree.
+
+$ git stash : store the working tree changes in temporary area.
+$ git stash apply :  The changes we are stashed , that changes will coming back to working tree
+
+
+
+$ git stash : when ever we execute git stash command , what ever the changes available in wokring tree those changes will be stored into one  temperory area.
+  ->In git bash git will store  stash changes when we excute git stash command.
+
+Use Case : when we are working on some task which is consider  as low priority and we are not yet completed given task and got assigned another high priority task which  has to be done first than assigned previous task, so we should't commit current task changes which are not complted because it mayn affect available remote existing functionality and we can't delete that developed code , so in that case we stash the current woking task changes in temporary area and starts doing wokring on hihh priority task and changes will commit and push it on remote repository, then we starts wokring on previous task t.e stashed changes and stash changes will get back to working tree from stash area.  
+
+Git stash vs Git stash apply
+-------------------------------
+-> git stash: to save the working tree changes into temperory area 
+-> git stash apply : from temperory area to get back changes to working tree.
+
+
+
+=========================
+git merge vs git rebase
+==========================
+
+=> These commands are used to merge changes from one branch to another branch
+
+-> git merge will preserve commit history
+
+-> git rebase will not preserve that rebase history
+
+-> When we are working on particular sprint and we want to merge changes from one branch to another branch then we will use 'git merge' command
+
+-> Once sprint-1 is delivered then we want to take latest code of sprint-1 to start sprint-2 development. In this scenario we don't need commit history so we will use 'git rebase' command.
+
+===========================
+What is git pull command 
+===========================
+
+-> pull command is used to take latest changes from repository to local
+
+-> When we want to make some changes to code, it is always recommended to take git pull first then start your changes.
+
+
+Note: When we execute 'git pull' there is a chance of getting conflicts. We need to resolve the conflict and we should push the code without conflicts.
+
+
+====================================================================================================
+git diff : It is used to compare the files ( local file & repository file)
+====================================================================================================
+-> git diff <file name> command is used to compare the files content like we have made changes in one file which is present in working tree and moved those file changes to staging area, so now I want to compare the file content of staged file content and working tree file content then we use "GIT DIFF" command.Like that we compare file content of phases git using git diff command.
+
+->To compare or see the files content between working tree  and staging area or between staging area and local repository or between local repository and remote repository we use GIT DIFF command 
+
+->when we do git diff <filename>, it will show the  file content difference between different git phases like between working tree and staging area or  working tree and local repository.
+
+$ Git diff <file name> command is used to compare the file content between different git phases i.e same file in different git phases like between 	working tree and staging and local repository
+
+-> '+': represents destination folder 
+-> '-': represents source      folder
+
+
+Note : Last or Latest commit always refered by 'HEAD' keyword
+
+Note : To reprsent stage file we use "--staged".
+
+REQ 1: To see the file content difference between last commit file and working tree file
+----
+$ git diff HEAD <file name>: to compare the file content between latest commit and working tree.
+
+REQ 2: To see the difference between staged file and last commit
+----
+$ git diff --staged HEAD <file name> : to compare the file content between staged file and last commit file 
+
+REQ 3: To compare or see file content difference between specific commit file and working tree 
+-----
+$ git diff <commit id> <filename in working tree> : to comapare the file content between working tree and specific commit file 
+
+REQ 4:To Compare the file content between staged file and specific commit file 
+------
+$ git diff --staged <specific commit id> <filename>
+
+REQ 5: To compare the file content between two specific commits  
+-----
+$ git diff <commit id> <commit id> <file name>: To compare the file content between two specified commits.
+
+REQ 6: To compare the differences between two specified branches  
+-----
+$ git diff origin/<branch we want to compare in remote repo>  <branch we want compare with loca reposiotry branch> : To compare all the file differences between remote repository and local repository.
+
+=======================================================================================================================================================================================
+
+git squash : It is used to combine multiple commits into single commit
+===========
+->To merge multiple commits into single commit.
+->Suppose we have 10 commits in particular branch and in that 10 commits I want to combine first 3 commits into single commits then we use "git squash"
+->In order to perform git squash first we need to to git b rebase of how many commits we want to combine into single commitm
+    $ git rebase -i HEAD~<number of we want merge into single commit>
+	                   or
+	$ git rebase -i HEAD~5
+
+>after excuitng above commnad git will ask us to perform squash i.e merge  commits into single commit so we have to squash indvidual commit into one commit then after we need to enter esc keyword and enter :wq, then git will ask us to provide commit message for squash , we have enter message and enter :wq , with this our squash operation will complete.
+====================================================================================================================================================
+
+git bisect : It is used to identify the bad commit which introduced bug in project code base .
+-----------
+->Git bisect command is used to search a commit which introduced a bug.
+-> To work with  "bisect"  firstly we have to excute "$ git bisect start"
+ $ git bisect start: Will initilize the envi for bisect operatoins or will start the bisect session 
+ $ git bisect good <comit id>: we make the particular commit is good which  means where the code working fine 
+ $ git bisect bad : if we don't specify any commit id git will take latest commiit and to this case it will consider it as bad commit and where th code not working 
+ $ git bisect reset : to take back to normal git envi from bisect envi  
+================================================================================================================================================================
+Release and Tags
+=================
+Tag: Tag means marking particular commit like if we made big changes in particular commit, so easily recognize that particular in feature so we use git tag to made that particular commit as tag.
+-> We can create  tag to particular commit where we create releases of project.
+-> Basically tag means marking particular commit to easily identiy in feature what we made major changes in project like relaeas project versions etc.
+
+Tag Creation:
+-------------
+$ git tag <name of tag>: to create tag at latest commit in branch.
+$ git tag : to list out tags which are present in repository.
+
+Tag Types: we have two kind of tags 
+
+1.Light Weight tag: which doesn't store  the tag description but has only name of tag.
+   $ git tag <tag name>
+2.Annotated tag : along tag name we can add tag description for  tag.
+ $ git tag -a <tag name> : after this executing command git will ioen default test editor to provide tag description.
+    Note : "-a" means annotation.	  
+$ git tag -d <tag name> : To delete a particular tag  
+Note : after delete tag form local and we should delete it from remote also,this can be done by following command
+$ git push origin --delete <tag name> : to delete the tag from remote repository.
+
+$ git tag -a <tag name> <commit id>	: To create a tag at particular commit.   
+	  
+Note : After creating tags in local repository we should push them to repository 
+
+
+$ git push origin <brnach name to which branch we want to push> <tag name>: to push a partucular tag to remote repository.
+
+$ git push origin <branch name> --tags: to push all tags present in local repository to remote repository. 
+
+$ git show <tag name > : to show the complted tag information like tag name and description and who when created etc.
+
+Note : Tag Helps us to indentify important commit which has a major releases or bug fixing or project release points. 
+
+Note : Tag is specifically pointed to specific commit in repository.
+
+Note : Always recommended to create annoatated tags instead of light weight tags.
+
+TAG IS USED TO CREATE A RELEASE A POINT.
+
+Releases:
+---------
+-> Releases are end product which we provided to endusers or clients.
+->With different releases we provide different versions of product to the users
+->Releases provide link to download the binary files which contains information changes in current release.
+->Rleases are based on tags, tags specify a point in git repository. 
+
+-> From tags we create releases in repository 
+-> click on specific tag and click on create release option on right side and provide release name description and add files if we have any binary files 
+-> Then click on create release ,with this our release will be created
+Note : we can download latest source code latest releases . Releases will show option to download the project as zip file 
+
+
+
+
+===========================================================================================================================================
+Git Hub Lab Task
+===========================================================================================================================================
+1) Create Maven Web Application
+2) Add 'Spring-Core' dependency in project pom.xml file (www.mvnrepository.com)
+3) Package maven project as war file using maven goal
+4) Create Git repository in github / bitbucket (public repo)
+5) Push maven project into github repo using gitbash
+   (target folder shouldn't be commited, add this in .gitignore file)
+6) Make changes in pom.xml and push changes to github repo using git bash
+7) Create 'feature' branch in git repo from main branch
+8) Switch to feature branch from git bash
+9) Make changes in 'feature' branch pom.xml file 
+10) Push changes to feature branch
+11) Create pull request and merge 'feature' branch changes to 'main' branch
+
+
+=======================
+Git Hub Class Summary
+========================
+1) What is Source Code repository 
+A. To integrate project source code at one place we use version control softwares like git , bit bucket , svn(out dated)
+
+2) Why we need source code repository
+A. To monitor project source code we use source code repository like who when why what changes	 are integrated at project source code repository.
+
+Note : So version control systems
+
+
+3) What are the source code repositories available
+4) What is git hub
+5) What is git 
+6) What is Repository
+7) Public Repository vs Private Repository
+8) Cloning Repository
+9) Staged vs Unstaged vs Untracked File
+10) Adding Files to Stating Area
+11) Unstaging the files from staging
+12) Discarding local changes
+13) What is working tree
+14) What is Local Repostiory
+15) What is Central / Remote Repository
+16) Commit from working tree to local repo  (git commit -m 'msg')
+17) push from local repo to central repo (git push)
+18) Taking latest code changes
+19) push vs pull
+20) What is conflict
+21) How to resolve conflicts
+22) What is branch in git hub
+A. When multiple teams in project wants to work  parallely and maintain separate code base for individual team we use braches.
+   Teams :
+   a.prod
+   b.r&d
+   c.enhancement 
+   d.cr 
+
+   Branches:
+   a.qa
+   b.release : Where Project Production Code Available.
+   c.main
+   d.feature
+   e.uat
+   f.develop
+   
+23) How to create branches
+Note : to create branches we  need permission that can be provided by manager.But repository will be created by devOps team.
+
+Note : we can delete branches after branch merging.it will show delete brnach option which we don't want.
+
+24) How to clone particular branch ( git clone -b <branch-name> <repo-url> )
+25) how to switch to particular branch (git checkout <branch-name>)
+26) How to merge branches
+27) What is pull request
+28) git merge vs rebase
+29) what is .gitignore
+A. If we want to igonre particular folders and files from our commits and those file and folders like target folder etc can be configured in .gitigonre file.
+Note : we bascially push only SRC AND POM.XML files only from project to remote repository.
+->.gitignore file is a text file
+Note : we don't need to perform any operations to work with .gitignore files , we just need to create simple txt filem name it as .gitignore file and configure what are the files we want to ignore from commits.
+
+
+
+30) Braching Strategy ?
+A.project to project branching strategy will be differe like in my project we "main branch" used deploy from main brnach to "production server."  
+
+32)git stash 
+A. git stash is used to store the working tree files in temporary area.
+-> we can do number of stash and stashing index starts from 0,1,2,3.....
+-> Based on the index we can apply the stash 
+
+
+33) Working with Bitbucket
+
+34) What is conflicts 
+A. When we are pulling latest changes from repository if we have changes in local same file and same line then we will get the conflicts.
+
+
+git init : To initialize a folder as a git working tree folder.
+git help
+git config
+git clone 
+git status
+git add .
+git add <file-name>
+git restore
+git commit
+git push
+git pull
+git log
+git rm
+git revert
+git branch : to check currently to which branch we are pointing.
+git checkout
+git fetch
+git merge
+git rebase 
+git stash
+git squash
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=========
+BitBucket
+=========
+
+-> Version control software
+
+-> Developed By Atlasian Company
+
+-> BitBucket / GitHub internally uses git as version control
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				

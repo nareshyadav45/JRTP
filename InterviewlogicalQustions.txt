@@ -1,0 +1,112 @@
+1.Write a program to toggle a string ?
+   Input =Naresh Yadav
+   Output =nARESH yADAV
+
+2.Write a java program to find smallest elements which are right side for each element ?
+ 
+    String a[]={"11","3","12","1","6"}
+	
+3.Write a program to find 3rd highest value in given array.
+      int ar[]={1,4,7,12,2,9,3,12}
+	  
+4.Frequency of each digit in given number ?
+    int number=926552128
+
+5.Write A Java Program to Remove Duplicates From String
+    Input: String =Hello
+	OutPut:String =Helo
+-----------------------------------------------------------------------------------------------------------------------------------
+1.Write a program to toggle a string ?
+   Input =Naresh Yadav
+   Output =nARESH yADAV
+   
+A. //Approachh 1 Character Class Methods
+   Stirng str=Naresh Yadav
+   
+   StringBuilder sb=new StringBuilder();
+   
+   for(int i=0;i<str.lenght();i++){
+       char c=str.charAt(i);
+	  if(Character.isUpperCase(c)){
+	     sb.append(Character.toLowerCase(c));
+	  } else if(Character.isLowerCase(c)){
+	    sb.append(Character.toUpperCase(c));
+	  }
+   }
+   
+   syso(sb);
+   
+   
+  //Approach 2 Ascii Values 
+  StringBuilder builder=new StringBuilder();
+  for(int i=0;i<str.lenght();i++){
+    char ch= str.charAt(i);
+	 if(ch >='a' && ch<='z'){
+	 char upch=(char)('A'+ ch-'a');
+	 builder.append(upch);
+	 }else if(ch >='A' && ch <='Z'){
+	 char lwch=(char)('a'+ch-'A')
+	 builder.append(lwch);
+	 }
+  }  
+ 
+   syso(builder); 
+---------------------------------------------------------------------------------------------------------------   
+5.Write A Java Program to Remove Duplicates From String
+    Input: String =Hello
+	OutPut:String =Helo
+A. 
+   //Approch 1  using char[]
+
+    String str=Hello;
+       String lower= Str.toLowerCase();
+       char[] ch= lower.toCharArr();
+  
+       StirngBuolder builder=new StirngBuilder();
+   
+     for(int i=0;i<ch.length;i++){
+	    boolean repeated=false;
+	    for(int j=i+1;j<ch.length;j++){
+		    if(char[i]==char[j]){
+			   repeated=true;
+			   break;
+			}
+		}
+	 
+	   if(repeated==false){
+	   builder.append(char[i]);
+	   }
+	 }
+  
+      syso(builder);
+  
+   //Approach 2 using java 8
+   
+   StringBuilder builder=new StringBuilder();
+   
+   str.char().distinct().forEach(c->builder.append((char)c));
+   
+   syso(builder);
+   
+   Note : Here str.char() method retunr InStream of each character present in Stirng like asci values 
+          H->72
+          e->102
+		  l->108
+          l-108
+		  o->112
+		  
+		  
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+            		  
+   
+   
+   
+   
+   
+   
+ 	
+	
+      

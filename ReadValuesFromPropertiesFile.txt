@@ -1,0 +1,204 @@
+                               Deal With Properties In Java Application
+							   ----------------------------------------
+							   
+->To load the property from the properties file we use @value annotation based on the given key in properties file
+
+spring.application.name=SB_Rest_Api_Prop_Load
+
+greetMessage=successfully load greet message data from properties file
+
+welcomeMessage=successflly load welcome message data from properties file
+
+
+@RestController
+public class MessageRestController {
+	
+	@Value("${greetMessage}")
+	private String greetMsg;
+		
+	@Value("${welcomeMessage}")
+	private String welcomeMsg;
+	
+	@GetMapping("/greet")
+	private String greet() {
+		return greetMsg;
+	}
+	
+	@GetMapping("/welcome")
+	private String welcome() {
+		return welcomeMsg;
+	}
+}
+
+Note : If we have 100s of values to read the from properties file , this approach is not preferable to use 
+       ->If Properties file has less than 5 properties to be load then we go for this approach @value annotation to load the data from props file to java class based on the given key name 
+
+Note : In real time our projecrt will contain thousands messages that we don't keep or hard code  in java code or classes.
+
+->if we have our project messages in properties file , if we made changes in project messages we just have to restart the server or application , don't need to recompile or redeploy the whole propject, so retstart is better than  recomplie and redeploy project code.
+
+->If we properties file changes just restrat the server to load the latest changes properties file props.
+
+Note : We never hardcode any messages in java program, if hardcode the messages in java programm it will take more time to recomplie and repackage and redeploy.
+
+->Declaring the same varibles in multiple classes in not recommended.
+
+->What ever the messages we want to keep in application ,first we need to keep in application.yml file in ther form Key value Pair.And keep the yml properties data in separate AppProperties class in Map objeject in the form key value pair and where we need application messages we usse app properties class and it's map object to get the app messages.
+
+->By this approch we just need to start the server not whole project recompile and deploy etc.
+
+
+
+          class 1
+		  
+		  class 2        <--    App Properties.java      <--      Application.YML
+		  
+		  class 3                    MAP<> object;
+
+->Load the app.yml data to appproperties.java class map object and from there  read the data from there java class where ever we want 
+
+Note : If we declare the messages directly in program it will become hardcoding.The problem with that approach is we need to recomplie and repackage and redeploy every time we make changes so that becomes hardcoding. so we keep application messages in app.yml and from yml we load into AppPropertiies java class and from app.properties class we load into code where ever we required.
+
+->If we dircetly load the data from App.propertis yml file to multilple java classes it will becomes duplicate code.So to avoid this we use Separate java class where we load applcaition.yml properties and we use that class where we required.
+
+Note : @EnableConfigurationProperties annotation is used to represent annotated class is configuration properties of application.
+      ->@EnableConfigurationProperties is used to read the configuration properties and represent as configuration properties class
+	  
+	  ->In application.yml file we have predefined and user defined properties like app messages available.
+	  
+	  ->So we have to read the user defined messages, prededfined messages from yml file, so we use @configurationproperties(prefix="app") it will load the prperties from where property starts with prefix="app"
+Note : We are loading the user defined data from yml file to java properties class in the map object, so keep the map object variable name and yml file used defined messages map property name same, then only properties will be loaded otherwise won't.
+
+
+spring:
+  application:
+    name: SB_Rest_Api_Prop_Load
+    
+server:
+  port: 8081    
+    
+app:
+  messages:    
+    welcomeMessage: successflly load welcome message data from properties
+    greetMessage: successfully load greet message data from properties 
+	
+package com.prop.propties;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+
+@EnableConfigurationProperties
+@ConfigurationProperties(prefix = "app")
+@Configuration
+public class AppProperties {
+	
+	private Map<String, String> messages=new HashMap<>();
+
+	public Map<String, String> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(Map<String, String> messages) {
+		this.messages = messages;
+	}
+	  
+}
+
+
+package com.prop.rest.controller;
+
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.prop.propties.AppProperties;
+
+@RestController
+public class MessageRestController {
+	
+//	@Value("${greetMessage}")
+//	private String greetMsg;
+//		
+//	@Value("${welcomeMessage}")
+//	private String welcomeMsg;
+	
+	@Autowired
+	private AppProperties appProperties;
+	
+	@GetMapping("/greet")
+	private String greet() {
+		Map<String, String> messages = appProperties.getMessages();
+		String greetMsg = messages.get("greetMessage");
+		return greetMsg;
+	}
+	
+	@GetMapping("/welcome")
+	private String welcome() {
+		Map<String, String> messages = this.appProperties.getMessages();
+		String welcomeMsg = messages.get("welcomeMessage");
+		return welcomeMsg;
+	}
+	
+	
+
+}
+
+->App Properties class that will be there in every project in real time.Properties class will be read the app messages or prperties form yml file and store or keep it in Map object
+
+->App Properties class is to load the properties from yml file and store into Map object.
+
+->where ever we need the app properties we just have to inject that class and get map object and get values from map based on the given key.
+
+Note : Autowiring means injecting one class object into another class. 
+
+->String welcomeMsg = messages.get("welcomeMessage"); here we have used String Literals so which is not recommended to use String literals in code , so for that we use AppConstants and specify our literlas there and we use it.
+
+class AppConstansts{
+    private static final String WELCOME_MSG_KEY="welcomeMessage";
+
+}
+
+@autwired 
+private AppConstansts appConstanst;
+
+String welcomeMsg = messages.get(appConstanst.WELCOME_MSG_KEY;);
+
+Note : Keys we declare in AppConstanst class and Values declare in yml file.
+
+Note : If our class has a  static members we don't need to create the object for that we can just call by class name , that's the reason we don't annotate appconstants class as @complonent and we don't autowired where it required, we just use it's class name and call it's static members 
+
+Note :what ever the app messages we want to keep , we configure it in yml file(key value pair) and we load that properties from yml to apppropertiss file into map object , autowired the app properties file where we want in java code.
+
+Note : We keep app message in key value pair and we load that app messages from yml to java class called AppPropeties into Map object and we should keep yml file app messages map object name and app properties map object variable name should be same then only we able to load the app messages from yml to app properties file.
+
+->@ConfigurationProperties(prefix = "app") which means from where it has to read the app messages we should mention
+
+->We use AppConstanst to avoid hard coded string literals in java code
+  To declare String Literals in project we use AppConstants.
+
+->If we chang hard coded string literals in project every time we has to recompile and re deploy and repackage the application
+
+Note : @Value Annotation is used to read the value from Application.Properties to class varible.
+
+Note : @Configuration is used to represent java class as Configuration Class.
+	  
+	  
+	  
+
+
+
+
+
+
+
+
+
+
+

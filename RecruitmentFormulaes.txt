@@ -1,0 +1,116 @@
+A.  Expected Amount With Out GST:
+-------------------------------------------
+
+Wokr Hours * PerHour Cost
+
+120 * 60=7200
+100 * 100=10000
+-------------------------------------------------------------------------------------------------------------------------------------
+B.   EXP AMT FROM FIRM WITH GST(INR)
+-------------------------------------------------------
+Formula = GST * Expected Amount With Out GST+Expected Amount With Out GST 
+
+1.
+0.18*10000+10000
+1800+10000
+118000
+
+2.
+
+0.18*40000+40000
+7200+40000
+47200
+========================================================================
+C.  ACT AMT REC FROM FIRM(INR)
+--------------------------------------------------
+EXPECTED AMT WITH GST -(TDS*EXPECTED AMT WITH OUT GST)
+
+Formula = (F5-(TDS*E5))
+
+1.
+   11800-(0.02*10000)
+  11800-(200)
+  11600
+
+2.
+   47200-(0.02*40000)
+   47200-800
+   46400
+
+
+=========================================================================
+D.   AMT TO BE PAID TO FIRM/CANDIDATE WITHOUT GST   
+
+=('Candidates List'!J4)*'FY 2024 - 2025_duplicate'!D5
+Formula = (COST TO RAINER SOFT CONSULTING (INR) perhour/fixed)*(Total Wokring Hours Emp)
+1.
+
+  60*100
+  6000
+
+2.
+   70*200
+   14000
+
+=========================================================================
+E.   AMT TO BE PAID TO FIRM/CANDIDATE WITH GST
+
+(('Candidates List'!J4*'FY 2024 - 2025_duplicate'!D5)*'Candidates List'!N4)+('Candidates List'!J4*'FY 2024 -2025_duplicate'!D5)-(0.02*'Candidates List'!J4*'FY 2024 - 2025_duplicate'!D5)
+
+Formula = (Cost To Rainier Soft Consulting (INR) * Total Wokring Hours)*GST + (Cost To Rainier Soft Consulting (INR) * Total Wokring Hours) -  (TDS * Cost To Rainier Soft Consulting (INR) * Total Wokring Hours)  
+
+1.
+   
+=(60*100)*GST+(60*100)-(TDS*60*100)
+=(6000)*0.18+(6000)-(0.02*6000)
+=1080+6000-(120)
+=1080+6000-120
+=6960
+
+2.
+
+=(70*200)*0.18+(70*200)-(0.02*70*200)
+=(14000)*0.18+(14000)-(0.02*14000)
+=2520+14000-(280)
+=2520+14000-280
+=16240
+
+==================================================================================
+
+F. PROFIT
+-----------------
+((E5-H5))
+
+Formula = EXP AMT WITHOUT GST  -   AMT TO BE PAID TO FIRM/CANDIDATE WITHOUT GST
+
+1.
+
+ = 10000 - 6000
+
+=  4000
+
+2.
+
+   40000 - 14000
+  
+   26000
+
+===============================================================================================
+E.TOTAL  PROFITS
+-------------------------
+
+Formula = Sum(April Profit + May Profit + June Profit  + July Profit + August Profit + September Profit + October Profit + Novemebt Profit + December Profit +  January Profit + February Profit + March Profit)
+
+=(1000 + 1000 + 2000 + 3000 + 4000 + 1000 + 2000 + 3000 + 4000 + 2000 + 1000 +5000)
+
+=29000
+
+
+                
+
+
+
+
+
+
+

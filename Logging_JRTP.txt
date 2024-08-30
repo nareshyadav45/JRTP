@@ -1,0 +1,666 @@
+
+========
+Logging
+========
+
+-> The process of storing application execution details to a file is called as Logging.
+
+-> With log messages we can understand execution flow of the application.
+
+-> We can understand exceptions occuring in the project by seeing log messages.
+
+Note : When we develope the code and that code will be pushed to repository then devOps team will take our code and deploy out code into servers.
+-> Some companies may have on primise infrastructure like machines or computers to deploy and run our application and some companies may prefer CLOUD Infrastrcuture like AWS cloud  and in AWS CLOUD comapnies will buy some LINUX machines to deploy and run our developed application.
+Note : Most of companies in real time use AWS linux machines to deploy and run our application 
+
+Note : For development purpose use windows machine and for deployment and run purpose use linux machines.
+       Project development happens on windows machine and project executions happens on linux machine.
+	   
+Note : DevOps team will take our developed code and deployed into Linux Machines in Cloud.
+
+Note : When our application deployed in seerver i.e in linux machines by devOps team , then our application will accessed by endusers
+	   When end user  accessing our application there is a chance of getting some problem like some exceptions are comming in the code and like user unable to login our website or users are unable to create account in our application and some functionalities not working properly in application so like that some problems will occur when the application is running on servers.
+
+-> When our application running on cloud platform then users starts to using application when users accessing our application they may get problems in application like login functionality and register functionality not working properly in application.Then as a developer we have to know in which class or in which method and in which funtionality error is coming , so for that we need to implement "logging" in our application.
+
+Note : When ever our application is running on cloud server , we should implement logging in our application and  application should generate one LogFile.Inside LogFile application execution details should available.In LogFile we should store who send request to application and which functionality user accessing and at which functionality or method user facing errors those exectuion details we should store in "LOGFILE".
+
+-> The Process of storing application execution details into a file is called "Logging" 
+
+-> By Logging messges we can understnad the behaviuor or execuiton flow of application.
+
+-> We can understand the errors or exceptions occuring in our application by seeing Log Messages.
+
+Note : To understand the problems occuring in our project and to understand exectuion flow of our project we are going to implement logging in our project.
+
+-> In real time for every project Logging wil be implementede and we see log file and undertand the execuiton flow of application and at what error occured in our application and at which class and at which method and at which line error occured that can be monitor or track by seeing Log messages.
+
+-> As a developer we need to connect to LogFile and we need to understand the what is the problem occurs in application.
+
+->To understand the problems occuring in project when project is using by endusers we use logging functionality in our project.
+  to understand the problem we implement logging in our application in every method to store the method execution details into file.Like that we perform logging to each and every method of application to store method execution details into logfile.So if any error occurs in application when endusers accessing applcation we can easily monitor or track where exactly problem is occuring in our application by seeing Log Messages in log file.As a developer we should connect to LogFile to understand the project execuiton flow.
+
+->In log file application execution details will be available.
+
+Note : When ever we started Tomcat server in boot appliction then we see Messages in console, those message are called log messages only.
+       By seeing those log messges we can understand the application behaviour and exceptions occuring in our project.
+
+
+Note : As a developer we should implement logging in our application and able to see the log messages of application.
+
+Log Monitoring: Checking the log messages or reading the log messages of application is called Log Monitoring.
+
+->Why we need to read the log messages beacause to understand the execuion flow of application and to understand the where problems are occuring in our project like at which class and at which method errors are coming for that we see log messages.Once we see tha problem then only we fix the problem.
+
+As a developer we need to do two things in prtoject 
+-----------------------------------------------
+1. Implement Logging in project: To implement logging we have several frameworks 
+    a.log4j
+    b.log4j2
+    c.logback
+    d.logstash
+->when we implement logging in our application, application will store log messages  of project in logfile.
+
+Note : Once application starts  storing log messages into logfile we need to perform log monitoring. 
+
+->By log monitoring we can see the log messages of application and when exception occured in project we see log messages and identify and fix the problem by seeing log messages in log File.
+
+->When the exception occurs in project then we need to monitor log messages and fix the problem.
+
+2.Log Messages Monitoring Tools : To monitor(read) the log messages of project we have several tools
+   a.putty
+   b.winScp
+   c.ELK Stack
+   d.Splunk(commercial or paid)
+
+->Above tools are used to monitor the log messages of application.
+
+->Putty and winScp and ELK Stack are open source softwares
+
+->Splunk is a Commercial software which is used in MNC companies.
+
+Note : Logging is used to store the application execution details into file is called Logging.By logging we can understnad the application execuiton details and undertand the exceptions occured in project and fix the exceptions.
+       To monitoring or tracking the log messages we use several tools like putty,winScp , ELK stack, Splunk.
+	   
+Note : We need to generate the application log meessages in file not on console.	   
+
+------------------------------------------------------------------------------------------------------------------------------------
+Logging Frameworks
+---------------------
+1) Log4J
+2) Log4J2
+3) LogBack
+4) LogStash
+
+
+Log Monitoring Tools
+---------------------
+1) Puttye 
+2) WinScp
+3) ELK
+4) Splunk (Licensed)
+
+
+------------------------------------------------------------------------
+Logging Architecture or LogFramework Architecture
+------------------------------------------------------------------------
+Note :When we want to perform logging in our application we should underestand the what are the components we use in logging.
+
+Components we use in Logging
+---------------------------
+
+1) Logger : This class providing methods to generate log messages
+
+   ->Logger is class which is used to generate the log messages   
+
+2) Layout : It represents log message structure  or layout represents the format of log message (format of log msg)
+            ->LayOut is format which represent the format of log messages.
+			
+			Note : when we run boot application , tomcat server will print log messages in particular format like "2024-04-04T14:42:34.236+05:30[0;39m [32m INFO[0;39m [35m5000[0;39m [2m---[0;39m [2m[  restartedMain][0;39m [36mo.s.b.w.embedded.tomcat.TomcatWebServer [0;39m [2m:[0;39m Tomcat started on port(s): 8080 (http) with context path ''"
+                   ->first it will print the date then log level and class and message 
+				   ->Log message format will be represented by layout.
+	Note : Layout component represents format of log message.date and time and log level and process id and thread name, claas and message will be printed when one log messagge generated tin console for tomcat server.			   
+	
+    Note : What information should be there in log message decided by layout like date and time and at which class and method those kind of info will be stored in logfile of project when log message generate. 	
+				   
+3) Appender : It is used to write log message to destination(console, file, database)
+
+  -> Appender component is used to write log messages into destination i.e where we want to store our generated log messages will be decided by appender.Like do we want to store the log messages into console or file or database
+ 
+   Note : Where we want to store the application log messages that will be decided by 'APPENDER'
+          ->if we want to store the application log messages into file we have FILE Appender
+		  ->If we want to store the application log messages into console we have CONSOLE Appender
+		  ->if we want to store the application log messages into database we have DATABASE APPENDER
+		  
+Note : When we run our boot application log messages are printed on console so console appender is executing.
+
+4) Destiation : It can be console/file/database
+
+
+Note: We will use files to store our log messages.
+
+FLOW :         LOGGER ----> LAYOUT ------> APPENDER ----------> DESTINATION(console,file,database)
+-----
+-> Logger class will generate the messages and gives messages to Layout and layout will format log message and appender will store the fromatted lof meessage to destination i.e file or console or database.
+
+
+Note : In project every class we use logger to store generate log messages.
+
+->Logger is a class which provides methods to generate log message
+->Layout is component which is used to format the log message and what info should be there in log message that will be decided by layout 
+->Appender is used to write log messages into destination 
+->Destination can be file or console or database
+
+Note :In real time we store application log messages in File appender
+
+
+Note : When ever we create sprint boot application by default logBack framework will be used to generate the log messages by sprint boot .
+ 
+-> Because of LogBack only we able to see log messages in console like when application started etc log messages. 
+
+Note :To implement Logging we use Logger
+
+Note : In project every class and every method we should implement Logging.Then only we able to know the application execution details.
+
+Note : in every class of project we Logger classs that should be impoetd form "org.slf4j" PACKAGE .
+
+->In order to get the logger messages first we need to get the Loggger object form Logger object we can create log message 
+->From LoggerFactory.getLogger() we get logger object and generate log messages
+
+Example:
+---------
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class WelcomeRestController {
+	
+	private Logger logger =LoggerFactory.getLogger(WelcomeRestController.class);
+	
+	@GetMapping("/welcome")
+	public String welcomeMessage() {
+		logger.info("welcomeMessage() method execution started ");
+		String message;
+		message ="welcome to logging";
+		logger.info("welcomeMessage() method execution ended");
+		return message;
+	}
+	}
+
+O/P:	
+----
+[2m2024-04-04T18:08:57.958+05:30[0;39m [32m INFO[0;39m [35m9208[0;39m [2m---[0;39m [2m[JRTP_01_Logging] [nio-8080-exec-2][0;39m [2m[0;39m[36mcom.logging.rest.WelcomeRestController  [0;39m [2m:[0;39m welcomeMessage() method execution started 
+[2m2024-04-04T18:08:57.958+05:30[0;39m [32m INFO[0;39m [35m9208[0;39m [2m---[0;39m [2m[JRTP_01_Logging] [nio-8080-exec-2][0;39m [2m[0;39m[36mcom.logging.rest.WelcomeRestController  [0;39m [2m:[0;39m welcomeMessage() method execution ended	
+
+
+Note :In spring boot defaultly log messages will print on console and LogBack framework internallu used to generate the log messages.
+
+
+->We create Log file in application by writing a property in appliation.properties file
+
+application.properties
+-----------------------
+logging.file.name=app.log
+
+Note :By above property in our application app.log will be create and appplication execution details or log messages will be stored parellely in console and app.log file.
+
+Note : In real time our application will run in cloud platform so if we want to see applicatiom log messages we have to use log monitoring softwares to read application log messages.When exception occurs in application at that time we read log file messages by log monitoring tools and identify where the problem occurs and fix the problem. 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+================================================================================================
+Logging Levels
+================================================================================================
+
+1) TRACE
+
+2) DEBUG
+
+3) INFO   (it is default log level in boot application)
+
+4) WARN
+
+5) ERROR  
+
+6) FATAL (Fatal is not supported in Log levels which is merged into Error level )
+
+Note : By default in spring boot logging level will be 'INFO', if we obersve when we run the boot application logging level will be 'INFO'
+
+2024-04-04T18:30:35.847+05:30[0;39m [32m       INFO[0;39m [35m7928[0;39m [2m---[0;39m [2m[JRTP_01_Logging] [           main][0;39m [2m[0;39m[36mcom.logging.Jrtp01LoggingApplication    [0;39m [2m:[0;39m Starting Jrtp01LoggingApplication using Java 21.0.1 with PID 7928 (D:\JAVA_JRTP\JRTP_01_Logging\target\classes started by Dell in D:\JAVA_JRTP\JRTP_01_Logging)
+[2m2024-04-04T18:30:35.851+05:30[0;39m [32m INFO[0;39m [35m7928[0;39m [2m---[0;39m [2m[JRTP_01_Logging] [           main][0;39m [2m[0;39m[36mcom.logging.Jrtp01LoggingApplication    [0;39m [2m:[0;39m No active profile set, falling back to 1 default profile: "default"
+[2m2024-04-04T18:30:37.138+05:30[0;39m [32m INFO[0;39m [35m7928[0;39m [2m---[0;39m [2m[JRTP_01_Logging] [           main][0;39m [2m[0;39m[36mo.s.b.w.embedded.tomcat.TomcatWebServer [0;39m [2m:[0;39m Tomcat initialized with port 8080 (http)
+[2m2024-04-04T18:30:37.160+05:30[0;39m [32m INFO[0;39m [35m7928[0;39m [2m---[0;39m [2m[JRTP_01_Logging] [           main][0;39m [2m[0;39m[36mo.apache.catalina.core.StandardService  [0;39m [2m:[0;39m Starting service [Tomcat]
+[2m2024-04-04T18:30:37.161+05:30[0;39m [32m INFO[0;39m [35m7928[0;39m [2m---[0;39m [2m[JRTP_01_Logging] [           main][0;39m [2m[0;39m[36mo.apache.catalina.core.StandardEngine   [0;39m [2m:[0;39m Starting Servlet engine: [Apache Tomcat/10.1.19]
+[2m2024-04-04T18:30:37.258+05:30[0;39m [32m INFO[0;39m [35m7928[0;39m [2m---[0;39m [2m[JRTP_01_Logging] [           main][0;39m [2m[0;39m[36mo.a.c.c.C.[Tomcat].[localhost].[/]      [0;39m [2m:[0;39m Initializing Spring embedded WebApplicationContext
+[2m2024-04-04T18:30:37.258+05:30[0;39m [32m INFO[0;39m [35m7928[0;39m [2m---[0;39m [2m[JRTP_01_Logging] [           main][0;39m [2m[0;39m[36mw.s.c.ServletWebServerApplicationContext[0;39m [2m:[0;39m Root WebApplicationContext: initialization completed in 1314 ms
+[2m2024-04-04T18:30:37.725+05:30[0;39m [32m INFO[0;39m [35m7928[0;39m [2m---[0;39m [2m[JRTP_01_Logging] [           main][0;39m [2m[0;39m[36mo.s.b.w.embedded.tomcat.TomcatWebServer [0;39m [2m:[0;39m Tomcat started on port 8080 (http) with context path ''
+[2m2024-04-04T18:30:37.739+05:30[0;39m [32m INFO[0;39m [35m7928[0;39m [2m---[0;39m [2m[JRTP_01_Logging] [           main][0;39m [2m[0;39m[36mcom.logging.Jrtp01LoggingApplication    [0;39m [2m:[0;39m Started Jrtp01LoggingApplication in 2.44 seconds (process running for 3.374)
+
+Note : if we see above log level as 'INFO' for all log messages
+
+-> We can change the logging level of application by changing property in app.properties file like bolew
+
+application.properties
+----------------------
+logging.level.root=debug
+
+Note: 'root' means whole application classes and methods i.e for whole application level will be "debug".
+
+2024-04-04T18:54:26.616+05:30[0;39m [32m      DEBUG[0;39m [35m10888[0;39m [2m---[0;39m [2m[JRTP_01_Logging] [on(2)-127.0.0.1][0;39m [2m[0;39m[36msun.rmi.loader                          [0;39m [2m:[0;39m RMI TCP Connection(2)-127.0.0.1: name = "java.rmi.server.ObjID", codebase = "", defaultLoader = jdk.internal.loader.ClassLoaders$PlatformClassLoader@5cc1e792
+[2m2024-04-04T18:54:26.616+05:30[0;39m [32mDEBUG[0;39m [35m10888[0;39m [2m---[0;39m [2m[JRTP_01_Logging] [on(3)-127.0.0.1][0;39m [2m[0;39m[36msun.rmi.transport.tcp                   [0;39m [2m:[0;39m RMI TCP Connection(3)-127.0.0.1: (port 51183) op = 80
+[2m2024-04-04T18:54:26.617+05:30[0;39m [32mDEBUG[0;39m [35m10888[0;39m [2m---[0;39m [2m[JRTP_01_Logging] [on(2)-127.0.0.1][0;39m [2m[0;39m[36msun.rmi.loader                          [0;39m [2m:[0;39m RMI TCP Connection(2)-127.0.0.1: name = "java.rmi.server.UID", codebase = "", defaultLoader = jdk.internal.loader.ClassLoaders$PlatformClassLoader@5cc1e792
+[2m2024-04-04T18:54:26.617+05:30[0;39m [32mDEBUG[0;39m [35m10888[0;39m [2m---[0;39m [2m[JRTP_01_Logging] [on(2)-127.0.0.1][0;39m [2m[0;39m[36msun.rmi.loader                          [0;39m [2m:[0;39m RMI TCP Connection(2)-127.0.0.1: name = "java.rmi.dgc.Lease", codebase = "", defaultLoader = jdk.internal.loader.ClassLoaders$PlatformClassLoader@5cc1e792
+[2m2024-04-04T18:54:26.617+05:30[0;39m [32mDEBUG[0;39m [35m10888[0;39m [2m---[0;39m [2m[JRTP_01_Logging] [on(2)-127.0.0.1][0;39m [2m[0;39m[36msun.rmi.loader                          [0;39m [2m:[0;39m RMI TCP Connection(2)-127.0.0.1: name = "java.rmi.dgc.VMID", codebase = "", defaultLoader = jdk.internal.loader.ClassLoaders$PlatformClassLoader@5cc1e792
+[2m2024-04-04T18:54:26.618+05:30[0;39m [32mDEBUG[0;39m [35m10888[0;39m [2m---[0;39m [2m[JRTP_01_Logging] [on(2)-127.0.0.1][0;39m [2m[0;39m[36msun.rmi.loader                          [0;39m [2m:[0;39m RMI TCP Connection(2)-127.0.0.1: name = "[B", codebase = "", defaultLoader = jdk.internal.loader.ClassLoaders$PlatformClassLoader@5cc1e792
+[2m2024-04-04T18:54:26.619+05:30[0;39m [32mDEBUG[0;39m [35m10888[0;39m [2m---[0;39m [2m[JRTP_01_Logging] [on(3)-127.0.0.1][0;39m [2m[0;39m[36msun.rmi.transport.tcp                   [0;39m [2m:[0;39m RMI TCP Connection(3)-127.0.0.1: (port 51183) op = 84
+
+
+Note : If we see above log messages log level is "DEBUG".
+
+==========================================	
+Log Level Hierarchy
+==========================================
+
+
+TRACE > DEBUG > INFO  > WARN > ERROR > FATAL
+
+
+=> When we set one Log level, application will print log message from that level to all higher level messages.
+   ->if we set log level as info fro info level to all higher level log messages will print like INFO and WARN and ERROR and FATAL 
+
+Note : we can write Trace and debug and info and warn and fatal log message in our appliction classes but log messages will execute based on log level and logging hirarchy.
+->If we set log level as info and we are trying to execute trace and debug log messages won't execute beacause log message will execute from which level we kept and from that level and higher levels not below levels.
+
+Note : The default log level in project is INFO 
+
+Note : when we set logging level as debug , log messages of application prints from debug level to it's higher levels.Like that log messages will print based on log level.
+
+=> In Spring Boot by default it will use level as INFO
+
+-> In Spring Boot by default it will use ConsoleAppender
+
+-> To generate log msgs in log file we have set below property in application.properties file
+
+Note : When we set log level, application will print the log messages from that level to all it's higher level log messages.
+
+Note : For Spring boot project we set log level differently for different different packages like for dao we set one log level and for controllers we set one log level for service package we set one log level.
+       ->We can do package level log leveling in spring boot application.
+	   
+Note : Spring Boot by defaultly using LogBack Framework for implimenting logging.	   
+
+When to use which log level ?
+-----------------------------
+->Based on the situation we use different log levels 
+
+->if we want to print low level messages of method execution  like application execution each and every details the we use DEBUG level.
+
+->Any higher level messages we want to print then we use INFO level
+
+->If we want to print any waring messages then we use WARN level
+
+->If we want to print any exceptional messages when exeception occured then we use ERROR level
+  If we want to print exception data on log file we use ERROR log level
+
+Note :In real time we use INFO or ERROR log level will be used.
+
+->We don't use DEBUG because it will print low level messages of application each and every details so it will print lot messagees that will increase log file size. 
+
+Note : In sprint by default INFO log level will be configured and Console log appender will be used in spring boot application.
+
+Note :if we want to File appender we have to write a property in application.properties file like logging.file.name=logfilename
+      ->Automatically log messages will be stored in console and log file also.
+
+---------------------------------------------------------------
+logging.file.name=app.log
+---------------------------------------------------------------
+package in.ashokit.rest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class MessageController {
+
+	private Logger logger = LoggerFactory.getLogger(MessageController.class);
+
+	@GetMapping("/welcome")
+	public String welcomeMsg() {
+		logger.debug("this is debug msg from welcome.....");
+		logger.info("welcomeMsg() execution started.....");
+
+		String msg = "Welcome To Ashok IT...";
+
+		try {
+			int i = 10 / 0;
+		} catch (Exception e) {
+			logger.error("Exception Occured" + e.getMessage());
+		}
+
+		logger.warn("This is warning from welcome method...");
+
+		logger.info("welcomeMsg() execution ended...");
+		return msg;
+	}
+
+	public String greetMessage() {
+		logger.info("greetMessage() method execution started ");
+		String greet;
+		try
+		{
+			int i=10/0;
+		}catch(Exception e) {
+			//e.printStackTrace();
+            logger.error("Exception occured "+e.getMessage());			
+		}
+		
+		greet ="greetings to loggin";
+		logger.info("greetMessage() method execution ended");
+		return greet;
+	}
+
+}
+--------------------------------------------------------------------
+===============================
+Rolling Appenders Or Mechanism
+===============================
+Note : In real time we use rolling mechanism to store log messages of application. 
+
+Rolling : Every day new logfile will be created.Instead of storing all days log messages of application into single log file, we use rolling mechanism to store daily basis or size based log file messages.
+
+Note :In real time projects we don't create one log file for whole application. 
+ 
+Note : Instead of creating one log file for application we create multiple log files for application using rolling mechanism. 
+
+Note : Rolling means how we want to store the log files i.e based on log messages size ot time based.
+
+1) Size Based Rolling
+   --------------------
+   ->Based on the given size new log file will be created and log messages will be stored in that log file.When log file reached it's sized with given log file size with respect to new log file will be create d.
+    
+	Example :
+   Application.properties
+   ----------------------
+    logging.logback.rollingpolicy.file-name-pattern=$LOG_FILE}.%d{yyyy-MM-dd} 
+    max-file-size=10MB 	
+    
+
+2) Time Based Rolling
+   -------------------
+   ->Based on the given time new log file will be created.   
+
+Note : We use log retension period which means how many log files we have to keep in our application like last 30 days or last 60 days or last 90 days based on that retension period log files will be mainatained in application.If we set retension period as 30 days which menas only last 30 days log files will be maintains, previous log files will be deleted.
+
+Note : In Real Time Logging Will Be Availble and Roll Based Logging Will be Availble,In RollBased We Have Size And Time Based Rolling And We Keep Retension Period(How Many days log files maiantain) For Log Files.
+
+
+
+=> We can customizw the spring boot application log configuration by creating logback.xml file under src/main/resources folder
+   ->Which layout we want and which appender we want and which rolliing mechanism we want all those details we can mention in logback.xml
+    
+
+1) What is Logging ?
+
+2) What is Log Monitoring?
+
+3) Logging Architecture
+
+		 - Logger
+		 - Layout
+		 - Appender
+
+4) Log Levels
+
+5) Log Level Hierarchy
+
+6) How to set Log Level  (log.level.root = DEBUG)
+
+7) How to implement Logging in java class
+
+8) What is Rolling in Logging ? 
+A. Don't want to generate the log messages into single file and want to create the muiltiple log files to store the log messages of application.
+   we do rolling in 2 ways 
+   1.Time Based Rolling
+   2.Size Based Rolling
+
+Note : Using logback.xml we can customize the log configurations like appender customization and layout and logging levels and rolling mechanism etc related to logging.
+->Any customization we want to do related to logging we do in logback.xml file.
+
+Note : With Out logging we can't find the issues occurs in application.	  
+-----------------------------------------------------------------------------------------------------------------------
+
+->In Spring boot we use logback to generate log messages and store the generated log messages into log file.
+
+->Once the messages are stored into log file, we have several tools to read the messages from log file.
+
+->In real time application will run on some other machine and log files will generates on other machines , so it's imposible to read log messages with out Log Monitoring tools because log files are not present in our application 
+
+-> We have several log monitoring tools are availabe like putty and winScp and ELK , Splunk , so we use those tools to connect with log file and read the log messages of application.
+
+Note : As a developer we should know how to perform logging and how to perform log monitoring.
+
+Note :Project or Application will generates the logfile and whenever issue occurs in project or application we use log monitoring tool to read the log file and  where the issue is present and fix it.
+
+Note : In order to implement logging we should know Logging Architecture.
+       Logging Architecture :
+	   ------------------------
+	   Logger : Which is class used to generate the log messages based on the log levels.
+
+Note : When we are genarating the logs we should know the logging levels.
+
+->Devtools dependency is used to automatcially load or restart server whenever changes made in appplication
+
+->To implement the logging in aplication classes first we need to get the logger object in class.
+
+Note : We write Log messages inside method return statment because in java after the return statement won't execute any code.
+
+->When  we write loggers in method, when ever logger messages method excutes , then log messages of that  method executes.
+
+Note : In code we consider loggers as a secondary logic.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+Customizing logging in application 
+====================================
+->We do logging customization in two ways 
+  1.Application.Properties 
+    
+    ->In properties file we set properties kike  what file we want to create for logging file 
+    ->What level we want to use for logging
+    ->What rolling ploicy we use for log files those kind of logging configuraation and logging customization we do in application.properties file.	
+   
+   
+  2.Creating logback.xml file under src/main/resources
+    ->We create xml file under resources folder where we do logging config or customization
+	->In logback.xml we specify which appender we want implement i.e console or file or db and 
+    Note : logback.xml file has root element as configuration(tag).
+           ->Inside configuration element of logback.xml file we specify what file-appender we want to use and which log level implement and what rolling policy.
+           ->By using pattern element we specify log messagge pattern in logback.xml file
+		   
+   
+  Note :what is the difference between FileAppender and RollingFile Appender 
+        ->File Appender means one log file will be created for whole application where as Rolling appender means multiple log files will be created based on Rolling Policy we specify.
+
+ 		
+->Rolling Policy: based on which scenario new log file should be created.When the new log file should be created that can be decided by rolling policy.
+
+->Log level is to from which level log should be generated
+
+logback.xml
+-------------
+->In order to wokr with logging and provide custom logging configuration we need logging configuration in application.properties file or logback.xml file
+
+->Creae logback.xml file under src/main/resources folder 
+
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>
+				%d [thread] %-5level %-50logger{40} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>MyApp.log</file>
+		<encoder>
+			<pattern>%d [thread] %-5level %-50logger{40} - %msg%n</pattern>
+		</encoder>
+		
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>MyApp-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<maxFileSize>1MB</maxFileSize>
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>10MB</totalSizeCap>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+		</rollingPolicy>
+	</appender>
+	
+	<root level="INFO">
+		<appender-ref ref="Console"/>
+		<appender-ref ref="RollingFile"/>
+		
+	</root>
+	
+</configuration>
+
+Note : this is how log file will be look like and when we run our application log file will be created with given name in xml
+
+Note :In real time project application will run on different machine or server and Logfiles messages will be generates on different machine , both application and logfile of application are won't run on same machine or server, beacause if logfiles generating in application there may be chance of stoping the server of application by devloper so logfile will generate on diff machine and application will run on diff machinex
+
+->So Log File of application will available in another machine and Application runs on other machine.
+
+->The log file which generating on the computer has ip-address  and username and pwd ,so ip address and username and pwd will be available for log server where our application logfiles will be available.
+
+->So log files will be availble and we should connect to the linux machine where our application logfiles are available. 
+
+Note : In real time our application will run linux machine i.e servers and logfiles also separately generates on diff log server that log server will present on linux machine , generally developers in most of the companies may use Windows machine , so we have to connect with log server which is present in linux machine , so in oerder to connect with linxu machine where logfile are generating from windows machine we have few softwares those are Putty and WinScp and ELK and Splunk.
+
+       Putty - CLI based S/W
+       WinScp - GUI based S/W
+       ELK    - GUI based S/W
+       Splunk - GUI based S/W
+
+->In real time company will give us log server details to monitor logfiles, so we use putty tool to connect with log server.  	   
+
+Putty:
+------
+
+-> In putty we use commands to connect with LogServer(Where our application logs files available)
+
+->ls -l : whihc gives list of  log files availabe  linux  machine.
+
+->tail <log file name> : To see the last 10 log  messages from log file.Tail command will give us the data from bottom to top of log file, so always new log messages will be added to bottom of the log file so in order to read the log message from we use 'tail log file name'.
+
+Note : As a developer we should know about linux machine beucause our application will runs on linxu machine and application log files will prrsent in linux machine.
+
+
+->cat <log file name> : which gives us log file data from Top to Bottom.
+
+->head <log file name> : which will give us first 10 lines log data from log file.
+
+->grep 'Exception' <log file name> : to know the only exception key word log  message from log file we use grep followed by log message starts with and filename.   
+
+ Note : So In real time our application logfiles will be availabe in linux machine , so we use LogMonitoring softwares such as PUTTY to connect with LogFiles server and We have to execute some commands in putty tool to montor the log file like what are the logs will genearted for appplication and what are exception logs occured by executing some putty commands as we learned above.
+
+->Putty is used to connect from windwos machine to Linux machine.
+
+->To connect with Linux Machine we need Linux Machine details
+    
+	     IP : 192.67.90
+		 Username: loguser
+		 pwd : log@123
+
+Note : DevOps team will share this linux machine deatails to all the developer to connect with Lonux Machine to access logfiles		 
+		 
+->Putty is CLI based software
+
+Putty Commands:
+---------------
+
+cat <log file name> : To get top to bottom log messages data from given logfile name
+
+tail <log file name> :To get last 10 or bottom 10 log  messages from log file
+
+head <log file name> :To get fist 10 log messages from log file
+
+grep 'Exception' <file name> : if we want to search for some keyword in logfile messages then we use grep command followed by 'keyword to search ' and filenamem, then it will give log messages which contains specified keyword , if we exeception keyword then only  exception contained log messages will print
+
+Note : To survive in the company we should know linux also.
+
+
+WinScp
+------
+->WinScp is a Gui Based software
+
+->By WinScp we can connect form windows to linux machine and we can upload the files windows to linux and linux to windows.
+
+->If we want to download the log file which is availablle in linux machine so we use WinScp software.
+
+->By WinScp we can download the files from linux to windows and we can upload files from windows to linux machine. 
+
+
+Splunk :
+--------
+->Splunk also GUI based software which is used to connect from windows machine to linux machine and monitor log file messages which is avaliable in linux machine.	
+
+Note : To understand the log-monitoring tools commands firsr we should know about  the linux machine.
+
+Note :Host Name means IP Address.
+
+Note :In real time company will create a account in splunk and we connect to splunk with our credentials i.e uname and pwd i.e personal system details.
+
+Note : When we want to connect with LogFile which is available in   linux  machine from logMonitoring tools, in that log monitoring tool we need to configure Linux Machine details like Hostname and Username and pwd of linux where logfile are present.
+
+Note : DevOps team will provides Where our logfiles path available in linux machine.
+
+Note : So we can download the logfile from linux machine to windows machine by drga and drop mechanism.When ever we connect linux machine using log-monitoring tools them our windows system will splts the screen into two parts left side is for windows i.e our folders and right side is linux machine screen.So we can easily download the files from linux to windows by drag and drop.
+
+Note : Putty is CLI based software i.e by commands we communicate and WinScp is GUI based software By GUI we communicate.
+
+Note :Splunk is GUI based software to monitor the log  files of application.
+
+Note : Basocally all the Log Monitoring softwares are used to connect with linux machine from windows machine, In Linux Machines our project log files will be avaialble.   
+
+->Splunk is GUI based software and which provides advanced level of searching features to search log files. 
+
+ELK :
+=====
+E - Elastic Search
+
+L - Log Stash
+
+K- Kibana
+
+->ELK is a combination of above three are open sorce products and used for log monitoring.
+
+->ELK is  GUI based software.
+
+Note : Log Monitoring is a important thing in In real time project to monitor application logs.
+
+Note :Log Monitoring is a process of checking logs of application.and we check the logs of application becausen to undersatnd the problems occuring in project.
+
+Note : We have several tools to perform LogMonitoring like putty,winscp etc.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+->So far we have learnded below tools
+
+   1.Maven -- Mvn is project build too which is used to create the project and download the depenedecies. 
+   2.Git Hub -- Git hub version control system is used to integrate project source code at one place
+   3.Bit Bucket
+   4.JIRA -- JIRA is project management tool is used to manage the project.
+   5.Logging (By LogBack framework we did logging)
+   6.Log Monitoring(Putty,Splunk,WinScp,ELK)
+   
+   Note :Logging is very very important in project to understand the problems in project. 
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Note: Logging is a process of storing application execution details into file called logging.We can understand the exceptions occured in application by seeing log messages of application which are generated in file.
+
+Note : In real time application runs on one server and Application log messages will generate on different server, so devOps team will be share logfile generating server details(ip address and uname and pwd) to us and we have to use any log-monitoring tools to connect with logfile server and monitor the log messages.  
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Note : To Troubleshoot the problems occurs in project we implement Logging in project.After the project completion and access by users then we may get exceptions or errors in application, to trouble shoot or identify the problems at which code and at which line and at which method we use logging. 
+
+Note :Once the application log messages are generated and if problem occurs in application then we go for log monitoring tools like putty to read or identify the where problem occures in project with log messages already printed on file or console.

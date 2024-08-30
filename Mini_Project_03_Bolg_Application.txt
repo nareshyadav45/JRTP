@@ -1,0 +1,276 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!--Blog Application--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+->SpringBott with Thymeleaf Blog Application.
+
+BLOG : Blog means somebody will share the knowledge by using Blog and the people who want get  it they will read that Blog.
+
+
+->There are three types of Users present in Blog Application
+  User Types :
+  -------------
+  Normal Users : They can  register and login and add Blog and view and delete and edit thier Blogs only not others.
+  
+  Admin User : Admin  can have a access to see all the bolgs of Normal users and delete and update the blogs.
+ 
+  Public User: Public Users who can leave a comments on Blogs with our registration.
+ 
+  Functionalities :
+  -----------------
+  1.Registration 
+  
+  2.Login 
+  
+  3.Add Blog 
+  
+  4.View/Delete/Update Bolgs
+  
+  5.Add Comments (Comments will be added by Public users to one user Blog)
+     
+  6.View/Delete/Update Comments By Public  Users and Admin User
+  
+->Noramal Users Can Register and login and ada and view and delete and update bolgs and view commnets on his bolgs which are added by public users.
+
+Note : For public users who no need to have account to add comments on blog
+ 
+Note : The person who can log into application they can add blog
+
+->what ever the comments added by Public users those and comments of particular  Blog will be displayed below the Blog Comment Section
+
+
+Note : We should be able to develope an application , where users can share their blog and Public users will read  that blog and express their feedback and Admin users can view the blogs of users and admin user hava a access to edit and delete Blogs of users.
+
+Note : In Industry Functional Team will Taken care of  client requirments.They Prepare FDD(Functional Design Document) and Mock up screens for us to develop the project.
+
+->In FDD what is the requirment and what functionality we need to develop
+
+Functionalities Of Blog Application:
+----------------------------------------
+1.Index Page 
+------------
+->List Of Blogs of all users should be displayed WIth Title and Date of created Blog.Blogs Should be display with short description data.
+
+->When Click On Title and or read more on Blog , Blog should be opened.
+
+->And we have Search option in Index Page  where user can serach Blog name and find the Blogs related to Given Name.So we need to implement Search Functionality 
+
+->When ever application runs on server and when end-users want to access the application with url , the index page should be displayed.
+
+2.View Blog Page With Comments
+------------------------------
+->When User Click On Blog , Blog should display it's blog content with Comments of that blog added by users and Add Comment form should be dispaly below comment section.
+
+->In Commnets Section, List of comments should be displayed of that particular Blog with Name of the User who made comment with Date and Comment message.
+
+->When user clicks on Blog, Firstly Blog Title and Blog with Short Description and then Whole Content should be display.
+
+->In add comment form section where Three fields should be available 1.Enter Name and and Email and Enter comment and send button
+
+->What ever the comments added using add form those comments should be display here bleow commets section
+
+3.Registration 
+-----------------
+->If we want to create Blog we should be register and create Blogs.
+
+->FistName and LastName and Email id and Password fields avaiilable to create the Blogs.
+
+4.Login :
+----------
+->Once User Completed Registration Thenn user will Login with Email and password.
+
+Note : Once User Login Successfully , User navigate to DashBoard Page.
+
+5.Dashboard Of Logged In User:
+------------------------------
+->Once User Login Successfully , user will able to list of Blogs added by him with id and Title and short description and  blog created date and 
+-> we see top of page the delete Blog Options.
+
+-> If Logged in  user wants to delete the Blog, it should be soft delete Not hard delete which means Blog should be goes to InActive Mode which means hide from dash board and blog should be present in database.
+
+->Search Functionality (Asychronusly)also ther above the dash page and where user can serch his added Blogs with title name
+
+6.Create Blog Page:
+-------------------
+->Logged In user can create the Blog By Click on Post navbar above the DashBoard Page.
+
+->Once User Logged in Successfully , user will see list pf Blogs added and then above the dashboard page Posts navbar and New Post Navbar and Comments and Logout nav bars will be available.
+
+->When User Click New Post Bar , Title and Short Description and Contetnt  fields shuld display
+
+->In content text box it's not normal text box which is a CK Editior where user can add styles content and add Imgaes and Videos to content like word document.Where user can format the content how user wants.Like Title and Colours and bullte points etc like word document.
+
+->We use CK editor to create post page.
+
+->When Blog Added successfully a message like Blog Added successfully.
+
+7.View Comments page
+---------------------
+->Display the comments related to logged in user blogs.
+
+->where all comments related blog can displayed and we can have a option to delete the comments also
+
+->In comments we have Id and Email id of public user who made comment and created date and delete option.
+
+->Dispaly the comments of all blog posts  with delete option
+------------------------------------------------------------------------------------------------------------------------------
+Note : We should have to read the documnet FDD , without Knowing what is requirement we can't Do analysis properly.
+
+Note : In some companies FDD won't provide , team will tell us the requirement in Meeting.
+
+Note : In Banking Sector related projects won't provide FDD and MockUp screens we have to note down the requirement in Team Meetings and has to implement the project.
+
+Note : To see the list of Blogs and Add comments on blogs we no need to login.
+
+Note : when we delete a Blog it's associated Blog Comments wil  be delete.
+
+Note : We already know what is Hard Delete which means deleting the record permanantly from database and Soft delete means don't delete the record permanantly
+        from database.
+Note : Search Functionaluty based on Blog Ttitle it will fetch the records.
+
+Note : If we want to read the blogs and comments on Blogs , we don't have to create registration and Login into application.
+
+DataBase Analysis And DataBase Tables With Coloumns And Relationship
+--------------------------------------------------------------------
+
+UserTable         OneToMany            Blog Table       OneToMany               Public User Comment Table
+----------                             -----------                         -------------------------              
+@id                                    @id                                  @id   
+1.UserId(pk) (Interger)                1.BlogId(pk)                         1.Public UserEmail (String)
+2.FirstName  (String)                  2.Blog Title(String)                 2.Public UserName (String) 
+3.LastName   (String)                  3.Blog Short Description(String)     3.Public User Comment(String) 
+4.Email Id   (String)                  4.Blog Content(String) 
+                                       @oneToMany(mappedBy="blogId"
+									   cascade = CascadeType.REMOVE)        @manyToOne 
+									                                        @JoinColoumn(name="blog_id") 
+oneToMany                              5.List<PublicUser> publicUserList    4.BlogTable blogId
+5.List<BlogTable> blogTableLis         @manyToOne()
+6.Password    (String)                 6.UserTable userTable;               5.CreatedDate
+7.created date (LocalDate)             7.CreatedDate (LocalDate)            6.ModifiedDate
+8.Modified Date (LocalDate)            8.ModifiedDate(LocalDate)
+
+Note :Take comment field and content field annoatate with @lob bcz large data may come to that fields.
+
+Note : In our requirement there is No option to update the comment made by public user , so don't take update date field in comments table.
+
+Entity : A java class which is mapped with DataBase Table is called as Entity.
+
+@JoinColoumns represents what is the fk between two Comment and Post tables, so fk is BlogId 
+
+->@OneToMany(mappedBy = "blog",cascade = CascadeType.REMOVE)
+	private List<PublicUserCommentEntity> listOfcomments;
+    ->Here mappedBy specifies the whihc entity owns the relation ship so here Blog Table owns the raltionship and Blog is parent entity and Comments is a child entity so if we delete blog it's associayed comments also deleted that is achieved By Cascade= cascadeType.REMOVE,
+	->If we keep cascade=cascadeaType.ALL, all the operations perform on parent ,those all will be reflect on child also
+
+->Bi-directional Mapping is the Suitable and prefarable relationship while mappling entities.
+
+Note : Relationship Should be Strong, then only we can develope the code properly.
+
+->when we mentioned @ManyToOne
+                    @JoinColoumn(name="post_id")
+                    private Blog post;
+   which means Blog Table Primary key will comes to Comments table as Foreign Key.   					
+==============================================================================================================================================================================                                       
+
+Note : While Creating the project using spring starter io , if we mention packaging type as WAR, web-app folder will be created and if don't web-app folder won't be create  
+
+Note : @Id reprsents Primarykey and @GeneratedValue(strategy=GenertaionType.IDENTITY) represents how valu should generate for that annoatated field and if we want to generate the value of ids from '1' we use strategy type as IDENTITY.
+
+Note : ALWAYS TAKE BI-DIRECTIONAL MAPPING BETWEEN ENTITIES , DON'T TAKE UNI-DIRECTIONAL MAPPING.
+
+Note : When We Do Bi-Directional Mapping , we shouldn't take @Data annotation above Entity class bcz @Data annotation given setters and getters and toString() methods , so toString() will called contineously leads to StackOverFlow Error.
+
+->If content has large data we use @lob annotation above field, to handle or store large data.
+  @Lob means Large Object
+  ->To handle large text data and Imgas and videos we @Lob largrObject annotation 
+   
+Note : Whenever we get the doubt in development but clarity in requirement just google the requirement and get the suggestions and implement it.
+
+PENDING FUNCTIONALITIES LEFT TO BE COMPLETE :
+----------------------------------------------
+->Delete User Specific Blogs Comments By comment Id.
+
+->Didn't show the comments of softdeleted blog.
+
+Note : SoftDelete Means record will available in database but not avaiilable in UI.
+
+Note :SoffDelete Means deleting the record permanantly in database and we can't retrive deleted record with soft delete.
+
+TASK: Implement Encrytpion to Password while registration and while user logging user has to do successful login
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+ 

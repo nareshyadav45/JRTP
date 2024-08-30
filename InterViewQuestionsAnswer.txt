@@ -1,0 +1,1124 @@
+
+Note: If we an Interviewer asks a question that we don't know, the we should replay like I'm not aware of this and I didn't get a chance to work with that
+
+CORE JAVA 
+----------	
+1.What is SingleTon Design Pattern 
+
+2.How HashMap Works Internally.
+
+3.Fail Fast And Fail Safe Iterators in collections.
+
+4.What is Constructor Chaining
+
+5.What are the methods available Object Class
+
+6.How many ways  we can create Object for class in java
+
+7.What is Cloning and why we need it?
+
+8.String vs StringBuffer vs String Builder 
+
+9.What is Exception Hirarchy in java 
+
+10.What is serialization and De-Serialization in java
+
+11.What is the transient keyword 
+
+12.Diff between comparable and comparator interfaces in java 
+
+13.How many ways we can create Thread in java?
+
+14.When to go for Runnable and When to go for Callable interface in java.
+
+15.What is Executor Framework in Java ?
+
+16.What is the contract between hascode() & equals() methods in java
+
+17.Cheked vs Unchecked Exceptions in java
+
+18.what is try-with-resource in java 
+
+19.What are concurrent collections in java 
+
+20.What is the difference between Interfaces and Abstract classes in java.
+
+21.What is Shallow Cloning and Deep Cloning in java ?
+
+22.What is the difference between filter() and map() methods in java with example and when to use which one
+
+23.What is the purpose of User Defined Exceptions
+
+24.What is Factory Design Pattern
+
+25.What is difference between concurrentHashMap and HashMapp in collections?
+
+26.What is 	WeakHashMap in java ?
+
+27.How to read file data using java 8 ?
+
+28.Program to generate Random Text in java ?
+
+29.Program to generate OTP using java 
+
+30.Program to check String contains alphabets or not ?
+
+31.What is the difference between Constructor and Method in java ?
+
+32.What is serialization ?
+
+33.What is sychronization ?
+
+34.try catch with throws keyword in single method 
+
+35.Difference between throw and throws keyword?
+
+36.What is loosely coupling and tightly coupling in java  spring ?
+
+37.What is dependency injection and how many ways we can do ?
+
+38.What are the rules for method ovveriding ?
+
+39.what are the varible arguments in java ?
+
+40.How to increase Heap Size while running java program?
+
+41.What is Generics in java ?
+
+42.What is Auto Boxing and Auto UnBoxing in java ?(java 1.7)
+
+43.How to catch multiple exceptions using single catch block ?(java 1.7)
+
+44.What is StringJoiner class?(java 1.8)
+
+45.What is splIterator ?(java 1.8)
+
+46.Can we declare method as abstarct and final?
+
+47.How to create user defined Immutable classes?
+
+48.How to Sort 0's and 1's in given array
+    Input : {1,0,0,1,0}
+	OutPut :{0,0,0,1,1}
+	
+49.How to filter the employees basen on given salry using stream api
+
+50.What is the difference between Lambda Expression and Method Refernces in java 8 
+
+51.what is the use of default and static methods in interface java 8?
+   Note : Before 1.8 and like in 1.7 we have only abstract methods in java not default and static methods and which are introduced in 1.8 and why.
+   
+52.What is Optional Class in Java 8?
+
+53.What is Completable Feature in java 8?
+
+54.Difference between ArrayList And Vector ?
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+Note : a.In an Interview First Round Will be On Core Java
+       b.Second Round will be on Spring boot.  
+
+1.What is SingleTon Design Pattern 
+
+A.SingleTon Class Means for any java class we allowing to create only one object is known as Singleton class. example :Runtime class.
+
+  ->If multiple user accessing a same object of particular class intead of creating separate object for every time user access , we use singleton class to create single object for java class and use them.
+
+Advantage:
+-----------
+->For same requirement we don't create muitlple objects , create single object and use same object for every same requirement
+t
+->Mempry utilization
+
+->Performance increases
+
+Note : The main reason to use singleton class is to improve perfromance and memory utilization.
+
+Note : if several users have same requirement better to create singleton class to use for all those users who have same requirement, instead of creating separate objec
+
+Note :create single object and reuse that single object for every similar requirement.
+
+Note :For similar requirements we use singleton class.Hence Memory uitlization and performace improved.
+
+Note : SingleTon class we can't create by "NEW" and "Construtor()" becuase if user allow to create call constructor so user can create objects as many as want.
+
+->We use factory method to create singleton object of class, with out specifying name of the class to be object creation.
+
+->Runtime r1=Runtime.getRuntime();
+
+Note : Runtime.getRuntime(); method won't create another Runtime object , it will use same exiting object gives to user who runtime object to communicate with jvm
+
+Runtime class is in java  used to communicate with jvm.
+
+How  to create our own singleton classes ?
+****************************************************
+A.yes we can create our own singleton classes.for these we have to use private constructor() and private static varible(creates the object for singleton class) and public factory or static method(which return singleton class object)
+
+Approach 1:
+-----------
+->Eager Instantsiation
+
+->whil class loads object will creates
+
+public class Test{
+
+private static final Test test=new Test();
+
+
+private Test(){
+}
+
+public static Test getTest(){
+
+return test;
+
+}
+
+}
+
+Note : By above approch by default single object will be created, whenever class is created because at the top we write private static final varible wehich creates the object.
+
+Calling Single Ton classs:
+---------------------------
+Test t=Test.getTest();==============t======|          
+                                    |      |
+Test t2=Test.getTest();=============t2=====| test(In Test class private static varible)     
+                                    |      | 
+Test t100=Test.getTest();===========t100===|    
+
+Note : java.lang.runtime class internally implemented by using above approach.
+
+Approcah 2:
+----------
+->Lazy Initialization , object will create when ever we reuired
+
+->By above approch by default single object will be created when ever class is created because
+ at the top we write private static final varible which creates the object.so if user has any No requirement to this class what is the use create of object at initially, so we should create object when user send request to use that class 
+
+Note :In this above approach reuired object we are creating at the begining we are creating.
+
+Note : But In second approach we are creating object of class when user request for first time for that class.
+
+public class Test{
+
+private static Test t=null;
+
+private Test(){
+
+
+}
+
+public static Test getTest(){
+    
+	if(t==null){
+	t=new Test();
+	}
+   
+    return t;
+}
+
+}
+
+Note : Internally SingleTon classes are Implemented using Private Construtor.
+
+Note : For final classes Inheritance(not create child class) is not possible
+
+Note : Static varibles got created at the begining
+
+NOTE : Interviewer may ask like Single Ton class is syncronus or Asynchronus claas
+       
+	   ->So based on implementaion of Single Ton Class we can declare it as Sycnhronus or Asynchronus
+
+Approache 1:
+-----------
+->Making static as sychronoized
+
+public class Test{
+   
+   private static Test instance;
+
+   private Test(){
+   }
+
+   public static synchronized Test getInstance(){
+   
+   if(instance==null){
+   
+   instance =new Test();
+   }
+   
+   return isntance;
+   }
+}
+
+Approach 2:
+---------
+      Double Checked Locking (Thread Safe and Efficient) with lazy instantiaztion
+
+	  
+
+Note : We can Single Ton class with Early initialization and Lazy Initialization
+
+      Early Initialization means create the object as soon as class loaded
+	  
+	  Lazy Initialzation menas cretae the when ever we required
+
+
+public class Test{
+
+private static Test test;
+
+private Test(){
+
+}
+
+public static getInstance(){
+
+if(test ==null){
+
+synchronized(Test.class){
+
+if(test==null){
+
+ return test=new Test();
+
+}
+
+
+}
+  
+  
+}
+
+return test;
+
+}
+
+}
+
+
+Note : Here if two thread comes to static getInstance method two methods will check simultaneously instance is null and if null goes to synchronzed block where only one thread allows so first will goes and check instance is null or not if null create and return , so again second thread will come after checks instance is  null or not it not null don't create instance again
+       So note here if we not check double time , multiple threads will come create multiple instances.So that's the reason we keep double checked locking to achieve thread safe
+
+
+
+
+
+===========================================================================================================================================
+2.How HashMap Works Internally.
+
+A. HashMap is a one of the implementation class of Map Interface.
+
+  ->HashMap Stores the data in key value pair.
+
+  ->HashMap doesn't allow duplicate keys and but allow duplicate value annd  multiple null values
+  
+  Note : If we trying to add same key again in hasmap, hashmap will replace previous key value with key value but key will be same but value will be replaced
+  
+  ->HashMap Works on basis of Hashing i.e hascode() of object class.
+  
+  ->We can have only one null key inside the hashmap.
+  
+  Note :HashCode of Null values always zero and index is also zero
+  
+  Note : Null keys are always stored at top i.e 0th index of hashmap
+  
+  ->If we are trying to add one more null key with value , it will ovveride replace the previous value of null key and don't throw any error
+  
+  ->hashCode will be generated basis on key we provide
+  
+  ->Initial Capacity will be 16 
+  
+  ->Load Factor of hashmap is 75% or 0.75 and if HM reaches the 75% of the hashmap size, then new hashmap will be created by usinf ThreshHold 
+  
+      ThreshHold= Intial Capacity * Loadfactor
+	   ThreshHold=16*0.75;
+  
+  Note : What is the hashcode of Null keys and Null value and Null Stirngs  is zero or 0
+Working:
+--------
+
+->HashMap uses Array Buckets to store the key and value pairs
+
+->Each Bucket or Node is linked list or Balanced tree if ThreshHoold reaches size it's size convert it to balnced tree from likned list
+
+->When we create Hashmap by defalut hashmap will be created with size 16 and indexing starting from 0
+
+->Internally in hashmap 16 nodes will be created, when hashmap created for first time.
+
+->Each Node Contains key and value and hascode of key and Next Node Refernces
+
+  Node<k,v>
+   
+    int hashcode;
+	key ;
+	value;
+	Node<k,v> ref;
+   
+->Each Node we can call it as One Bucket.
+
+->Internally in HashMap we use put method to add entry into HashMap.
+
+  Map.put(K,V);
+
+  public V put(Key k,Value V){
+  
+  int hashcode=203110
+  int index =hashcode & (n-1)
+  return V;
+  }
+
+Note: 'n' means size of the hashmap  
+
+->Put method returns V i.e value of specified key i.e the key we try to put it's exist already that key value will be retuned , if not null will be returned  
+  
+->Here HashMap put method internally has HashCode and index and key and value that will be stored in bucket.
+
+->Hashcode will be generated based on the key and object class method hashCode(Key);
+
+      int hash=hashcode(key);
+	  
+->Multiple Keys can have same hashcode so same index will be generated , then hashong collisiin will be occur like at particular index two nodes has to placed,
+  So HashMap will use linkedlist to Place multiple Nodes at particular index one each node contains HashCode and Key and value and Node reference of next node in linked list.
+  EX: First Node will have ref of next node and second node will have 3rd node ref like that.
+  
+  Note : The default thresh hold i.e treefy reaches size nodes at particulat index is 8, if 8 nodes are at particular index , hashmap will convert that all 8n nodes into Binary Search Tree where for easily lookup of nodes and deletion and insertion and Nodes will be arranged basis of Hashcode value of node,smaller hascode values nodes will be places at left side and Higher hascode value nodes will placed at right side
+  Note : If  nodes are decreased to below 8 size at particular index , hashmap will convert back the Balnaced Tree or RedBlack Tree into likned list basis on untreefy threshhold mechanism i.e 6
+  
+->Different hascode keys can have a same index that is also possible in hashmap
+
+->While retriving the elements from hashmap we use 
+    
+	 map.get(key);
+	 
+->Internally hashmap will again generate the HashCode for given Key and index based on hascode of key and then hashmap will go that index and verify hashcode is matching or not if matches 
+  then use equals method to check keys are matching or not, if macthes value will be returned.
+  If we have multiple nodes at same index , get method fisrt comapares the hashcode and then key if bothe matches then return the value of particular key
+  
+->Intial capacity of HASHMAP is 16 and index starts from 0 to 15
+
+->LoadFactor is 75% i.e 0.75
+
+->ThreshHold =Intial capacity * Loadfactor.
+
+->Only one Null key allowed to insert and if we try to insert again null key , new value will be replaces with new value
+
+->Same as with Key also, if try to add duplicate key , new value will be replaced that key. 
+
+->Multiple Null values can be allowed
+
+->Mulitle duplicate values can be allowed
+
+HashMap:
+--------
+            0 [hascode,k,v,null]
+			
+			1
+			
+			2
+			
+			3
+			
+			4
+			
+			5    Node[hascode,k,v,SecondeNodeRef],Node[hascode,k,v,ThirdNodeRef],Node[hascode,k,v,null]
+			
+			6
+			
+			7
+			
+			8
+			
+			9
+			
+			10
+			
+			11
+			
+			12
+			
+			13
+			
+			14
+			
+			15 Node[Hashcode,K,V,Null]
+
+->In java for null value or keys we have zero as hascode and here alse for null key we have hashcode is zero and index is also zero
+====================================================================================================================================
+Q. What is the difference between in HashTable and HashMap
+
+  ->HashMap and HashTable bothe are Implementation class of Map Interface
+  
+  HashMap :
+ ----------
+ ->HashMap is not synchroinzed and not thread safe and multiple threads can access the hashmap at a time
+ ->HashMap is avaliable from java 1.2
+ ->Single Null Key and Multiple Null values allowed.
+ ->Performance is high because not thread safe multiple threads can access at a time which leads to increase the performance
+ ->HashMap recommended to use when we need non-synchornized
+ ->Unordered of elements.  
+ ->Initial Capacity 16 and loadfactor 0.75
+ 
+Note : If we want to go for thread safe we use ConcurrentHashMap which thread safe instead of HashMap.
+
+  HashTable:
+  ---------
+  ->HashTable is synchorzied and thread safe and only one thread can access hashtable at a time
+  ->NO Null keys and No Null values are not allowed, if try to add it will NullPointerException
+  ->HashTable is a Legacy Class which is available from java 1.0 version
+  ->Unoreder elements there is no gurantee for order of elemnts while iteration
+  ->Performance is slow due to multiple threads accessing at a time
+  ->Recommended to use where non thread safe environment
+  ->HashTable solely use linkedList to store the multiple nodes at same index doesn't use red-black tree or Balanced Tree.
+  ->Intial Capacity of Hashtable is 11 and LoadFactor is 0.75
+  ->ResizeThreshHold = currentcapacity * LoadFactor 
+  
+Note : Both HashMap HashMap works internally same except default size and synchronization and null keys and null values and bucket as likned list for HT and LinkedLis and Balanced Tree for HM  
+       Both uses Array Of Bukets to store the k,v and based on key generate key and index will be calucluated based hasscode.
+	   
+===============================================================================================================================================================================================================	   
+3.Fail Fast And Fail Safe Iterators  in collections.
+
+A.Fail Fast and Fail Safe Iterators  are part of Java Collections.
+
+->Iterators in java used to iterate or traverse the collection objects
+
+->Fail Fast and Fail Safe are Iterators in java used to iterate or traverse the collection objects
+
+Fail Fast Iterators:
+-------------------
+->Fail Fast Iterators immediately throw ConcurrentModificationException if collection or collection Object is modified while traverse or iterating over it.
+
+->Fail Fast Iterators uses original collection to traverse or iterate over collection elements.
+
+->Fail Fast Iterators does not require the any additional memory as FailFast Iterator traverse or iterate over orignal collection itself.
+
+Example: ArrayList, Vector,HashMap.
+
+List<String> al=new ArrayList<>();
+		al.add("one");
+		al.add("two");
+		al.add("three");
+		al.add("four");
+		
+		Iterator<String> iterator = al.iterator();
+		while(iterator.hasNext()) {
+			String next = iterator.next();
+			System.out.println(next);
+			//al.add("six");
+			al.remove("three");
+			al.set(2,"update");
+		}
+		
+		
+Vector:
+-------		
+		List<String> al=new vector<>();
+		al.add("one");
+		al.add("two");
+		al.add("three");
+		al.add("four");
+		
+		Iterator<String> iterator = al.iterator();
+		while(iterator.hasNext()) {
+			String next = iterator.next();
+			System.out.println(next);
+			//al.add("six");
+			al.remove("three");
+			al.set(2,"update");
+		}
+		
+		
+HashMap:
+-------		
+    Map<String, Integer> map=new HashMap<>();
+		map.put("apple", 1);
+		map.put("ball",2);
+		map.put("three", 3);
+		
+		Iterator<Map.Entry<String, Integer>> mapIterator = map.entrySet().iterator();
+         while(mapIterator.hasNext()) {
+        	 Entry<String, Integer> next = mapIterator.next();
+        	 System.out.println(next);
+			 
+        	 map.put("four", null);
+        	map.remove("four");
+        	map.replace("three",4); 
+         }		
+		
+		
+Note : update operation FailFast Iterator doesn't throw any exception for arraylist and vector because we are not changing the struture of collection, we just updating the collection.
+       Set Operation Doesn't throw concurrent modifiction exeption.
+  
+
+Note : For add and remove operations conncurrentModificationException will thrown because we are changing the structure of collection.
+
+Internally Why Exception  For FailSafeIterator:
+-----------------------------------------------
+->When ever we call the FailFast Iteartor.next();
+
+->next() internaly has the final void checkForCoModification(); method which checks the collection has any structural modification happens to the collection if happens throw the concurrent ModificationException
+  Basically checkForCoModification method check the modCount i.e elements present before iterator got created or while iterate over elements of collection because of that basically throws exception
+ 
+->When ever we call next() method of Iterator it will calls the checkForCoModification() method to check the modCount that represents any structural chages to collection if happens modCount will increase then campares the modCount with the count of elements of collection before next() method called, if count not matches then it will throw exception.
+
+->LikeWise for remove method of collection methods belongs to arrayList and HashMap amd Vector also has checkForCoModification() method or modCount checks for the structural modification before the itrerator created.
+
+Note : Basically if we use iterator.remove method to remove the element from collection using arrayList or Vector or HashMap we don't get concurrentModificationException.
+       If we use remove method of list we get exception.
+       For set operation using list method based on index we don't exception.
+Note :But Iterator doesn't have the add() or replace() method 	   
+ 
+  
+
+
+
+Fail Safe Iterators:
+--------------------
+->Fail Safe Iterator doesn't throw any exception if collection object is modified while iterating over it.
+
+->Fail Safe Iterators use copy of original collection to traverse or iterate over it. 
+
+->Fail Safe Iterators requires additional memory to create copy of original collection for traverse or iterate over it  
+
+->Fail Safe Iterartors doesn't have the latest elements in collection because it iterate over the copy of the collection
+
+Examples: ConcurrentHashMap and CopyOnWriteArrayList
+
+CopyOnWriteArrayList:
+--------------------
+
+List<String> list=new CopyOnWriteArrayList<String>();
+    list.add("a");
+    list.add("b");
+    list.add("c");
+    
+    Iterator<String> concuIterator = list.iterator();
+    
+    while(concuIterator.hasNext()) {
+    System.out.println(concuIterator.next());
+    list.add("d");
+    
+    }
+
+ConcurrentHashMap:
+-----------------
+
+  Map<String,Integer> map=new ConcurrentHashMap();
+  map.put("alpha",1);
+  map.put("beta",2);
+  
+  Iterator<Map.Entry<String,Integer>> itr =map.entrySet().Iterator();
+  
+  while(itr.hasNext()){
+  itr.next();
+  map.put("uni",8);
+  
+  }
+ 
+ Note : FailSafe Iterators doesn't throw any exction if collection object modifiied becuase FailSafe Iterators works on copy of original Collection not on original collection so we don't get any exception.
+ 
+ 
+Note : Any Strutural changes to done to FailFast Iterator exception will be thrown
+
+Note : Any Structural changes to be done to FailSafe Iterators exception will not be thrown becuase FailSafe Iterators work on copy collection not original collection
+
+=============================================================================================================================================================================================================================================
+
+4.What is Constructor Chaining
+
+A. > Constructor Chaining is a process of calling One Constructor from another Construtor of same class i.e current class is knows as Construtor Chaining.
+
+ Construtor Chaining we can do two ways 
+
+1.using this() keyword
+
+2.using super() keyword
+
+1.Using this():
+---------------
+-> Constructor Chaining is a process of calling One Constructor from another Construtor of same class i.e current class is knows as Construtor Chaining.
+
+this() -> represents current class constructor and which represnts the matching contrutor in current class
+
+->By Constructor Chaining we can call the all the constructor avaliable in curerent class by creating single object instead of creating multiple objects for calling i
+
+Note : IF we don't keep the values to Instance variables like Stringg and Integers , when the object is created at that cmpiler will default allowcate NULL Value to String type and Zero or 0 to interger type.
+
+Note : Zero or Null values are useless values which doesn't make any sense to program
+
+Note : In java we can give values to  the instance varibles or we can initialize instance varibles Using Constructor 
+
+Note : Constructor Name is always be a Class Name.
+
+->Suppose we have Employee class and has two fields like name and id and we created a customized constructor with two parameter like Strin name and Int Id 
+  and at the time of object creation we intialize the varibles so that's fine and that construtor is used multiple part of application.
+  after some days we have to another field like Employee Designatiion which have to employee , so we have to initailize the designation to Emp objt through contrutor , if we use already existed construtot i.e two atgumts contructor which is have name and id , exiting coding will be disturbed where ever that two values params construtor.
+  So therefore we can't modified already existed construtor.
+
+  public class Emp{
+  
+  Strign name;
+  int id;
+  
+  public Emp(String empName,int empId){
+  name=empName;
+  id=empId;
+  
+  }
+  
+  
+  
+  //Not A recommeded approach
+  //public Emp(String empName,int empId,Stirng desination){
+  //name=empName;
+  //id=empId;
+  //}
+  
+  
+  public static void main(String[] args){
+  
+  Emp e=new Emp("namo",1);
+  
+  // Emp e=new Emp("namo",1,""devloper");
+  //Not a recommeded approach  
+  }
+  
+  }
+
+Note:If we want to add new fields or initailize new fileds uisng Construtor we use Anotehr new Construtor not existing construtor, because we can't modify existing one
+
+
+  public class Emp{
+  
+  Strign name;
+  int id;
+  String desig;
+  
+  public Emp(String empName,int empId){
+  name=empName;
+  id=empId;
+  
+  
+  }
+  
+  
+  
+ 
+  public Emp(Stirng desination){
+  desig=desination;
+  
+  }
+  
+  
+  public static void main(String[] args){
+  
+  Emp e=new Emp("namo",1);
+  
+  Emp e=new Emp("devloper");
+  
+  }
+  
+  }
+  
+Note : If we want to new fields like phn and address then we have to create separate construtor and intialize the value with out using existing construtor to disturn the code in application.
+       So like that we have to keep on add new fields and new contructor for initilaize those fields with out using existing construtor, so this is like a creating a muiltple objects with construtors for one class which leads to memory issue.
+	   and creating multiple objects with diff construtor leads code complexity and lenghty and complcated to understand
+	   SO WE CAN SOLVE The That kind Of Problems like creating multiple objects for intialize the variables we "CONSTRUCTOR CHAINING""
+
+->We this() keyword with paranthesis to represent current class contrutor because this() always represents to the current class object and pass the argument which constrcutor we want invoke inside the another construtor.
+
+->The job of "this()" keyword to call matching constrcutor in class
+
+Note : The Process of Calling Constructor from another constructor using "this()" keyword is known as "Construtor Chaining"
+ 	   
+Note : Constructor Chaining is the process of calling one constrcutor from another constrcutor of same class using this() keyword is known as Constructor Chaining.
+
+Note : 'this' keyword with () looks for matching constrcutor in present class and invoke it and calls it.
+
+Note : With this approch we create only one object and call multiple contructors.Instead of creating multiple construtor objects for calling multiple contructors
+
+Note : We can improve the memrory of application by without creating multiple objects and avoid duplication of code and code can be easy to understand
+
+public class ConstrutorChaining {
+	
+	private String name;
+	private int id;
+	private double salary;
+	
+	public ConstrutorChaining(String empName) {
+		
+		name=empName;
+		System.out.println("EmpplyeeName :"+name);
+	}
+	
+	
+	public ConstrutorChaining(int empId) {
+		this("Naresh");
+		id=empId;
+		System.out.println("Employee Id:"+id);
+	}
+		
+	public ConstrutorChaining(double salary) {
+		this(1);
+		salary=salary;
+		System.out.println("salary of employee :"+salary);
+	}
+	
+	public static void main(String[] args) {
+		
+		ConstrutorChaining chaining=new ConstrutorChaining(10000.0);		
+	}
+	
+}
+	   
+->Rules of Constructor Chaining :
+---------------------------------
+->The this() expression should be the first statement in the constrcutor.
+  If we write this() expression after some lines inside construtor we get complietime error
+  
+  public constrct(String name){
+  emp=name;
+  this();
+  }
+Note : Construtor call must be the first statement in constrcutor
+
+->There should be atleast one constrcutor with out this() keyword
+
+->Constructor Chaining can be in any order.    
+
+
+2.With super():
+---------------
+->The process of calling a parent class construtor inside child class constructor is known as Constructor Chaining with Super.
+
+->To Acheive the Constructor Chaining with super() keyword inheritance is mandatory.
+
+->If we use super() keyword in child class with out extending parent class , we don't get any errors or excpetion beceuase in java every class is by default internally subclass or child class to Object class.
+
+Rule :-> super() and this() can't be written in same contructor 
+      ->super() expression should be the first statement in constructor  
+
+package corejava;
+
+public class ConstrutorChaining {
+	
+	private String name;
+	private int id;
+	private double salary;
+	public ConstrutorChaining() {
+		this("naresh");
+	}
+	public ConstrutorChaining(String empName) {
+		this(1);
+		name=empName;
+		System.out.println("EmpplyeeName :"+name);
+	}
+	
+	
+	public ConstrutorChaining(int empId) {
+		this(1000.0);
+		id=empId;
+		System.out.println("Employee Id:"+id);
+	}
+		
+	public ConstrutorChaining(double salary) {
+		salary=salary;
+		System.out.println("salary of employee :"+salary);
+	}
+	
+	
+	public static void main(String[] args) {
+		
+		ConstrutorChaining chaining=new ConstrutorChaining();		
+	}
+	
+}
+
+
+
+
+
+public class ConstrutorChainWithSuper extends ConstrutorChaining {
+
+	private String childName;
+	
+	public ConstrutorChainWithSuper() {
+		super();
+		System.out.println("super class constrcutor called");
+	}
+	public ConstrutorChainWithSuper(String name) {
+		
+		this();
+		
+		childName=name;
+		System.out.println("child name"+childName);
+	}
+	
+	public static void main(String[] args) {
+		
+		ConstrutorChainWithSuper chainWithSuper=new ConstrutorChainWithSuper("parent");
+		
+		
+		
+		
+		
+	}
+	}
+	
+======================================================================================================================================================	
+5.What are the methods available Object Class
+
+A. In Java every class is directly or Indirectly Inherit or Extend the Oject Class.
+
+   ->Basically Object Class is parent or super class for all the classes present in java 
+   
+   ->Object Class Present in "java.lang" package
+   
+   Note : By Using Object Class Functions we can define  common properties and  behaviour of Object like hashcode() and equals etc methods to child classes.
+   
+   1.equals() : which is used to compare the given object with other object we use equals method
+   ---------- 
+                  public boolean equals(Object obj);
+
+   
+   2.toString():To convert the object to stirng we use toString Method
+   ------------   
+   
+   ->To print the object in string reprsentaion format we use toString();
+   
+                  Public String toString();
+
+   3.
+
+     
+  
+
+
+
+  
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+              
+
+
+
+ 
+
+ 
+
+  
+  
+  
+
+
+  
+	 
+	 
+
+  
+  
+  
+  
+  
+  
+  
+	  
+
+
+
+
+
+
+
+============================================================================================================================================
+Interview Qustion :If class is not a final class and we can't create child class for that non final class is that possible.
+------------------
+->Class is not final class but we are not allowing create child class for non final class.How it is possible ?
+A.Declare every class as Private Construtor();
+
+Example:
+
+
+class P {
+
+private P(){
+}
+
+}
+
+class C extends P{
+
+public C(){
+
+super()
+
+}
+Note : Here super refernce parent class and our super class contruter is private contrutor we can't allow outside of the class.
+
+Note : Gives Complie time error as we can't call private contrutor outside of class. and child class super keyword is there.
+
+}
+ 
+Note : By creating every class as constructor as private we can restrict the child class creation.
+
+================================================================================================================
+Interview Question :
+--------------------
+Q.From which source or from where request is coming to our application whether it is browser or PostMan or ThirdParty application ?
+A. We can get to know from where request is comes to our application by Filter Object in Api GateWay
+   ->As we know every request is comes to our application through Api Gate Way , so in api gate way  we implements Filter and Routing logic,
+     In Filter class filter ovverided method from GlobalFilter which our Filter Class Impements , so we have ovveride the Filter Method which has two parameters like Server web exchage and GlobalFileter chain
+     so using Serverwebexchange object we can capture the incoming request data like headers and body
+   -> ServletHttpRequest request=  Serverwebexchange.getRequest(); which captures the request object
+   -> from request object we extract the Headers by 
+         HttpHeader header= request.getHeader();
+       Set<String> key=  header.keySet();
+   ->Header data available in key value pair , so we have to iterate and print the header by iterating header data for each loop and and prints the header data where we can find key token with postman or google browser we can find
+
+       PostMan-Token [eaj139009-rc-2eee]	
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+31.What is the difference between Constructor and Method in java ?
+A.Constructor has No return type and Method has return type
+  Method will invoke when we call call it and Construtor will called automatically when the object is created.
+  
+32.What is serialization ?
+A.Converting the object into bit and bytes is called serialization 
+  ->So serialized object can be easilt trasnfered through network.
+  ->Serialized object which we can use it for trasnfer through network or data storage
+  
+33.What is sychronization ?
+A.To achive Thread Safety we use sychronization.
+  ->Synchronization we can implement at the method level and block level
+
+    public class SyncExaple{
+	
+	private doule balnce =1000;
+	
+	private double withdra=1200;
+	
+	
+	//method level
+	public synchronized void synchMethod(){
+	
+	//logic
+	
+	}
+	
+	//Blcok level
+	public void blockLevelSynchBalanceDraw()
+		{
+		
+		synchronized(lock){
+		if(balnce>=withdra){
+		
+		balance=balance-withdra;
+		
+		syso("availabe balance:" +balnce)
+		
+		}
+		
+		
+		}
+		}
+Note : Lock means "The lock object is used as a monitor for synchronizing a block of code. When you use synchronized (lock), it ensures that only one thread can execute the code within the synchronized block at a time."	
+	
+	}  
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+34.try catch with throws keyword in single method 
+
+A. try catch is used to handle the unhandle the unchecked exceptions in the runtime
+    throws is used to ignore the  checked exceptions at complile time
+
+     public void methodWithException() throws IOException {
+        try {
+            // Simulating an exception that needs to be handled within the method
+            int result = 10 / 0; // This will throw ArithmeticException
+        } catch (ArithmeticException e) {
+            System.out.println("Handled ArithmeticException: " + e.getMessage());
+        }
+
+        // Simulating an exception that will be thrown to the caller
+        throw new IOException("Simulated IOException");
+    }
+
+35.Difference between throw and throws keyword?
+  A. throw keyword is used to throw exception in method block
+     throws keyword is used to ignore the chcked exceptions at complile time and thowrs keywrod used with method signature
+	
+36.What is loosely coupling and tightly coupling in java  spring ?
+A.Tightly coupling :
+   
+  Note :Tight coupling occurs when classes are highly dependent on one another. Changes in one class often require changes in the other 
+   
+   public class OrderService {
+    private InventoryService inventoryService = new InventoryService();
+
+    public void processOrder() {
+        inventoryService.updateInventory();
+    }
+}
+Note :In this example, OrderService is tightly coupled with InventoryService because it directly instantiates it.
+
+LoosleY Coupling:
+----------------
+
+Loose coupling refers to reducing the dependencies between components, making the system more modular, flexible,
+ and easier to manage. In a loosely coupled system, components communicate through interfaces or abstractions, and dependencies are typically injected rather than created directly.	 
+ 
+ public interface InventoryService {
+    void updateInventory();
+}
+
+@Service
+public class InventoryServiceImpl implements InventoryService {
+    public void updateInventory() {
+        // Implementation
+    }
+}
+
+@Service
+public class OrderService {
+    private final InventoryService inventoryService;
+
+    @Autowired
+    public OrderService(InventoryService inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+
+    public void processOrder() {
+        inventoryService.updateInventory();
+    }
+}
+
+37.What is dependency injection and how many ways we can do ?
+
+A.dependency injection:
+  --------------------
+  ->Injecting the dependent object in target objects
+  -> we can inject object in 3 ways 
+     1.setter 
+	 2.constructor
+	 3.Field
+	 
+38.How to imlement serialization with code ?
+A. Serialization is process of converting the object into byte code and byte ketp .file and when deserialization conveeting .file byto in java objec .class
+   Note : During serialization if we want to ignore particular filed to igonre we "Trasient "
+          keyword to field   	 
+	 

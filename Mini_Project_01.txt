@@ -1,0 +1,896 @@
+=======================================
+Mini Project :Reports Generation  Application
+=======================================
+->The main intenstion of this Mini Project is to improve coding skills.
+
+->Basically In mini-project the procedure we need to follow is:
+
+  1.They will give the requirement(in the form pdf or document or any other format)
+  
+  2.We need to understand the requirement and if we have any questions , we have to prepare query log where we keep our requirement related questions
+    ->When ever we have doubts on requirments, don't start the development.
+  
+  3.Company project team will explain the clarifications or doubts we had in requirements.
+  
+  4.Then we have to do DB analysis (how many tables required and what are the coloumns are required in tables and pk and fk coloumns we should identify in table fields)
+  
+  5.Java Components Analysis (what are the java classes and interfaces  we have to create for requirement and methods(name , parameters and return type of method))
+  
+  Note : Step 4 and 5 we should do our self and we don't need to take others help about that steps in realtime.
+        ->If we are good at java component analysis we can easily manage the work.So java compnent analysis is important factor.
+		->Analysis Java Component is the impoportant factor for every programmer to survive in the IT industry.
+		
+  6.They will explain their analysis about requirments(If we unable to make analysis then they will explain their analysis)
+  
+  7.Compare our anaysis with their anaysis(Here we understood where we are backing and improve those areas)
+    ->When comparing our analysis with their analysis , if any mistakes in done we can correct it by comparing the analysis.
+	
+  8.Start devloping coding to complete requirement after analysis part is completed(generally we in analysis part we just create java classes and dto classses and interfaces and just method body not implement any coding part)
+  
+  9.Then they will explain coding(If we unable to do coding for requirement)
+ 
+  10.We need to notedown the lessons we have learnt(what are the mistakes we did in previous project don't repeat it next time)
+  
+Note : Based on the requirement how to write the methods is the most important part for developers
+
+Note : The main intension of MiniProjects is to improve the analysis skills then automatically our coding will be improve.
+
+Note : Writing coding is very easy but analysis part is very difficult. 
+
+Note : As a developer we should know anaysis part of requirement before start coding.
+
+Note : When we are doing java analysis part we don't need to open ide and we can take pen and paper and write what are tables and tables names and coloumns names and classes and methods and method paratmeter and method names and method return types.
+
+Note : When  we don't have fully confidence on requirement then don't start coding part.
+
+Note : In real time we always should do the work on our's own.
+
+Note : The main purpose of this mini projects is to improve our analysis skills towards requirement and improve coding skills for given requirements.
+
+----------------------------------------------------------------
+Application Name : Insurance Reports Generation Appication.
+----------------------------------------------------------------
+->Insurance means applying insurance plan by people and when people applying for the plan some people will be approved for the plan and some people will be denied for the plan
+ 
+->So there will be two kind of people in Insurance application and those are plan elgible people and plan rejected people.
+
+Note : The main objective of this Insurance Reports Generation application is to fetch list of reports of insurance and displaying the reports data and exporting the data into excel or pdf file.
+
+-> So one screen plan name plan status fields are there and both fields dropdown should be there and In dropdown data should be come from database and another field is Gender is that can be statis because gender won't change  
+  
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Data Base Table:
+----------------
+
+Citizen_plan_info_Table
+***********************
+
+Citizen_id     int  Primary Key
+
+Citizen_Name        varchar 
+ 
+Plan_Name           varchar 
+ 
+Plan_Status         varchar
+
+Plan_Start_Date     LocalDate
+
+Plan_End_Date       LocalDate
+
+Denial_Reason       varchar
+
+Terminated_Date     LocalDate
+
+Termination_Reason  Varchar
+
+Note :Termination Means  when we already getting plan benefits , due to some reasons plan will be cancled due to some reasons.
+
+-> Data Source means database details
+
+Note :ApplicationRunner interface is used to run the logic inside the class which implements ApplicationRunner and it will execute when ever the application is started.
+
+Note :ApplicationRunner is FI and which conatains run method where we write logic that will execute whenever application is started.
+
+Note : In spring boot mvc architecture we use repository to connect with databse
+
+Note :Entity is mapped with database table 
+
+Note :Repo is used to perform operations database
+
+Note :Controller is web component it will deal with request and responses of application.
+
+Note : In mvc architecture we follow controller and service and repository layers to develope application.
+
+Note : In mvc architecture User Will communicate With UI to perform some operations and when user any operation on UI then operations will processed by controller where we write controller method which are deal with application request and responses and controller will communiacte with service and service will communicate with repository and repository will communicate with database.
+
+Note :Whenever we do analysing,start analysis always from database side to java components   
+
+->For every entity we take repository in order to communicate with database.
+
+->every entity in appliation mapped to database table 
+
+->we can call database repositories as persistance layers.
+
+->based on the table we take entities like if we have one table for our requirement we take one entity.
+
+->Entities in application always mapped to database table.
+
+->To perform operations with  table we use repositories.
+
+->Entities and with respect to repositories comes under persistance layer.
+
+Note : As per our application requirement i.e Insurance Reports Application where we have to generate the insurance repors based on requirements.So we have to generate the report in pdf or excel format and send that as an attachment in email.
+
+->In this application we have SearchRequest.java class to bind the user requested data with server side controller methods arguments as  java object.
+
+Note : generally we can do it with entity class but which is not recommended because enetity we have so many filelds so entity class should separate and form binding classes should separate.
+
+Note :Request and Response classes should be separate and entities class should be separate.
+
+Note: As part of application development we use runner class to load the data to database table.
+
+->whenever we get requirement we need to architecture like what are db table and entities and repositories and service classes and controller classes and request and response classes.
+
+->Controller class methods always deals with request data and response data.
+
+Note : When we do component analysis always starts from database to front end
+
+Note : Always create service component as interface and provide abstract methods and create impl class for service interface implement abstract methods present in service interface.
+
+Note: we can call formbindig classes(those classes are binded to user search fields or requested fields) so we can call formbinding classes as command classes or DTO(Data Transfer Object) classes, DTO classes are trasnfer th data from cleint requested data to controller methods as java object to process the request.
+
+Note :As a programmer we should good in anaylsis part then coding will come automatically.As a developer we should think what are the db tables and coloumns required then entities and repositories and service classes and utility classes as part of service Business logic then controller classes and DTO classes.
+
+Note : To fetch unique records we use distinct kewyword
+
+->HQL queries are represented by @query annotation. 
+
+Note: In JPA we have Query-By-Example to prepare the queries dynamically.So it's predefined method.
+
+Dependent Drop Down Functionality : which means based on the drop down value another drop down values will be populated.
+
+->In our mini project we have dropdown functionality to select particular factor out of list of factors.
+
+Service Interface With Abstract Methods
+----------------------------------------  
+   List<CitizenPlan> findByPlanName(String planName);
+   List<CitizenPlan> finndByPlanStatus(String planStatus);
+   List<CitizenPaln> findByGender(String gender);
+   List<CitizenPlan> findByPlanStartDate(LocalDate localDate or String StartDate);
+   List<CitizenPlan> findByPlanEndDate(LoccalDate localDate or String lastDate);   
+   List<CitizenPlan> findAll();
+   
+   List<CitizenPaln> findByPlanNameAndPlanStatus(String planName,String planStatus);
+   List<CitizenPlan> findByPlanNameAndGender(String planName,Strign Gender);
+   List<CitizenPaln> findByPlanNameAndStartDate(String planName,LocalDate startDate);
+   List<CitizenPaln> findByPlanNameAndEndDate(String planName,LocalDate EndDate);
+   
+   List<CitizenPaln> findByStatusAndGender(String planStatus,String gender);
+   List<CitizenPaln> findByStatusAndPlanStartDate(String planStatus,Localdate dateStart);
+   List<CitizenPaln> findByStatusAndPlanEndDate(String planStatus,Localdate dateEnd);
+   
+   List<CitizenPaln> findByGenderAndStartDate(String gender,LocalDate startDate);
+   List<CitizenPlan> findByGenderAndEndDate(Stirgn gender,LocalDate endDate);
+   
+   List<CitiizenPlan> findByStartDateAndEndDate(LocalDate startDate,LocalDate endDate);   
+   
+   List<String> findPlanStatusForDropDown();
+   List<String> findPlanNmaesForDropDown();
+   
+   pdf generatePdf();
+   Excel generateExcel;
+   
+
+Note : We write custom queries becuase predefined methods are not satisfying the our requirements. 
+
+Note: ApplicationRunner will executes, when application is started.   
+   
+->repository.deleteAll(); method will delete the all the data available in particular repository  related table entity.   
+
+->When our project is having front end developed with React or Angular then we use @restcontroller annotation for controller class.
+
+->If project front end  is developed with jsp or thymleaf then we use @controller annotation to controller class methods    
+ 
+->Entities are used to map with the database table.
+
+->Entity represents the what is the table and what is the structure of the table  what are columns available in db table.
+
+->We create reppository that will extending the jparepository to get predefined methods to perform crud operations.If predefined methods are not satisfied then we write custom quries to perform the operations with database.
+
+Note: Whenever we create jsp pages for view technology we should resolve the view resolver like we should configure where our applicaation front end i.e view part is available, those kind of configuration will done in application.properties file.
+
+Note :Tomcat Embeded Jasper Dependency is used to compile JSP PAGES.
+
+Note : Form Binding class is used to capturing the data which is specified by user on UI and capture the data in the form object then we use form-binding class.
+
+Note :Runner is used to execute the logic only once when the application gets started.
+
+->In jsp we use Model Object to send the data from Controller to UI.
+
+Note : Controller is a mediator between UI and Service.
+
+->Controller takes the data from the UI and Gives it to the Service and takes the data from Service and give it to the UI vice-versa.
+->Controller handles the requests and responses.
+
+Note : To implemnt dynamic Query we use Query By Example so for querybyexample accepts entity data not binding class data, so first we need to copy the data from binding object to entity by beanutils.copyProperties(source,target);.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Excel :
+======================================================================================================
+->In java to work with excel files in java  like to read the data from excel file and store the data into database, read the data from database and store into excel file, we use APACHE POI.Apache Poi api is a third party Api to work with excel files.
+
+->By 
+        <dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>5.2.3</version>
+		</dependency>
+		
+->what ever the dcmnt or excel  we open in EXCEL APPLICATION  is called workbook.
+
+->In workbook we have multiple sheets at bottom of the workbook.we can have N number of sheets in single workbook.
+
+->In every sheet we have coloumns and rows, row has cells to keep the data.
+
+->For every row multiple coloumns will be available.
+
+Note: In workbookk we have multiple sheets and inside the sheet rows will be available and for every row multiple coloumns will be available and rows has the cells to keep the data.	
+
+->In Excel ROW index starts from 0 and COLOUMN index starts from 0 and CELL index also starts from '0'. 
+
+->When we creating the Excel Documnet we consider 1st ROW as a Header Row where we keep headers like s.no, name, gender, age etc..
+
+->Row '0' always consider it as Header Row.
+
+->In data row we keep or set the data to header row
+
+->In every sheet One Header Row will be availble and Multiple Data Rows will be available.
+
+->So for every row multiple Columns will be available.
+
+->In excel One Header Row will be available and Multiple Data Rows will be available.
+
+Note: In Excel file Workbook will be available and In workbook multiple sheets will be available and In every sheet Rows  will be available and in the Row  Columns will be available, In the column cell will be available, cell will contain the data
+
+->if we have 100 records in table for that 100 data rows should be created in sheet. 
+
+1.WorkBook - workbook is a One excel document.
+2.Sheet    - Every Wokrbook  has multiple sheets at bottom of Workbook
+3.Row      - In every sheet rows will be available 1st row is called Header Row and Remaining rows is called Data Rows.
+4.Coloumns - For every Row has multiple coloumns and coloumn has cell where we keep the data for rows.
+
+Note : Whatever the records we fetch from database that recodrs should be configured as Data Rows in sheet of workbook
+
+->For every record new data row should be created.
+
+->We use APCHE POI api or dependecy to generate the excel files in java.
+
+->Any value if we append it to String(int or double or localdate or+"") it will become String value.
+
+Example:
+--------
+
+@GetMapping("/excel")
+	public void generateExcel(HttpServletResponse response) throws Exception{
+		response.setContentType("application/octet-stream");
+		response.addHeader("Content-Disposition","attachment;filename=plans.xls" );
+		 try {
+		        this.reportService.exportDataExcel(response);
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Unable to generate Excel file");
+		    }		
+	}
+	
+
+@Override
+	public boolean exportDataExcel(HttpServletResponse response) throws Exception {
+		List<CitizenPlan> allRecords = this.citizenPlanRepository.findAll();
+		
+		Workbook workbook=new HSSFWorkbook();
+		
+		Sheet sheet = workbook.createSheet("plans-data");
+		
+		Row headerRow = sheet.createRow(0);
+		
+		headerRow.createCell(0).setCellValue("Citizen_Id");
+		headerRow.createCell(1).setCellValue("Citizen_Name");
+		headerRow.createCell(2).setCellValue("Gender");
+		headerRow.createCell(3).setCellValue("Plan_Name");
+		headerRow.createCell(4).setCellValue("Plan_Status");
+		headerRow.createCell(5).setCellValue("Plan_StartDate");
+		headerRow.createCell(6).setCellValue("Plan_EndDate");
+		headerRow.createCell(7).setCellValue("Termination_Reason");
+		headerRow.createCell(8).setCellValue("Termination_Date");
+		headerRow.createCell(9).setCellValue("Benefit_Amount");
+		headerRow.createCell(10).setCellValue("Denial_Reason");
+		
+		int dataRowIndex=1;
+		
+		for(CitizenPlan plans:allRecords) {
+			Row dataRow = sheet.createRow(dataRowIndex);
+			dataRow.createCell(0).setCellValue(plans.getCitizenId());
+			dataRow.createCell(1).setCellValue(plans.getCitizenName());
+			dataRow.createCell(2).setCellValue(plans.getGender());
+			dataRow.createCell(3).setCellValue(plans.getPlanName());
+			dataRow.createCell(4).setCellValue(plans.getStatus());
+			if(plans.getPlanStartDate()!=null) {
+			dataRow.createCell(5).setCellValue(plans.getPlanStartDate()+"");
+			}else {
+				dataRow.createCell(5).setCellValue("N/A");
+			}
+			if(plans.getPlanEndDate()!=null) {
+			dataRow.createCell(6).setCellValue(plans.getPlanEndDate()+"");
+			}else {
+				dataRow.createCell(6).setCellValue("N/A");
+			}
+			dataRow.createCell(7).setCellValue(plans.getTerminationReason());
+			dataRow.createCell(8).setCellValue(plans.getTerminatedDate());
+			if(plans.getBenefitedAmt()!=null) {
+			dataRow.createCell(9).setCellValue(plans.getBenefitedAmt());
+			}else {
+				dataRow.createCell(9).setCellValue("N/A");
+			}
+			dataRow.createCell(10).setCellValue(plans.getDenialReason());
+			
+			dataRowIndex++;
+			
+		}
+		
+	
+		  try (ServletOutputStream outputStream = response.getOutputStream()) {
+		        workbook.write(outputStream);
+		        outputStream.flush();
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        throw new Exception("Error while writing Excel to output stream");
+		    } finally {
+		        workbook.close();
+		    }
+		
+	return true;
+	}
+
+Note : To Send The File to Browser We Use HttpServletResponse ojbject to send the response.	
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PDF:
+===============================
+->To work with pdf file in java we use ITEXT OR OPEN PDF OR ASPOSE PDF or Dependecy APIs
+
+->In this example we use OpenPdf api or dependency to work with PDF files In Java.
+
+->To create the PDF document using java, we need to create table, Inside the table we represent the data.
+
+->To create the table in pdf document we have a class called 'PDFTABLE'
+
+->When we are creating the table in pdf document, we should mention the how ,many coloumns required in the table and No need to mention the ROWS in table.
+
+            PdfPTable table =new PdfPTable(7);
+			
+			Note: Contructor (7) represents the coloumns size in the table.
+			Note : After coloumns are build, automatically rows will be build.
+			
+->Cell Menas Coloumn
+
+Note : In pdfPTable we won't mention index for cells.
+
+->Once Cells reached it's size, automatically datarwos will be created according to cells size, as cells size reaches new datarow will be create.
+
+Example : 
+
+@GetMapping("/pdf")
+    public void generatePdf(HttpServletResponse response) throws Exception{
+    	
+    	response.setContentType("application/pdf");
+    	response.addHeader("Content-Disposition", "attachment;filename=plans.pdf");
+    	this.reportService.exportDataPdf(response);
+    	
+    }
+	
+	
+@Override
+	public boolean exportDataPdf(HttpServletResponse response) throws Exception {
+		
+	Document document =new Document(PageSize.A4);
+	PdfWriter.getInstance(document, response.getOutputStream());
+	document.open();
+	
+	Font font = FontFactory.getFont(FontFactory.TIMES_ITALIC);
+	font.setSize(18);
+	
+	Paragraph paragraph =new Paragraph("Report Generation Pdf",font);
+	paragraph.setAlignment(Paragraph.ALIGN_CENTER);
+	
+	document.add(paragraph);
+	
+	PdfPTable pdfPTable =new PdfPTable(10-1);
+	pdfPTable.addCell("Citizen_Id");
+	pdfPTable.addCell("Citizen_Name");
+	pdfPTable.addCell("Plan_Name");
+	pdfPTable.addCell("Plan_Status");
+	pdfPTable.addCell("plan_StartDate");
+	pdfPTable.addCell("Plan_EndDate");
+	pdfPTable.addCell("Benefit_amt");
+    pdfPTable.addCell("Denied Reason");
+    pdfPTable.addCell("Denied Date");
+    
+    List<CitizenPlan> allRecords = this.citizenPlanRepository.findAll();
+    
+    for(CitizenPlan all:allRecords) {
+    	pdfPTable.addCell(String.valueOf(all.getCitizenId()));
+    	pdfPTable.addCell(all.getCitizenName());
+    	pdfPTable.addCell(all.getPlanName());
+    	pdfPTable.addCell(all.getStatus());
+        pdfPTable.addCell(all.getPlanStartDate()+"");
+        pdfPTable.addCell(all.getPlanEndDate()+"");
+        pdfPTable.addCell(String.valueOf(all.getBenefitedAmt()));
+        pdfPTable.addCell(all.getDenialReason());
+        pdfPTable.addCell(all.getTerminatedDate()+"");	
+    }
+    
+    pdfPTable.setSpacingBefore(5);
+    pdfPTable.setWidthPercentage(100f);
+    
+    
+    document.add(pdfPTable);
+	
+	document.close();
+		return true;
+	}	
+	
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+->Refactor Code : which means organizing the code and remvoing the unwanted code. 			
+
+->To make a partucular class as spring bean we use @component annotation above the class.			
+ 
+->While developing the code we shuould use "Single Responsibility" approach OR Principle which means  one class  should perfrom One Action.
+
+->If we write every thing one class it will be difficult to manage that code so we use 'SingleResponsibility' principle to develope the code like keep Utility Classes Separate, controller and Services Class Separate.
+
+->To understand the excution flow of application we go use "DEBUGGING".
+
+Note : We can call Pdf and Excel generator classes as Helper or Utility Classes.
+
+->Business Logic Will available in Service Impl.
+
+Note :In real time everything will not write in single class.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Sending Email
+==============
+->If we want to work withy Mail Sendfing Functionality In Java We use "Mail Starter" Dependecy.
+
+->We Need to configure SMTP properties in application.properties file.Like we configure DataSource Properties to communicate with Data base like that we configue SMTP properties to connect or communicate with Mail Server To send the Mails.
+
+SMTP :Simple Mail Transfer Protocol.
+
+->In real Time company will provide SMTP properties.
+
+->Here we use Gmail Server SMTP properties to Communicate With Mail Server.
+
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=yadavtest95@gmail.com
+spring.mail.password=sbfu hebv pjvg ycvc
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+
+Note : here in above mail properties in mail.password we have to set gmail account app password not gmail password. 
+
+->To Send The mail from java application we need to generate the app password in our google account
+   ->Steps to generate app password 
+      1.Account -> Secuity -> Enable 2Step Verfication 
+	  2.Then OPen Other Tab IN chorme and search for Google App Password Then navigate to https://myaccount.google.com/apppasswords
+	  3.Then Generate app password and copy that app password and keep it SMTP properties in java application.
+	  
+	  
+	  ->To send the mail we use org.springframework.mail.JavaMailSender calss to send the mails.
+	     JavaMailSender.send(SimpleMailmessage); to send mail with  simple message i.e plain text.
+		 JavaMailSender.send(MimeMessage); to send the mail with html tags and with attachments then we need to go for MimeMessage.
+
+Note : The Main Difference Between ServletOutputStream And FileOutPutStream
+       ---------------------------------------------------------------------
+       ->FileOutPutStream is used to store the file in current folder where as ServletOutputStream is used to send the files to browser.
+ 
+->To send the file as atttachment in mail using java , first we need to have the attachment in our system current folder, then only we able to send the file as attchment in mail.
+   
+    FileOutputStream fileOutputStream=new FileOutputStream(new File("plans.xls"));
+		workbook.write(fileOutputStream);
+		fileOutputStream.close();
+
+->To create the file in our local system we use File f=new File("plans.xls");	
+
+Example :
+
+	@GetMapping("/excel")
+	public void generateExcel(HttpServletResponse response) throws Exception{
+		response.setContentType("application/octet-stream");
+		response.addHeader("Content-Disposition","attachment;filename=plans.xls" );
+		 try {
+		        this.reportService.exportDataExcel(response);
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Unable to generate Excel file");
+		    }		
+	}
+
+
+
+@Override
+	public boolean exportDataExcel(HttpServletResponse response) throws Exception {
+
+		File f=new File("plans.xls");
+		
+		
+		List<CitizenPlan> allRecords = this.citizenPlanRepository.findAll();
+		excelGenerator.generateExcel(response, allRecords,f);
+		
+		String subject="Mail Sending Test Sample";
+		String body="<h2>Successfully Mail Sent Using Java Rest Api</h2>";
+		String to="yadavtest45@gmail.com";
+		String[] mails= {"yadavtest45@gmail.com","sreekanthpininti466@gmail.com","vivekkumar706277@gmail.com"};
+		
+		boolean mailSender = this.emailSender.mailSender(subject, body, mails,f);
+      
+		f.delete();
+		
+		return true;
+	} 
+
+
+package com.reports.generation.util;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.List;
+
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.springframework.stereotype.Component;
+
+import com.reports.generation.entity.CitizenPlan;
+
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.http.HttpServletResponse;
+
+@Component
+public class ExcelGenerator {
+
+	public void generateExcel(HttpServletResponse response, List<CitizenPlan> allRecords,File f) throws Exception{
+
+		Workbook workbook = new HSSFWorkbook();
+
+		Sheet sheet = workbook.createSheet("plans-data");
+
+		Row headerRow = sheet.createRow(0);
+
+		headerRow.createCell(0).setCellValue("Citizen_Id");
+		headerRow.createCell(1).setCellValue("Citizen_Name");
+		headerRow.createCell(2).setCellValue("Gender");
+		headerRow.createCell(3).setCellValue("Plan_Name");
+		headerRow.createCell(4).setCellValue("Plan_Status");
+		headerRow.createCell(5).setCellValue("Plan_StartDate");
+		headerRow.createCell(6).setCellValue("Plan_EndDate");
+		headerRow.createCell(7).setCellValue("Termination_Reason");
+		headerRow.createCell(8).setCellValue("Termination_Date");
+		headerRow.createCell(9).setCellValue("Benefit_Amount");
+		headerRow.createCell(10).setCellValue("Denial_Reason");
+
+		int dataRowIndex = 1;
+
+		for (CitizenPlan plans : allRecords) {
+			Row dataRow = sheet.createRow(dataRowIndex);
+			dataRow.createCell(0).setCellValue(plans.getCitizenId());
+			dataRow.createCell(1).setCellValue(plans.getCitizenName());
+			dataRow.createCell(2).setCellValue(plans.getGender());
+			dataRow.createCell(3).setCellValue(plans.getPlanName());
+			dataRow.createCell(4).setCellValue(plans.getStatus());
+			if (plans.getPlanStartDate() != null) {
+				dataRow.createCell(5).setCellValue(plans.getPlanStartDate() + "");
+			} else {
+				dataRow.createCell(5).setCellValue("N/A");
+			}
+			if (plans.getPlanEndDate() != null) {
+				dataRow.createCell(6).setCellValue(plans.getPlanEndDate() + "");
+			} else {
+				dataRow.createCell(6).setCellValue("N/A");
+			}
+			dataRow.createCell(7).setCellValue(plans.getTerminationReason());
+			dataRow.createCell(8).setCellValue(plans.getTerminatedDate());
+			if (plans.getBenefitedAmt() != null) {
+				dataRow.createCell(9).setCellValue(plans.getBenefitedAmt());
+			} else {
+				dataRow.createCell(9).setCellValue("N/A");
+			}
+			dataRow.createCell(10).setCellValue(plans.getDenialReason());
+
+			dataRowIndex++;
+
+		}
+		
+		FileOutputStream fileOutputStream=new FileOutputStream(f);
+		workbook.write(fileOutputStream);
+		fileOutputStream.close();
+		
+		
+
+		try (ServletOutputStream outputStream = response.getOutputStream()) {
+			workbook.write(outputStream);
+			outputStream.flush();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("Error while writing Excel to output stream");
+		} finally {
+			workbook.close();
+		}
+	}
+}
+
+
+package com.reports.generation.util;
+
+import java.io.File;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Component;
+
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+
+@Component
+public class EmailSender {
+
+	@Autowired
+	private JavaMailSender javaMailSender;
+
+	public boolean mailSender(String subject, String body, String[] to,File f) throws MessagingException {
+
+		MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(mimeMessage,true);
+		try {
+			helper.setSubject(subject);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		try { 
+			helper.setText(body, true);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		try {
+			helper.setTo(to);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			helper.addAttachment("plans_info_data.pdf", f);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		try {
+
+			javaMailSender.send(mimeMessage);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+
+}
+
+
+Sending Mail With Pdf Attchment 
+-------------------------------
+@GetMapping("/pdf")
+    public void generatePdf(HttpServletResponse response) throws Exception{
+    	
+    	response.setContentType("application/pdf");
+    	response.addHeader("Content-Disposition", "attachment;filename=plans.pdf");
+    	this.reportService.exportDataPdf(response);
+    	
+    }
+
+
+@Override
+	public boolean exportDataPdf(HttpServletResponse response) throws Exception {
+        List<CitizenPlan> allRecords = this.citizenPlanRepository.findAll();
+        
+        File f=new File("plans_data.pdf"); 
+        
+		this.pdfGenerator.generatePdf(response, allRecords,f);
+		
+		String subject="Mail Sending Test Sample";
+		String body="<h2>Successfully Mail Sent Using Java Rest Api</h2>";
+		String[] to={"yadavtest45@gmail.com","sreekanthpininti466@gmail.com"};
+	  
+		boolean mailSender = this.emailSender.mailSender(subject, body, to,f);
+		f.delete();
+		
+		return true;
+	}
+
+
+package com.reports.generation.util;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Font;
+import com.lowagie.text.FontFactory;
+import com.lowagie.text.PageSize;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
+import com.reports.generation.entity.CitizenPlan;
+
+import jakarta.servlet.http.HttpServletResponse;
+
+@Component
+public class PdfGenerator {
+
+	public void generatePdf(HttpServletResponse response,List<CitizenPlan> citizenPlans,File f) throws DocumentException, IOException {
+		Document document = new Document(PageSize.A4);
+		PdfWriter.getInstance(document, response.getOutputStream());
+		PdfWriter.getInstance(document, new FileOutputStream(f));
+		document.open();
+
+		Font font = FontFactory.getFont(FontFactory.TIMES_ITALIC);
+		font.setSize(18);
+
+		Paragraph paragraph = new Paragraph("Report Generation Pdf", font);
+		paragraph.setAlignment(Paragraph.ALIGN_CENTER);
+
+		document.add(paragraph);
+
+		PdfPTable pdfPTable = new PdfPTable(10 - 1);
+		pdfPTable.addCell("Citizen_Id");
+		pdfPTable.addCell("Citizen_Name");
+		pdfPTable.addCell("Plan_Name");
+		pdfPTable.addCell("Plan_Status");
+		pdfPTable.addCell("plan_StartDate");
+		pdfPTable.addCell("Plan_EndDate");
+		pdfPTable.addCell("Benefit_amt");
+		pdfPTable.addCell("Denied Reason");
+		pdfPTable.addCell("Denied Date");
+		
+		for (CitizenPlan all : citizenPlans) {
+			pdfPTable.addCell(String.valueOf(all.getCitizenId()));
+			pdfPTable.addCell(all.getCitizenName());
+			pdfPTable.addCell(all.getPlanName());
+			pdfPTable.addCell(all.getStatus());
+			if (all.getPlanStartDate() != null) {
+				pdfPTable.addCell(all.getPlanStartDate() + "");
+			} else {
+				pdfPTable.addCell("N/A");
+			}
+			pdfPTable.addCell(all.getPlanEndDate() + "");
+			pdfPTable.addCell(String.valueOf(all.getBenefitedAmt()));
+			pdfPTable.addCell(all.getDenialReason());
+			pdfPTable.addCell(all.getTerminatedDate() + "");
+		}
+
+		pdfPTable.setSpacingBefore(5);
+		pdfPTable.setWidthPercentage(100f);
+
+		document.add(pdfPTable);
+
+		document.close();
+	}
+	
+	
+	
+}
+
+
+
+
+package com.reports.generation.util;
+
+import java.io.File;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Component;
+
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+
+@Component
+public class EmailSender {
+
+	@Autowired
+	private JavaMailSender javaMailSender;
+
+	public boolean mailSender(String subject, String body, String[] to,File f) throws MessagingException {
+
+		MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(mimeMessage,true);
+		try {
+			helper.setSubject(subject);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		try { 
+			helper.setText(body, true);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		try {
+			helper.setTo(to);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			helper.addAttachment("plans_info_data.pdf", f);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		try {
+
+			javaMailSender.send(mimeMessage);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+
+}
+
+
+
+Note : So we completed Mail Sending with Attchment.
+	
+ 
+Note : We use APACHE POI api i.e third party api used to generate Excel Reports
+
+Note : We use OpenPdf Dependecies to Generate PDF reports.
+
+Note : We generate Dynamic Query By QUERY BY EXAMPLE approach.  
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+  
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+     
+  
+  
+     

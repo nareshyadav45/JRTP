@@ -1,0 +1,180 @@
+
+Code Review:
+------------
+->Code Review is the process of reviewing the code to identify the devlopers the mistakes  
+
+->As a devlopers we do coding but what about the coding standards and bugs and security issues and N number of mistakes we may have done in application.
+
+->We develop the code as per functionality but we should make sure best practices  of code and mistakes, security issues in code.
+
+->As a developer any devloper can make the mistake , so in order to identify the developer mistakes we use SonarQube.
+
+Code Review Will be done in 2 ways
+-------------------------------------
+1.Using Tools (PMD(Programmer Mistakes Detector),SonarQube)
+ 
+  SonarQube:
+  ----------  
+   
+  ->As part of code review done by SonarQube ,which will check syntaxes and best practices of code what we develop and how we handling exceptions and null checks 
+ 
+  ->SonarQube Supports 20+ Programming Languages 
+  
+  ->SonarQube will check Best Practices not the Logic of the code.
+  
+  ->SonarQube will check some rules are in Java , as developer follows that rules are not will be check by Sonarcube
+
+  SonarCube will identify below issues in the code
+  ------------------------------------------------
+  1.Bugs:(Directly accesing Null objects, in that case we may encounter Null Pointer Exceptions) 
+          ->is there any exceptions may occurs in code that will be identify by the sonarcube                   
+  
+  2.Vulenerabilities: Security or Hacking related issues will be check by sonbarcube
+                      ->Passowrds and aadhar numbers and ssn numbers , cvv numbers are directly we are storing or using any encryption and  decryption mechanism using or not will be checked by Sonarcube
+
+  3.Code Smell : UnUsed import statements and unused Method Parameters and if we have private methods in class and we are not using that private method as part coding so that kind of unused methods will be identiy by the Code Smell as part code review using Sonarcube					  
+                 Code Smells will identify best practices
+
+  4.Duplicate Code Blocks : Any duplicate presnt in project will be identify.
+  
+2.Peer Review
+  ------------
+  ->One developer code will be developed by other developers and they check the logic and best practices of code.
+  
+  ->Peer Review Will be happens between person to person, one devlopers code review (Logic check) done by other developer and other devlopers code will re reviewd by other devlopers
+  
+  ->Freshers code will be reviewed by the Senior developers in team
+  
+Note : In real time most of companies will prefer sonarcube only.  
+
+DownLoad and Setup of SonarCube :
+-----------------------------------
+->Type sonar cube and navigate to download section of sonarcube site and under Community Edition download the sonarcube
+
+->Sonar cube will be downloaded in Zip file and extract it.
+
+->Sonarcube will be run in mac and windows and linux machine, so sonarcube is multi platform supporting tool
+  
+->Once zip file extraction completes , open bin file and open windows -x86-64 file and type command StartSonar.bat command
+  
+-> open cmd at below path and excute the SonarStart.bat  
+  C:\Users\Dell\Downloads\sonarqube-10.6.0.92116\sonarqube-10.6.0.92116\bin\windows-x86-64
+  
+Note :By default SonarQube runs on port number '9000'  
+  
+->Once the sonar server is runs successfully ,it will gives message as "Sonar Qube is up" 
+
+Note : In real time SonarQube will runs different machine and our project code will be runs on different machine.
+
+->We connect our project appliation server to sonarcube to perfrom code review.
+
+->As of now our boot appliation present on same machine and sonarcube will runs on same machine , so we connect our boot application to sonarcube server and perform code coverage.SonarQube will give code review report where we see what are the bugs and security issues and code smeels done in project developement 
+
+->Once the sonar server is up , we access sonarqube on browser and runs on port number with 9000
+
+->Add sonar plugIn in pom.xml of project under plugin section.
+
+   <plugin>
+         <gruopId>org.sonarsource.scanner.maven</gruopId>
+		 <artifactId>sonar-maven-plugin</artifactId>
+         <version>3.4.0905</version>
+   </plugin>
+
+->Once the plugin added to pom.xml of project ,Execute maven 'clean package' goal to make sure plugin successfully added to project
+
+->After Successfully execute the clean package goal , execute 'sonar:sonar' goal to connect our project to sonar cube server
+
+->Once "sonar:sonar"  Goal executed successfully , we get message like 'you can browse http://localhost:9000/dashboard?id=Blog_application'
+
+->sonar:sonar wich connects the our porject to sonarserver.  
+
+->In browser sonarQube we able to see our code review report for connected project.
+
+Note :If we unable to execute sonar:sonar goal on IDE , then execute goal on cmd with "mvn' + goal name where project is available on machine.
+
+->After sonar server is executed successfully , we able to see our project review report on sonar server, in report what are the bugs and vulnerbilities and code smells and covergae(unit test cases of apis).
+
+->For reported bug , why bug came and where bug and what are soluitons to fix that all kind of info will be given by sonar , when we access sonarqube on browser
+
+->After fixing the bugs what sonarqube report suggest , again excute "soanr:sonar" goal and access updated review report.
+
+->Sonar Will shows code Quality Gate as "Passed" or "Failed" ,if gate is passed then it indicates that quality code we wrote. 
+
+Note :To remove the unused import in class we use command'ctrl + shift + o'
+
+Note : Collections.EMPTY_LIST
+
+Note : String is a Immuatble and we can't changes the content.
+
+       StringBuffer is a synchronized class which thread safe class and performance will reduce , mutable class we can make changes in string without creating objects
+
+       StirgnBuilder is a Asynchronized class which is not thread safe and performnace will increase and String Builder is mutable and we can make changes in string with out creating objects.
+
+Note : Code Review is different and CodeCoverage is different 
+      ->CodeReview is a identify developer mistakes in code
+     ->Code coverage  is a Writing unit test cases to developed code.
+
+Note :In real time there is we use sonaqube as code review tool and we make sure there is no issues available in project
+
+Note : When we placed in company, company immediatlt won't assign developement tasks to us 
+       -> First 3 months they will give tasks upon
+	      1.CodeReview
+		  2.CodeCoverage
+		  3.UnitTesting
+
+->With the help of code review we can provide quality code and bug free code.
+
+		  
+=============================================================================================================
+->In Real Time we should follow some coding standards like 
+  ->If we had a scenario comapare String literals to object value
+  ->we should write like
+    if("Male".eqauls(user.getGender())){
+	}
+  ->Not like this
+    if(user.getGender().equals("Male"){
+	
+	}
+    ->becuase if gender value is null we get null pointer exception, like
+	  we are comparing null.eqauls("MALE")
+	  ->So compare null with anything we get null pointerexception
+	  
+Note : Always Keep String Literals left side and Objecet valus right side
+	  
+->Declare private constructor for class which has no methods and won't be create object ouside of class
+
+Note : By code review,developers can improve their coding standards
+
+ 
+
+
+
+
+
+		  
+		  
+		  
+
+
+
+	 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+
+   
+
+
+
+

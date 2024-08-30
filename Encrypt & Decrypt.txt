@@ -1,0 +1,246 @@
+
+Note : Encode & Decode and Encryption & Decryption both are not same.
+
+     Browser -----> BackEnd ------> Data-base       
+
+->Here we observe user will request the in Browser and from Browser data will be transfers to Backend application and from Backend application requested data will be transfers to DB.
+  Here Browser is on one laptop and backend application available in another computer and databse available in other computer, so data will trasnfers in the form HTTP between systems or laptops or application
+  
+->We use Http protocall as mediator to trasnfers the data. 
+
+->Some times if we give request data in compatible manner then we don't get the response and our request data will be lost  
+
+Encoding  & Decoding:
+--------------------
+->Encoding is the process of converting the data or characters form  uncompatible format or characters to compatible format or characters.
+
+->Encoding is the process of making all the requested  characters compatible across the network(Through out request distributed)
+
+->What ever the data we reuquested that data should be transerfered and compatible with HTTP protocal  for that we use Encode
+
+->We encode the data and we will send encoded data and once encoded data reached the destination then we can decode the data and we can use the data for that we use Encoding and Decoding
+
+->To perform Encoding adn Decoding in java we use Base64(class) Aalgorithem.
+
+Note : To convert the characters into compatible characters we use Encoding adn Decoding
+
+->Base64 class present in java.util.base64
+
+->Decoding means converting Encoded data into original format
+
+
+    String str="how are you";
+	Encoder encoder = Base64.getEncoder();
+	String encodeToString = encoder.encodeToString(str.getBytes());
+	System.out.println(encodeToString);
+	
+	Decoder decoder = Base64.getDecoder();
+	byte[] decode = decoder.decode(encodeToString);
+	String decodedStrig =new String(decode);
+	System.out.println(decodedStrig);
+
+Note : Encoding means converting data from uncompatible to compatible characters 
+Note : Decoding means converting Encoded data to original format
+Note : We perform Encoding and Decoding the pwd or data by using Base64 class 
+
+
+Encryption & Decryption:
+------------------------
+Encryption:
+-----------
+
+->Converting the data from readable format to unreadable format for security reasons.
+->For Secuirty reason password shouldn't store direcctly in project database.
+->we basically use Encryption technique in pwd stroing in database.
+
+Decryption :
+-----------
+->Convert the Encrypted data to Oroginal Format.
+
+Note :When we deal with passwords in projects we not only use encrytion , we use encryption with encode we use
+
+->When we are performing Password Encryption and Decryption in reatime we are going to use Encryption with SALT.
+
+->SALT means adding some extra text to the Password
+
+->We use SALT to extra security to user given password
+
+->Then we perform Encryption to userPassword With SALT.
+
+->After Encryption we perform Encode to Encrypted password using Base64.
+
+->Then we store pwd into database.
+
+String pwd="abc@123";
+String pwdWithSalt=pwd+"salt";
+String encryptedPwd= Encrypt(pwdWithSalt);
+String passwordEncoded=Base64.getEncoder().encodeToString(encryptedPwd.getBytes());
+
+->When user about login, user will give original password , then we have to again encrypt the password and encode it and match with databse user password which is encoded and encrypted , if both matches successful login else fail login
+
+Note : In real time we can't store passwords direcctly, we use encrytion with salt logic and encode logic to save the pwd in unreadble format.
+
+Note : We can't store the Encrypted pwd direcctly in db beacuse Encrypted pwd may contains spl chars *,{},\ and diamonds , so we can't completly transefer data from one system to another system like java application to databse ,so spl chars like   *,{},\ and diamonds whihc are db can't able read and store, so again we use Encode technique to encode the encrypted pwd to db can easily understands and save it with out fail. 
+
+Note : Whatever the pwd data  we encrypted that encrypted data can't transfer to database through because databse may not read that encryted data with spl chars , so in that case we encode technique to encode the encrypted unreadble data to database readable and adptable formatted data and easily trasferbale through network.
+
+Note : IN REAL TIME WE USE BCRYPTO OR AES WITH CRYPTO OR JASYPT 
+
+Note : 
+
+
+--------------------Other Approach----------------------------------  
+
+BycryptPasswordEncoder:
+-----------------------
+->We use BycryptPasswordEncoder technique to Encrypt the password of users in database.
+
+Note : In Sprin Data jpa findById() methods returns Optional<Object>
+
+      Optional<T>  findById(); 
+      
+	 ->we use Optional class isPresent() method to find user is or not, if present we get actual object by
+       optionalUser.get(); 
+     Note : If we don't use .get() and directly using optional object we get NoElementFoundException.
+ 
+
+->We use BycryptPasswordEncoder class encode() method to encode the password which given by user
+
+Note :BycryptPasswordEncoder there is no decode() method to decode the encrypted password.
+
+-> we use BycryptPasswordEncoder.matches() method to check raw passsowrd in plain text with encrypted paasword. if mathes() method returns true password is matched and if return false matches not matched.
+
+    @Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	@Configuration
+public class BcryptConfigurartion {
+
+	@Bean
+	public BCryptPasswordEncoder bCryptPasswordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+	
+	
+	
+}
+
+  
+
+
+@Override
+	public String userRegistration(RegistrationForm registrationForm) {
+
+		UserDetailsEntity entity = this.detailsRepository.findByEmail(registrationForm.getEmail());
+		if (entity != null) {
+			return "Invalid Mail Id , Mail Already Exist";
+		}
+
+		if ((registrationForm.getPassword() == null || registrationForm.getPassword().isEmpty())
+				&& (registrationForm.getFirstName() == null || registrationForm.getFirstName().isEmpty())
+				&& (registrationForm.getLastName() == null || registrationForm.getLastName().isEmpty())
+				&& (registrationForm.getEmail() == null || registrationForm.getEmail().isEmpty())) {
+			return "please fill the all fields";
+		} else if (registrationForm.getPassword() == null || registrationForm.getPassword().isEmpty()) {
+			return "password is null or empty ,please enter password";
+		} else if (registrationForm.getFirstName().equals("") || registrationForm.getFirstName() == null) {
+			return "firstname field is null,please enter firstname";
+		} else if (registrationForm.getLastName().equals("") || registrationForm.getLastName() == null) {
+			return "LastName field is empty,Please Enter LastName";
+		} else if (registrationForm.getEmail().equals("") || registrationForm.getEmail() == null) {
+			return "Email is empty";
+
+		}
+
+		UserDetailsEntity detailsEntity = new UserDetailsEntity();
+		
+		String encodePassowrd = this.bCryptPasswordEncoder.encode(registrationForm.getPassword());
+		
+		registrationForm.setPassword(encodePassowrd);
+        
+		BeanUtils.copyProperties(registrationForm, detailsEntity);
+
+		this.detailsRepository.save(detailsEntity);
+
+		return "Successfully Registered";
+
+	}
+
+
+
+
+@Override
+	public Object userLogin(LoginForm loginForm) {
+		Object object=null;
+		
+		// TODO : Check If entered mail is correct or not
+		if(loginForm.getEmail()==null  || loginForm.getEmail().isEmpty()) {
+			return object="please enter and email";
+		}
+		
+		if(loginForm.getPassword()==null||loginForm.getPassword().isEmpty())
+		{
+			return object="please ennter password";
+		}		
+		
+		UserDetailsEntity byEmail = this.detailsRepository.findByEmail(loginForm.getEmail());
+		if(byEmail==null) {
+			return object="Given Mail id is invalid";
+		}
+		 
+		if(byEmail.getEmail().equals(loginForm.getEmail())){
+			
+			boolean matches = this.bCryptPasswordEncoder.matches(loginForm.getPassword(), byEmail.getPassword());
+			if(matches==true) {
+			//if(byEmail.getPassword().equals(loginForm.getPassword())) {
+				
+				//TODO: Call Blog controller method fetch-List-Blogs of Logged in User
+				
+				httpSession.setAttribute("LoggedInUserId", byEmail.getUserId());
+				
+				Object attribute = httpSession.getAttribute("LoggedInUserId");
+				String string = attribute.toString();
+				int User = Integer.parseInt(string);
+				Integer UserId = Integer.valueOf(User);
+				
+				//TODO: Call BlogService GetListOfBlogs Of Logged In user
+				return blogDetailsService.fetchBlogsLoggedUser();
+			//}
+			}else {
+				return object="Invalid password";
+			}
+		}
+		return object;
+		
+	}
+	
+Note : We have used  Spring.security .crypto dependecy to implement encrypt the password
+
+->By using BcryptPasswordEncoder class we have implemented encrypted and decryped the user password 
+
+->By BcryptPasswordEncoder.encode(); method we encode the user password successfully
+
+->By BcryptPasswordEncoder.matches(); we validate the user plain pwd with db saved encrypted password it matches true else return false.
+
+Note : Internally BCryptPasswordEncoder.macthes() method; Encrypt the given login password and matches db saves user encrypt pwd, if mathes return true else return false.  
+
+----------------------------------------------------------------------------------------------------------------------------------------
+Encrytion with SALT(Real Time Approch) 
+-------------------
+->In real time we can't direcctly store the direcctly which is not a good practice
+
+->Fisrt we add some text to user given pwd by SALT mechanism
+
+->Then we Encrypt(Converting data from reable format to unreadable format) using Following Techniques like
+   a.MessageDigest(Supports Only Encryption)
+   b.Bcrypt(Supports only Encrytion not Decryption)
+   c.AES With Crypto (Supports both Encryption and Decryption and implements in real time)
+   d.jasypt(Supports both Encryption and Decryption)
+   
+ ->After Encrytion completed, we can't directly store the encrypted data into db beacuse db may not understands or compatibel with encrypted pwd becuase which contains spl characters ,
+   so Encode(converting charactters from uncompatible to comaptabile charatcetrs that db can compatoble) the encrypted pwd and store in databse.
+ 
+//Store the Encoded pwd in database   
+
+       	
+	

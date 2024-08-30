@@ -1,0 +1,691 @@
+                    APACHE KAFKA
+					--------------  
+
+->Now days in every application data is imporatant factor to perform further operations.
+
+->We get the data by logging and page visits and User Activities and social networking activities such as likes and shares and comments.
+
+->If we are using Logging in our project, which means application generating some data.				   
+
+->Apache kafka is used to store the data only.
+
+Note : Already Data base is availble to store the data and why we need to go for Again Apache Kafka	to store the data
+
+->Data is very imporatant to analysize the data to perform further operations
+
+->Event Streaming is the practice of capturing data contineously in real time from Event or different Sources(Application which generating data )
+
+->Sources can be database and software applications and mobile devices and cloud services and sensors
+
+->Event Streaming is the practice of capturing data contineously from different Sources like source can be db or software apps or censors or mobile devices 
+
+->Event Streaming for example we have sbi like for sbi from different sources data is generating like atms and gpay and phn pay or upi transactions etc.So SBI has to capture the data contineously in the form Event Stream, what ever the data captured that data should be monitor for takin further actions like if any user credited amt of 1cr like sbi bank will send a notice to user and how you got this much of money like that we monitor the what we capture.
+
+->Stroing these Event Streams for later retrieval;like anaylise the data and analyse the clients behavior and do perfrom business operations based on analysing data like user frequetly using specific section part of application, we develope or make available to user.Like that based on data we do further operations. 
+  	
+->Using Event Streams we can keep right info at right place at right time.
+
+Note : If we capture the data and we analyze the captured data and use that data at right place at right time.
+
+->We use that data for our business operations
+
+Note : Data is very imporatant for analysis purpose
+
+Note : Why we are storing the data and analysing the data because to promote the BU operations 
+
+->Like A person searched a product in amazon and after that person logged into fb then person will see the ads related searched product in facebook , this will be happend by Apache Kafka like amazon will promote their business by apache kafka by tracking person ip address or mail or phn number person searched for product.
+
+->Amazon will gives our info to apache kafka and apache kafka will gives our data to facebook to promote Amazon business based on data.
+
+->Based on ip address or mobile number or gmail they track the data and send it other applications to promote their business
+
+->So Message Queues(Apache Kafka) are used to send the data from one application and another applicatioins
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+->In our MicroService project multiple rest apis will be avaialble so multiple rest will has the logging implementaion and we need to analyze the multiple rest api logging data and Monitor the data 
+
+->In Monolithic project we have only one LogFile and we need to monitior the log and do operations based log file messages.
+
+->From MicroService ,Multiple Rest APIs we gets data and we need to monitor the data and we need to analyse the data  
+
+->If we have the data we can use it for multiple purposes like analysis
+
+Use or Purpose  Of data :
+-----------------------
+
+->We use generated data for deliveriing advertisements.
+
+->Tracking abnormal users behaviours (who are using our application)
+
+->Showing recommendations based on previous activites( like serached amazon product past activity we getting as add in facebook)
+
+->To understand the application behaviour
+
+Note : We use the data for analysis purpose like to understand the Normal or Abnormal users behaviour and showing recommnedations based on previous activity and delivering adds
+
+Note : We capture the data from different sources by Event Streaming and what ever the data we capture the we do analyze the dta and perfrom operations like promote bu operation and delivering adds and showing recommnedations based on previous activity.
+
+->If we want to exchange the data from one application to another application or one application to multiple applications we need establish the pipe lines to between applications
+
+->We need to establish a pipe between applications to exchange the data from one application to another application
+
+->To exchange the data between one application to another application or multiple applications direct communication is not possible so we use Message Queues to exchange the between one application to another applications
+  ->Directly exchanging the data is not possible because configguration will becomes very confusing.
+
+->Example we have amazon e-commerce application and a user searched a product in amazon that product will displayed as an add in fb and naukri and linked etc application, so here amazon application capturing our data and promoting their business by sending adds related serched product to multiple other application to be uses by user like fb,instagram and linkedIn and naukri
+
+->Establish the connection between one application to another applications is challenging task
+
+->So we use Message Queus to esatblish the connection between one application to another applications.
+
+->What ever the product searched in amazon,flipkart,nyka etc  that searched data will be store in message queue.
+
+->Message Que will act as Mediator Between One Application to another application
+
+->We establish the connection by Message Queue.
+
+->Message Queues are used to maanage the data one application is generating the and another application is using that data by using Message Queue as Mediator.
+
+                           --------------         ___________
+		 	Amazon ------> |            |------->| FaceBook |
+			               |            |        |__________|    
+			               |            |         __________
+			               |            |------->|  Naukri  |
+			FlipKart ----->|            |        |__________|
+			               |  Message   |         __________
+			               |  Queues    |------->| LinkedIn |
+			               |            |        |__________|
+			Nyka    ------>|            |          __________
+			               |            |-------->| Gmail    |
+			               |            |         |__________| 
+			                -------------
+	         Publishers		                        Consumers
+    
+->We use Message Queues to exchange the data between the applications 
+			
+Note : We get a doubt like we have already Web Service call i.e Communication between api thrugh the feign client or web clinet but how many webservice we have to do in a day , if we have more web service calls to send the data to one application to another application			
+			
+Note : We need to do web service call or api call when we have a requirement like to use the logic of one application in another application.
+
+Note : we don't use the webservice call  or api to share the data from one application to another application 
+ 
+Note: We use Message Queues to exchange the data between applications
+
+Note : We use Web Service call or Api  calls to use the logic of one application in another application. 
+
+Note : We use Api Call when we want to access logic in application from aonther application.
+
+Note : If we want to share the data from one application to another application we use Message Queues.
+       If we use web service call or api for the exchaning the data or sharing the data our application performnace will be degraded or decreased
+
+->Like amazon wnats share the data to fb and instagram and naukri and linkedIn and gamil etc applictions through web service call and for every second  we want share the data, then think how mant web service calls we need to do ,with that our application performnace will be decreases and application will die.
+  if we have to sahre the more data in  one hour how many rest api calls we have to do like millons of calls we have to do with that our application performace will decreases.
+  
+Note : For sharing the data we use Message Queues.
+
+Note : Storing the data and taking from Message Queue is Easy rather than taking the data from web service calls directly.
+
+Note : If we have a requirement to share the data from one application to another application always recommend to use Message Queues.
+
+->We share the data by mediator called Message Queue from one application to another application.
+
+Note : The another advantage with Message Queue is One applicatio share the date in Message Queue Same data can be uses by Multiple Applications can use that same data.
+       So one application to send the data to multiple applications through the web service call ,data sending application has to do application specific web service calls, so we Messagge Queue  based on that one application will send the data and another multiple appplications will use that same data from Message Queue.
+      
+Note : To Exchange the data Mesasge Queues are recommended.
+
+Note : To Exchage the logic of one application in another application we use Web Service call.
+
+->APACHE KAFKA is a one of the Message Queue.
+ -------------
+->Apache Kafka is a Message Queue , which is acting as Mediator between Several Applications.
+
+->One Application is stroring the data into apache kafka and another application taking the data from apache kafka
+
+->The applications which are storing the data into apache kafka is called "Publishers" 
+
+->The applications whihc are taking the data from Apache Kafka is known as Subscribers.
+
+->Apache kafka is a message queus which is used to exchange the data from one application to another application  
+
+->Apache kafka acting as a message queue to exchange the data
+
+Note : To overcome Direct Pipe lines issues we use Apche Kafka to exchange the data between application.
+
+Note : In Apache Kafka we don't have the direct communication between applications to exchange the data , we use message queues to exchange the data from one application to multiple application.
+
+Example : UBER Application , in uber application user want to book a ride so when user book ride , ride details has to send to drivers and datanbase and anaytiics and security team , so in order to send the data individually to all applications we use apache kafka message queue 
+          where we store user booking data and from there data will be taken db and drivers and security and analytics team.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+->Data is generating in multiple formats from multiple sources 
+
+->Collecting the data is not easy as generating data from various sources in different format.
+
+->One application generates the data in xml and another application generates the data in text format and anoother app generates the pdf format , so collecting the data from different sources in diff formats is not easy.
+
+->Multiple Applications generating the data in different formats and to capture the datafrom different soureces in diff formats we use Message Queues to store the data and share the data to other applications
+
+->Sevral Applications generate the data and that will be stored into Message Queue and Several applications will take data from Messae Queue this is called Integration.
+		  
+->If we don't have  the Message Queue to exchange the data from one app to another apps is difficult i.e creating direct pipeline between applications is very difficult.To overcome this issue we Apache Kafka. and with out apache kafka we have to make connection to individual applications that leads to tight coupling
+
+->by using data we can do analysis and promote our business and secuirty purpose and add purpose etc
+
+->Data will be genearate from different sources in diff formats
+
+->The applications which are store the data into Message Queue is called Publishers and Applications which are consume the data from Message Queue is called as Consumers , so Message Queue works on Publish-Subscriber Model.
+
+->Apache kafka is a Message Queue which works on Publish-Subscribe Model.
+
+->The Advantage of Message Queue is , if one application is produce a message and Multiple appplications will takes or consume the same message.
+
+->If One Publisher Publish one message and multiple subscriber can subscibe that Message.
+
+->Message Is A Stream Of Data.
+
+->Publisher, publish one message , multiple subscribers can cosume or subscribe to that message.
+
+->Message Means Data
+
+Note : If we make a direct connection between applications to exchage the data that will becomes tightly couple
+
+APACHE KAFKA:
+-------------
+->Apache Kafka is distributed streaming platform(Contineously captures the data from multiple or single applications and send the captures data to multiple applications)
+
+->Very Quickly we can store the message or data into Apache Kafka and Very Quickly we can takes the data from Apache Kafka
+
+->Data or Message can be Flights data, App Logs Data , Sencors data,user activities and Page clicks and page visits.
+
+->Apache Kafka Works On  Publisher and Subscriber Model.
+
+->The application which storing the data or Message in kafka is known as Publisher and the application which is consume the data or message from kafka is known as Subsciber.
+
+->Apache Kafka will act as Mediator between Publisher and Subsctriber.
+
+->Publisher will publish the message to apache kafka and Subsciber will takes or subscribe to the message  from Apache Kafka 
+
+->Message Means DATA and  Data can be Json or Xml or Text etc
+
+->Apache Kafka is used to process Stream of data.
+
+->Kafka don't know xml or json or text , it knows only message which can be xml or text or json. 
+
+Note : Kafka is like Cover , we can store anything in cover like Kafka is like we can store the message the any kind of messages.
+
+->Kafka supports for messages and message can be any format like json or xml or text
+
+->Producer will store the data in Apache Kafka topic.
+
+->Any Topic that can be read by any applications called Consumer or Subscibers.
+
+->If One Producer, produce the data , multile Consumers wil consume that data.
+
+->In MicroServices Application Multiple Rest Apis will available.
+
+->In one application we can Apche Kafka
+
+->With In Project we can use Message Queue 
+
+->Example of Uber App
+
+             Booking Api 
+             ________             ___________              
+             |       |	           |         |_________   DriverApi
+	 O______ |       |             |         |              
+     | 	     |       |             |   MSG   |_________  
+     |       |  UBER |_________    |  QUEUE  |            DataBase 
+    User     |       |_________ >  |         |__________
+			 |       |             |         |            Security Api
+			 |       |             |         |
+			 |_______|             |         |_________ 
+                                   |_________|            Analytics Api
+             Publisher(BookingApi)  
+                                                          SUBSCRIBERS 
+
+
+->Here Uber Application Booking Api taking the booking requests from User and Publishing the User Booking details in Message Queue and From Message Queue Driver api and db api and security and analytics api taking the message and do operations further
+
+->So with in One Project we can Implement Message Queue
+
+->So this is called Event Driven MicroServices.
+
+->Event Means One Activity
+
+->When we perform one action, other apis working on top of that action is called Event Driven APIs
+
+->Like here When User Books a ride in uber app, internalyy uber application  booking api accepts the request from user and
+  store booking details of user in Message Queue and from Message Queue driver api of uber app and secuurity api and db api of uber app will listen to message in message queue and process that message.
+  Here based on one action other api starts excutes top of that action is called Event Driven Apis.
+  
+->Based On One Event of api Other Apis will excutes is known as Event Driven MicroServices
+
+->For One Message We have Multiple Subscribers.
+
+->Contineously Subscibers listening to Message Queue and take the messaga and procees it
+
+->like we have swiggy app has order api which takes the order request from user and store into message queue from message queue restaurents api and db api and secu api and anaytics api and delivery boys api and monitoring api message subscribes that message and process it.
+
+->When Publisher publish a message one event will be generated i.e message will be stored into Messagge Queue and Based on that other apis starts working on that i.e listen to message and process it this called Event DRIVEN Microservices.
+
+Note : We can use Message Queue in single project Examples Uber Api,Swiggy Api 
+
+Note : We can use Message Queue between Multiple Application like amazon to fb,linked , instagram etc.  
+ 
+->Now A days Almost all MicroService Based Projects using Apache Kafka as a Message Queue
+
+->Apache Kafka we use as Message Queue to exchange the data
+
+->Apache Kafka Wokrs on publisher and Subscribr Model
+
+->The Application which is publishing message to kafka is called Publisher and the application which is consuming the message from kafka is known as Consumers
+Note : When we are developing a project using MicroService Arhcitecture we have Multiple Apis in Project.
+
+Note : If we want to exchange the data from one api to another establishing the direct pipeline is difficult that leads to Tightly Coupling.So that's why we use Message Queue as mediator to exchange the data.Apachee Kafka is one of the Message Queue.
+
+->Apche Kafka Wokrs on Pubish-Subscriber Model, the application which is publish a message to kafka is known as Publisher and the application whihc is taking message from kafka is known as Subscriber. One Pubkisher publish a message to kafka multiple applications can take the same message from kafka.
+
+->Message means Data, DATA CAN be json and xml or text etc.
+
+->Message Means Wrapper , we can store any kind of Data.
+
+->If we want to develop Event Driven Microservice we use Apache Kafka Mesage Queue.
+
+->In Apche kafka some applications will store the data and some applications will takes the data and process that consumed data.
+
+->One Message Can Be Subscribed By Multiple Subscibers.
+
+Note : As DATA Generating contineously we nedd to use the data from one app to another application, in ordert to use one app data into another app we use data pipline to establish connection
+       Establishing the direct pipelines is very difficult becuase data coming from multiple sources in multiople formats creating the connection directly becomes very difficult, to overcome that problem we use messaging system.
+	   Messaging Systems Act as a mediator between applications.
+	   Apache Kafka is one of the Messaing System.
+	   
+->If One application Stores the data , Multiple Applications can Subscribe that data from Message Queue
+
+->Message Means Data and data can be anything like xml or json or text.
+
+Note : Apache Kafka Acting as a Mediator Between the Applications
+
+Note : We can use Apache KAFKA as a mediator between rest apis also in microservices architecture project
+
+->Real Time Example to Message Queue are Aadhar centers where we do updates to aadhar card so updates will not reflect, that will kept in queue so from there upadates will taken consumers and process the request.
+
+->NEFT Transactions that will be reflect later on not immediately.There also Message Queues are used.
+
+Apache Kafka Core Apis:
+-----------------------
+->Apache Kafka has following Apis
+
+1.Producer Api
+  ------------
+->Producer API is used to store the data to kafka  
+
+2.Consumer Api
+---------------
+
+->Consumer Api is used to consume the data from kafka
+
+3.Streams Api
+-------------
+->To create the pipeline to takes data contineously.
+
+4.Connector Api
+---------------
+->To Establish the connection with the kafka
+
+Note : Internally Apache Kafka uses above apis called Producer and Consumer and Stream Api and Connector Api to store the data into kafka and takes the data from the kafka.
+
+
+Kafka Installation:
+------------------
+
+->In order to install the kafka, first we need to install and run the ZooKeeper in system
+  In order to work with kafka , first we need to download and run zookeeper.
+  ZooKeeper provides a platform to run the Apache Kafka servers.
+  
+->Download and run Apache Kafka ServerX
+  
+
+->Create A topic in kafka
+  Inside kafka servcer we create topic, topic means a bucket in message queue.
+  ->Inside Message Queue we create topics , we can create multiple topics to differentiate the messages.
+  ->One topic we store the order data and second topic we store the paymenst data and third topic we store the Complaints.
+  ->Instead of storing the all the messages at one place we topics to differentiate the meesages
+  ->Topic is a storage to store the messages related to one type   
+   
+                          Message Queue
+   ______________________________________________________________
+   |             |                |               |              |
+   | order-data  | payments-data  | ComplaintsData|Deleivery-data|             | 
+   |             |                |               |              |
+   |_____________|________________|_______________|______________|
+
+     Topic -1       Topic -2        Topic-3         Topic-4 
+
+
+Note : This is are the 3 steps to follow to work with kafka 
+
+DownLoad and Installations:
+---------------------------
+
+=> Actaully kafka is zip file, we need to down load and extract zip file
+
+URL To download Kafka Zip File:
+
+https://kafka.apache.org/downloads
+
+choose latest stable release and click on second link under Binary Downloads
+
+Binary downloads:
+Scala 2.12  - kafka_2.12-3.6.0.tgz (asc, sha512)
+Scala 2.13  - kafka_2.13-3.6.0.tgz (asc, sha512)
+
+=>Then After Downloading kafka zip file and  unzip i.e extract it and keep Extract  or unzipped file in "C" drive 
+     And change the name of Extract  file to "kafka"
+=> Open kafka extract file and navigae to kafka/config/server and change  ""log.dirs=temp/kafka-logs to log.dirs=c:/kafkakafka-logs""
+=> Like that above keep change for kafka/config/zookeeper and change "dataDir=temp/zookeeper-data to dataDir=c:/kafka/zookeeper-data" now kafka logs and data will be stored into kafka logg and zookeeper data
+=>First we need to run  the zookeeper and then we have start and run kafka 
+
+
+Zookeepeer:
+
+=>Then open cmd from where our kafka extracted file there "c:/kafka" and  Provide zookeeper server and zookeeper config prperties like below in cmd 
+      "c:\kafka>.bin\windows\zookeeper-server-start .\config\zookeeper.properties" (Then enter)
+Note: Now Our Zookeeper will runs on port number :2181
+
+Kafka:
+"c:\kafka>.bin\windows\kafka-server-start.bat .\config\server.properties"(Then Enter)
+Note: Now Kafka also running..
+
+
+Topic Create Command:
+C:\kafka>.\bin\windows\kafka-topics.bat --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic TestTopicMine
+
+List Of Topics Check Commnad:
+C:\kafka>.\bin\windows\kafka-topics.bat --list --bootstrap-server localhost:9092
+
+
+Note : Zookeepeer Gives the platform to run the Kafka.
+      Commnad :zookeeper-server-start.bat server.properties 
+
+Note : Kafka Server will starts on zookeeper platform
+       Commnad :kafka-server-start.bat server.properties
+  
+Note : In real time kafka Administrator will take care of Kafka Set Up
+
+->Kafka Administrator will creat the topic and we have to connect with kafka and store the message into kafka and take the message from kafka
+
+->We need to create a topic and give a name to topic.
+
+->In Topic we store the Message of specific type.
+
+Note : We open One cmd for zookeeper where we excute a command to run zookeeper 
+       Open Anothef cmd for kafka to run kafka server
+	   Another cmd to create topic 
+	   
+Note : 2181 IS THE DEFAULT PORT NUMBER FOR ZOOKEPER Server
+
+
+->First we need to start the ZooKeeper, Zookeeper will provide a platform to run the kafka server, inside zookeeper we run kafka server, Inside Kafka we create Topic to store the messages.
+ 
+ 
+                                             KAFKA
+                   PORT:9090              _______|______             port :7070
+                    ______________        |  ____|____  |             __________________
+                   | 	          |       |  | ____  |  |            |                  |
+    Request------->|SpringBootApp |------------->  | |  |----------->|                  |
+	               |              |       |  | | T | |  |            |   SpringBootApp  |
+                   |______________|       |  | | O | |  |            |__________________|
+                                          |  | |_P_| |  |  
+                    PUBLISHER             |  |_______|  |              SubScriber
+                                          |_____________|
+                 KafkaTemplate.send(topic
+				 name,data)                 Zookeeper                 @KafkaListner(topicname)
+
+
+->Here our boot application sending request of 3 object and boot application will accepts the request and store 3 objcts data into kafka topic from kafka topic another boot application consumes the data and process the data
+
+->The Application which is storing the data into kafka Topic is known as Publisher and Application which takes data from Kafak Topic is know as SubScriber.
+
+->We use KafkaTemplate predefined class and we need to autwired that class in service layer  to send the message to kafka topics
+
+->We use KafkaTemplate.Send(topicname,data);
+
+Note : Topic name we already created in kafka server that created kafka topic we have to use in kafkatmeplae send method to publish the message to kafka topic
+
+->KafkaTemplate.send(); will send the data to particular Topic that we menti	
+
+->In Subscriber Application we create one method that annotate with @kafkalistner(tpoicname) that will consume the data from mentioned topic
+
+->Subsciber Application Method will takes the data from kafka topic by creating a method which annotate with @kafkalistner(topicname) and  when ever data comes to specified topic in annotation suvscriber will takes the data from topic contineously.
+
+->KafkaTemplate is predefinde class given by spring framework to work with apache kafka.
+
+Note:If our application wants talk with apache kafka we use spirng provided class called kafkatemplate to communicate with Apache kafka.
+
+Note :In real time comapany wil give us a topic name and we just need develop producer and consumer application and connect to the topic and save the data to kafka topic and take the data from kafka.
+
+Note :Don't bother about zookeeper installations and kafka installations and topic creation.
+
+Note : Zookeepeer provides a enviromnet or platform to run the apache kafka.
+
+Code To Connect The Kafka Topic:
+--------------------------------
+
+Producer Application
++++++++++++++++++++++
+
+dependecies:
+***********
+
+web
+kafka-steams 
+spring-kafka
+
+KafkaProduceConfig class:
+*************************
+
+->Which is responsible to establish connection between rest api to apache kafka.
+
+->We create one method which return ProducerFactory customized object and Producerfactory method which has configuration related to 
+  where our kafka server running i.e port number and what is key serializer i.e what is name of topic and Value serializer i.e what kind of data we keep in topic that we mention
+  
+Note : We store java objects as json data in Kafak Topic  
+  
+->In Producer Config class we create bean to what are the details of kafka server and key serializer i.e kafka topic Name and value serializer i.e data we want to keep in the kafka topic 
+
+->create customzed bean of kafkatemplate which has the config of Producer Config details which is already a customized bean which has details kafka produder details like kafka topic name and server of kafka and data type of topic 
+
+->Producer Configuration we injecting to customized bean of kafkatemplate through constructor. 
+
+@Configuration
+public class KafkaProducerConfig {
+
+	@Bean
+	public ProducerFactory<String,Customer> producerFactory(){
+		Map<String, Object> configProperties=new HashMap<String, Object>();
+		configProperties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaConstants.HOST);
+		configProperties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+		configProperties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+		return new DefaultKafkaProducerFactory<>(configProperties);
+	}
+	
+	@Bean(name="kafkaTemplate")
+	public KafkaTemplate<String, Customer> kafkaTemplate(){
+		return new KafkaTemplate<>(producerFactory());
+	}	
+		
+}
+
+
+public class KafkaConstants {
+
+	public static final String TOPIC="customer";
+	public static final String GROUP_ID="group_customer";
+	public static final String HOST="localhost:9092";
+	
+	
+}
+
+
+
+
+Note : @Bean annotation is used to create our own customized bean 
+
+Note : @Configuration to represent a class configuration class
+
+Kafka Service Logic To Send Data To Kafka :
+********************************************
+
+@Service
+@Slf4j
+public class CustomerService {
+
+	@Autowired
+	private KafkaTemplate<String, Customer> kafkaTemplate;
+	
+	
+	public String addCustomersToKafka(List<Customer> listOfCustomers) {
+		if(!listOfCustomers.isEmpty()) {
+			for(Customer cusromer:listOfCustomers ) {
+				kafkaTemplate.send(KafkaConstants.TOPIC, cusromer);
+				log.info("++++++++++++++++++  Message Published to kafka +++++++++++++++");
+				
+			}
+		}
+		return "Customer Message or Data Successfully Added to Kafka";
+		
+	}	
+}
+
+ 
+@RestController
+public class CustomerRestController {
+
+	@Autowired
+	private CustomerService customerService;
+	
+	@PostMapping(value = "/addCustomer"
+//			,consumes = {
+//					MediaType.APPLICATION_JSON,
+//					MediaType.APPLICATION_XML
+//			})
+			)
+	public ResponseEntity<String> addCustomers(@RequestBody List<Customer> listCustomers){
+		String addCustomersToKafka = customerService.addCustomersToKafka(listCustomers);
+		return new ResponseEntity<>(addCustomersToKafka,HttpStatus.CREATED);
+		
+	}
+	
+}
+ 
+
+KAFKA CONSUMER DEVELOPEMNT:
+---------------------------
+
+dependecies :
+------------
+
+web
+kafks-streams
+spring-kafka
+
+Note : What ever the dependecies we have in Producer application , we have same in Consumer Application
+
+Note : How the producer have a configuration consumer also have a configuration
+
+->We create a consumer configuration class where we configure a details like consumer factore like key Deserializer and Value Deserializer and Kafka server url and GroupId
+
+Note : ProducerConfig class will have the key and value serializer and ConsumerConfig class will have key and value DeSerializer 
+ 
+Note : For Every Consumer we give one  GroupId like to what kind of topic comnsumer application consuming like cutomer or employee etc.
+       Multiple Consumer Applications connects to same message in kakfa 
+	   
+	   
+	   @Data
+public class Customer {
+	private String id;
+	private String customerName;
+    private String email;
+}
+
+
+
+@Configuration
+//@EnableKafka
+public class KafkaListnerConfig {
+
+	@Bean
+	public ConsumerFactory<String, Customer> consumerFactory(){
+		Map<String, Object> props=new HashMap<>();
+		props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaConstants.HOST);
+		props.put(ConsumerConfig.GROUP_ID_CONFIG, KafkaConstants.GROUP_ID);
+		props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+		props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,JsonDeserializer.class);
+		return new DefaultKafkaConsumerFactory<>(props,new StringDeserializer(),new JsonDeserializer<>());
+	}
+	
+	@Bean
+	public ConcurrentKafkaListenerContainerFactory<String, Customer> kafkaListenerContainerFactory(){
+		ConcurrentKafkaListenerContainerFactory<String, Customer> factory=new ConcurrentKafkaListenerContainerFactory<>();
+		factory.setConsumerFactory(consumerFactory());
+		return factory;
+	}
+	
+	
+}
+
+
+@Service
+@Slf4j
+public class CustomerService {
+
+	@KafkaListener(topics = KafkaConstants.TOPIC,groupId = KafkaConstants.GROUP_ID)
+	public void listner(Customer customer) {
+		log.info("Messagae received from kafka "+ customer);
+		System.out.println("customer data   "+ customer);
+		//return customer;
+	}
+	
+}
+
+public class KafkaConstants {
+
+	public static final String TOPIC="customer";
+	public static final String GROUP_ID="group_customer";
+	public static final String HOST="localhost:9092";
+	
+}
+
+->Command To Create Topic In kafka
+
+   kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1
+   --partitions 1 --topic topin_name
+
+Note : Here "replication-factor" means how many copies of msg we want to create like if multiple applications wants suscribe we have to mention how many copies we msg we have to create.
+      
+	  replication-factor 1 means only one copy of msg will be create so one consumer application will consume the message
+      once that message subscribed that msg will be deleted from the Topic of kafka
+	  
+	  ->If we keep replication-factor 2 two subscribers consume the same message.
+	  
+	  
+	  
+   
+
+
+
+
+
+
+
+                    	   
+	   
+	   
+   
+
+
+  
+  
+ 	   

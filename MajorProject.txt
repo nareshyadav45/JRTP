@@ -1,0 +1,535 @@
+
+Types of Projects In Real Time:
+===============================
+1.Internet Based Projects:
+  ----------------------- 
+ Internet Project means everybody can use or access that projects or application.
+ 
+ ->The Applications which are available for public access is known as Internet Projects
+  
+  Examples:Gmail, Facebook,Linkdin,Instagram,IRCTC etc.
+ 
+2.Intranet Based Projects.(portals):
+====================================
+Intranet Projects means the application which are not available or accessed by everyone.
+
+->The public users can't access Intranet applications
+
+->Intranet projects is knowa portals
+
+Examples: Aadhar(we visist nearest adhar center and apply or modify the adhar by filling up an form give to aadhar center but directly we can't access aadhar in web and update)
+
+          SBI Money Trasnfer (At Sbi Btanch location bank employee has a acces to credti money but as we public users we can't access that application to credit the money) 
+		  
+		  HRMS (With in an organization employee has a access to use that portal, not every one)
+		  
+Note : when we went for experinced interview we shouldn't keep Internet Basis Projects becuase that project are available to everyone so they can ask like show that project you have developed in an interview
+
+Note : We should say our project is Intranet project and public can't access , that projects can accessed by with in my organization people.
+       We should replay like our project is Intranet based project that we can't accessed in personal laptop
+	   
+Note : Our Major project comes under Intranet Based project
+	   
+------------------------------------------------------------------------------------------------------------------------------------------------------------		  
+ 
+->The Project which we develope, in which has 25 Modules and We are going to work on 8 Modules
+
+->The Project we devlope for RHODE ISLAND state govt in USA
+
+->Client of my Project is Rhode Island State Govt.
+
+->For RhodeIsaland State Govt We developed State Govt Portal.
+
+->The RhodeIsland Govt wants to provide some benefits to RhodeIsland Citizens related Food,realted to job,hospital and Govt wants provide some schems to RhodeIsland Citizen
+
+->Govt Wants to provide schems to state govt people who are elgible for the plan
+
+->Like take an example of UnEmployement Scheme for that scheme Citizen should comes under RhodeIsland State Citizenship and citizen should have 28 years of age and his family income should less than $1000 like that conditions will be available for scheme to get or avail or use the plan , then only citizen will elgible for the plan.
+
+->So how Govt will be evaluate who is elgible for the plans and who is not elgible for the scheme for that Govt should need Software, that software we are going to develope
+
+Name Of The Project Is:
+------------------------
+
+Project Name :IES :Integrated Elgibility System 
+
+Client : Rhode Island State Govt.
+
+Purpose: IES application or project is used to provide fully Integrated Elgiblity System for RhodeIsland State Citizens.
+
+->(BU)ByUSing using IES application, Rhode Island providing below health and insurance and food plans or schems for RhodeIsland State Citizens
+
+  1.SANP
+  2.CCAP
+  3.Medicaid
+  4.Medicare
+  5.QHP 
+  6.RIW
+  ->This are the plans names or Schmes providing by the RhodeIsland State Govt to it's state Citizens
+ 
+  1.SNAP :(Supplimental Nutrition Assistance Program)
+  --------
+  ->SNAP is a food Plan Or Program, if RhodeIsland state citizen family income is very less then RhodeIsland State Govt will provide the food coupons to purchase the food in monthly basis.
+  
+  ->Monthly $300 or $400 money will gives to citizen for purchase the food for the family
+ 
+  ->This Plan or Schme will not provide to all the citizen in state , based on some conditions like family with no income or family monthly income less than 300 or 400 or 500 dollars and nobody employeed in family like this based on some conditions plan will be provide
+
+  ->SNAP is food plan and eligible citizen family will get monthly basis some amount to purchase the food for family.
+  
+  Note : SNAP is applicable for families who have no Income and Low InCome
+   
+  2.CCAP:[Child Care Assistance Program]
+  -------
+  ->RhodeIsland State Citizen hava a family and citizen has kids in his family  and if citizen is poor and family monthly income less than $500 and kids age lessthan 16 years then citizen family kids will get CCAP plan and RhodeIsland Govt will give monthly basis money to children Education fee and trasnporation and food on monthly basis
+
+  ->Kids Plan
+
+  Note : Applcable for families who have kids with No Income and Less Income.
+  
+ 3.Medicaid:
+  ---------
+  ->Medicaid is Health Insurnace Plan.
+  
+  ->Citizen who unable to pay medical or hospital bill ,then for elgible citizen will get healthe insurance plan and govt will pay the all expenses for medical treatment in hosiptal
+  
+  ->In this plan Govt will pay the hospital bill for the citizen who unable to pay
+  
+  Note : Medicaid is a Health plan
+  
+ 4.Medicare :
+  -----------
+  ->This Plans applcable for Senior citizen who has age 60 years and those citizens will goes to hospital and can take the treatment for free.
+
+   Note : Medicare Health Plan
+
+ 5.QHP:(Qualified Health Plan) 
+  ---- 
+  ->QHP is a Commercial plan and citizen has to purchase
+  
+  ->If citizen gets treatment and gets bill amount like $5000 , then who has QHp plan 50% off will be applied Bill like that some percentage of, off will be availale to citizen who has this plan
+
+  ->QHP is Commercial and Paid Plan
+ 6.RIW :(RhodeIsland Works)
+  ------
+  ->In RIW plan for citizen who is Graduated and unemplyed and Govt will money to upskill and get the job.
+  
+  ->To attend or training for UpSkill then govt will provide Money. For that knowledge citizen has to get the job.
+
+  ->RIW is aUnEmployement Plan
+  Note : This plan is applicable for citize who is graduated and UnEmployed and Govt will provide some money to upgrade their skills and get the job.
+-----------------------------------------------------------------------------------------------------------------------------------
+Note : So above plans are applicable for RhodeIsland State Citizens and Citizens who elgible for the plans.
+       Elgible means conditions that citizen should match to get the plans
+
+      ->Conditions like what is family income and what citizen imcome and childerns and propertie that citizen had based conditions Govt will provide Plans
+
+Note : The Families who elgible , they will get benefits from govt on monthly basis for 6 months or 1 year of time
+     
+Note : Plans are not for life long, govt will assist them for limited time	 
+
+Note : IES project is Intranet Project every One can't access this project.
+       IES Project accesseble in DHS(Department of Health Service) office	 
+	  
+->Like Aadhar centres in India where aadhar application is accessible like IES application also accessible in Rhode Island State DHS offices.  
+  
+->The citizens who are poor in Rhode Island state  they can apply for plans whihc provided by Rhode Island State Govt
+
+->In Rhode Island state there is department called DHS
+
+->DHS means Department of Health Service 
+
+->DHS Employess known as Case Workers.
+
+->IES Application will be accessible in DHS offices only
+
+->Case Workers will use IES application and provide benefits for citizens
+
+Note : IES application is accessible only in DHS offices
+
+->In DHS offices some govt employees are accessible to use IES applications those employees are called Case Workers they can access the IES application and provide benefits to citizens of RI state who are poor.
+
+->Rhode Island has several cities and villages and in every city DHS offices will be availble
+  if citizen like recently completed his graduation and citizen has no job and citizen wants to get some help from RI state govt through the RIW plans
+  so citizen should visit nearest DHS office and inform Case Worker and I want to apply this plan then case worker will take info from citizen and enters in IES application and application will verify citizen is elgible for plan or not based conditions mathces with given info by Citizen.
+  If citizen elgible for plan , state govt will give money to monthly basis.
+  if citizen elgible not elgible for plan , application show what is the reason not elgible for plan based on given information.
+  
+Note : Citizen should not use our application directly.Because IES is a Intranet project which means not accessible to every public user , only accessible with in the organization
+
+Note : Citizens should visit nearest DHS office for apply for the plan
+
+->IES application won't accessible any where other than DHS offices so citizen should nearest DHS office and consult Case worker who is Govt employee of RI and if citizen wants to apply for a plan called RIW , CASE WOKER will take data like name and email and SSN number and education details and family details and properties details and family income details etc details and submits in IES application RIW plan , IES application will verify the details given by citizen and if citizen data matches with plan conditions and citizen will approved for the plan.
+
+->If citizen approved for the plan , RI state govt will provide pocket moeny to citizen on monthly basis for several months and Citizen has to upgrade the skil set 
+
+->If citizen income more than $5000 per month , citizen will be denied for the plan.
+
+->If citizen has 45 years and wants apply for RIW plan , citizen will be rejected for the plan because age should be less than 25 years like that Terms and Conditions will be applicable for the citizen when citizen wants to apply for the plan
+
+Note : Every plan have  some conditions, so citizen data should match with plans conditions then only approved for the plans, If citizen data not matching plans conditions then citizen will be denied for the plan
+
+Note : Citizen will apply for the plan  with help of caseworker if citizen data matching with the plan condition , citizen will be approved for the plan and if citizen data not matching with plan then citizen will be denied for the plan and what is the reason for denied also will tell by the IES application like family income more than $5000 dollars and you have income source through rental so you don't need to get assist from the Govt like that IES application will gives the denial reason   
+
+
+Note : Citizen should talk to caseworker to apply for the plan
+
+Note : WithOut appliction state govt wants to provide plans to citizen, so it will be a challenging task because manually checking citizen eligibility criteria take much time and maintaince is also problem like who applied for the plan and who does not applied for the plan and who denied for the plan etc data we can't handle manually , so we develop a application to automate the process
+
+Note : To determine and maintaining the data of citizen plan details is difficult task if Govt manage it manually and to automate this process we go for IES application.
+
+Note : To determine and maintaining the data of citizen plan details is difficult task if Govt manage it manually and to automate this process we go for IES application.
+
+NOTE : If Interviewer asks yours project is complted or not , we should answer like project is ongoing or under developement
+
+NOTE : If interviewer asks how you got this big projct and that US govt , we should answern like I'm from Rainiersoft tech solutions company and Rainiersoft my company selling the employees to deloitte company but I'm belongs to Rainiersoft company but doing the wokr for deloitte company, so rainier softech is a payroll comapny and delolitte is client company where I did work that company
+       So we should answer like project is not belongs to my company , it belongs to Deloitte company and we are the vendors for the deloitte, so Rainiersoft is payroll companyn and deloitte is client company
+	   
+Note : we should take 3 to 5 mins to explain the project in an Interview  
+------------------------------------------------------------------------------------------------------
+Project Modules :
+------------------
+
+->IES Project has several Modules which are listed below :
+  
+  1.Admin Module
+  
+  2.CW (CaseWorker) Module 
+  
+  3.AR(Application Registration) Module 
+
+  4.DC(Data Collection) Module
+
+  5.ED(Elgibility Determination) Module
+  
+  6.CO (Correspondence) Module.
+  
+  7.BI(Benefit Issuance) Module
+  
+  8.Reports Module 
+  
+Note : Actually In IES project we have 25 Modules.
+
+Note : Here we discuss 6 plans but in project has 18 to plans available.
+
+Project Architecture :
+----------------------
+1.Admin Rest Api
+
+2.CW Rest Api
+
+3.AR Rest Api
+
+4.DC Rest Api
+
+5.ED Rest Api
+
+6.CO Rest Api
+
+7.BI Rest Api
+
+8.Reports Rest Api
+
+Note: For Each Module we develop one Rest Api
+
+Note : For all above Rest Apis one UI will be available
+
+->UI will be communicates with Backend Rest Apis
+
+->All this above apis Communcate with one database to store and retrive and modify and delete the data
+
+NOTE : HERE AR Rest Api has a logic to communicate with SSA-WEB API is  a  Third Party Api.
+
+->SSA-WEB API is federal or central Govt project and IES Application of RI state Govt has a AR Rest Api which communicates with SSA-WEB Api.
+
+->In USA every should have the SSN(Social Security Nuber) Number like what Indians have Aadhar Number, when citizen wants to apply for the plan citizen should give SSN Number to verify the Given SSN Number is valid or not verify by the Third party Api SSA-WEB Api
+  So here our AR Rest Api Communicates with SSA-WEB API to verify given citizen SSN is valid or not and citizen belongs to which state.
+  
+->When citizen apply for the plan , AR Rest Api Takes the Citizen SSN number and AR will giives the SSN number to third party application and thris party application will verify given SSN Number is valid or not and if SSN valid , citizen belongs to which state , if state citzen belongs to other states except RI , stop the plan processing and citizen is not elgible for the plan, if citizen ssn bleongs to RI state then  citizen can apply for the plan
+
+->So there is integration between from AR Rest Api to SSA(Social-Secuity-Administration)-WEB Api
+
+->CO Rest API Communicate with REDIS SEVER to take the static data and CO Rest Api Communicate with AWS S3 Service to upload the PDFS in Cloud Storage
+
+->BI Rest Having One Remote Location and what ever the Benefits we want to send, we send it  by using BI Rest Api.
+
+->BI Rest Api communicates with Remote FTP(File Transfer Protocal) location to give the benefits for the citizens 
+ 
+Note : So what ever the benefits we want to send to the citizen , we can't directly send to citizen , benefits we gives to 3rd party provider, for 3rd party provider we gives the benefits data in file and that file we keep in FTP location.That will be taken care by BI Api.    
+
+Note : So here we keep benefits of citizen we keep in FTP location and that file will be given to 3rd party provided who taken care gives the info about benefits to citizen
+
+Note :IES project has only one database.So every Api will connect same database
+
+Note : FTP means File Transfer Protocal that is a location where we store the files.For the people who are approved for them how much moeny we need to send we keep it in File and we give file to 3rd party project will read the file transfer the amount
+
+->Correspondence measn sending ackknowledgements like whether the citizen denied for plan for that we send pdfs or letters opr mails to citizen  
+
+->Correspondence api we send the mails to citzen reg plans like approbved or denied etc.
+
+Note :Citizen who approved for the plan , we can't directly send money to thrird party they will will take care of it and we just give the citrizen data to 3rd party they care of money credits to citizen
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ADMIN MODULE :
+--------------
+Admin Module Deal with Two Functionalities 
+
+1.Case Worker Accounts Management 
+2.Plans Management
+
+1.Case Worker Accounts  Management(Create/Update/Delete/Retrival)
+**********************************  
+  ->Which Case Worker should access IES application and Directly Case worker should create the Account in application because IES is a Intranet Project
+  ->For IES application One Admin will be available and that admin will create the account for the case worker 
+  ->Admin will create a account for caseworker and case worker will receive a mail with temp pwd to unlock the account like that case worker account creation taken care by admin.
+  ->Admin can view the list of caseworkers available application and case workers account activation and deactivation will be done by admin in application.
+
+2.Plans Management(Create/Update/Delete/Retrival)  
+******************
+->Plans management will be done by Admin like what are the plans should be accessible to citizen and plan start date and End Date and plan activate and DeActivate etc activities related to plans will be managed by Admin 
+
+Note : When admin loggin into IES application , admin will have above access like case worker account management like Case worker account creation and activate and deactiivate account and account modification will be taken care by Admin
+       And Admin can access to add new plans and specify start and end date and specific plan removal and add new plan for this year that can be managed by Admin
+
+Note : CaseWorker Should Not Access above Functionalities
+
+Note :Admin is Responsible for create account for case worker to access IES System.
+      Admin is responsible for Create plans   
+ 	   
+------------------------------------------------------------------------------------------------
+CASE WORKER MODULE 
+-------------------
+->In this Module Case Worker is reponsible to apply plans for citizens
+
+Functionalites under Case Woker Moudule:
+****************************************
+  1.Login(CW can login to IES application)
+  2.Dashboard(CW specific dashboard will be there where CW can monitor his applied plans and which plans approved and rejected and adding citizen plans data etc)
+  3.Edit Profile (CW details can update like phn number etc)
+  4.Forgot Pwd (CW password recovery)
+  
+Note : Case WORKER can't create account for himself , that will be taken care by Admin
+
+Note : CaseWorker Account will be created by Admin and CW will receive a mail reg account details Temp pwd with Temp password CW unlock the account then only CW access the application otherwise won't access the application
+
+->Once CaseWorker Logged in , CW will access dashborad of his and CW will read how many plan request applied through his name and how citizen requests are denied and approved that kind info available in dashboard
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+APPLICATION REGISTRATION(AR) MODULE:
+-----------------------------------
+->When citizen wants to apply for the plan, citizen visit nearest DHS office contact and give details to CW
+
+->In Application registration module,  AR Rest Api will collect the Basic details of Citizen who wants apply for the plan details like First Name and Last Name and Email and SSN nuber
+  Internally AR Rest api will communicate with 3RD party api SSA-WEB Api which is federal or central govt api and AR Rest Api Communicate with Central Govt to verify 
+  citizen is belongs to RI state or not based SSN number given by Citizen
+
+->If Citizen belongs to RI state , Application will be created for the citizen apply for the plan
+
+->If citizen doesn't belongs to RI State then application will not be created and Citizen can't apply for the plan  
+
+Note : Once CaseWorker Logged in , CW will take details from citizen verify ssn number and if citizen belongs to RI state or not based SSN number by communicate with 3rd API called SSA-WEB, If citrizen belogs to RI stae Applcation will be created which means citizen can apply for the plan, if citizen not belongs to RI application will not be created and can't apply for the plan.
+
+Note : The main Purpose of AR Module is  to ,CW will take details from citizen verify ssn number and if citizen belongs to RI state or not based SSN number by communicate with 3rd API called SSA-WEB, If citrizen belogs to RI state, Applcation will be created which means citizen can apply for the plan, if citizen not belongs to RI State, application will not be created and can't apply for the plan.
+
+Note : Mainly AR Rest Api verify citizen belongs to RI state or not by communicate with  SSA-WEB api by taking Citzen SSN number and if citizen belongs to RI state , then application created and apply for the plan and if Citizen not belongs to RI state application will not create and can't apply for the plan
+
+Note: Citizen Application Will be Created AR Rest Api 
+
+Note : In Application Registration Module we take the Citizen basic data like SSN Number and Name and Email etc. And verify whether citizen is elgible to apply for the plan by taking Citizen SSN number and verify citizen is belongs to RI state or not by verifying SSN Number With Third Party Api Where 3rd party api holds the List Of SSN Number Of All Citizen of USA Country , we communicate with SSA-WEB Rest Api by external service communication and verify the Citizen SSN number belongs to RI or not.
+       If citizen belongs to RI state , citizen will elgible for applt for the plan.
+
+Note :Once citizen elgible to apply for the plan , we take citizen data to apply the plan in Data Collection Module.
+	   
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DATA COLLECTION (DC) MODULE:
+---------------------------
+->DC Rest Api will collect the citizen data which is required to apply for the plan.
+
+In DC Rest Api we take the following Citizen Data 
+ 1.Citizen Details (Properties, income sources)
+ 2.Family Details (Parents Details and Parents Income sources)
+ 3.Employement Details
+ 4.Education Details 
+ 5.Income details
+ 6.Kids Details etc
+ 
+Note : DC Module, Dc Rest Api Just Take The Data(Citizen Details,Family Details,Employement Details,Education Details,Income details,Kids Details) From The Citizen which Are Required For Apply Plan And Store Citizen Data In DataBase 
+
+Note : Just Collect The Data and Store into DATABASE.   
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+ELGIBILITY DETERMINATION MODULE(ED):
+------------------------------------
+->Once The Citizen Application Created, we need to collect the Data from the Citizen by DC Rest API.
+  After Collecting the Data we need to verify Citizen data matching with plan conditions or not
+  so that verification will be done by ED API.
+  
+->ED is responsible to verify citizen elgibility for the plan
+  
+->ED will execute the plan conditions with citizen data.
+
+->If citizen data matches with Plan Conditions then citizen will be approved for the plan otherwise citizen will be denied for the plan
+
+->Like If citizen applied for the SNAP plan , citizen data macthes with SNAP plan , if citizen data matches with SNAP plan conditions then citizen will be approved for SNAP plan.
+  else citizen will be denied for the SNAP Plan.
+
+Note : Approved Citizens will get Benefit Amount from RI State Govt 
+
+->Like If graduated RI state citizen applied for the plan and get approved for the plan, citizen will get monthly benefit amount from Govt for several months like 3 or 6 months to upgrade citizen skill set and get the job.After 6 Months Citizen will be Terminated from the plan.
+
+Note : In this ED Modeule we verify the citizen data matching with the plan conditions or not and citizen who not approved for the plan will get to know why citizen not approved for the plan.Approved citizen will get the benefit amount from Govt.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CORRESPONDENCE MODULE (CO):
+---------------------------
+->CO Module is reponsible for sending the Notices to Citizen regarding their plan elgibility 
+ 
+->Like we send Notice in pdf documnet to Citizen, like that notice will have Info like if citzen approved for the plan and plan start date and end date and benefit amount that kind of info will be stored in notice and notice will be send it in pdf document to citizen.
+
+->And if citizen plan will Terminated in between start date and enddate , then we should send notice to citizen why plan get terminated.
+
+->If citizen plan getting to reach enddate then we have to send notice to citizen , your plan getting to reach enddate and please renewal the plan that kind of notice we have to send to citizen.
+
+->  Kind Of Notice We will Send to Citizen in pdf format as attchment in Citizen  Mail.
+
+  1.Approved Notice
+  2.Denied Notice
+  3.Termination Notices
+  4.Plan Renewal Reminder Notice(If plan getting to reach enddate , we send 1week reminder and 15days reminder and 1monthe reminder etc.)
+  5.Missing Documnets Notice (If citizen not submitted all the documnets for the plan then we send notice to citizen)
+
+Note : Any Communication that we want to provide for the citizen that communication we go through Notice and that Notice will be generated by CO Module.Notice will be generated in pdf and that pdf will send though email to citizen
+	
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+BUSINESS ISSUENCE MODULE(BI):
+---------------------------- 
+->BI Module is responsible to send benefit amount to approved citizens.
+
+->In this we keep the records of who are approved for the plan and how much they get for the plan and we send it citizen who approved
+
+---------------------------------------------------------------------------------------------------------------------------------------
+REPORTS MODULE:
+---------------
+->Reports Module is used to generate the Reports in pdf/excel format with application data(Data available in application)
+
+ Reports Can Be:
+ 
+ 1.Report Based On Plan Name
+ 2.Report Based On Plan Status 
+ 3.Report Based On Plan Start Date and End Date
+ 4.Report Based On Gender 
+ 
+Note : Based On Mentioned Criteria We Generate the reports in pdf/excel format 
+-------------------------------------------------------------------------------------------------
+->We should cover bwlow points while explaining Project
+  1.What is IES
+  2.Why IES
+  3.IES Client
+  4.How to access IES
+  5.IES Plans
+  6.IES Modules
+  7.Purpose Of Each Module  
+
+
+
+
+
+
+  
+
+
+
+    
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+ 
+
+ 
+  
+
+ 
+
+
+
+
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+
+
+
+  
+  
+
+
+  
+  
+
+
+
+ 
+
+
+ 

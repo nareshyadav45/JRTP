@@ -1,0 +1,1892 @@
+
+1.Monolithe Architecture : Developing all the fuctionalities in single project is Known as Monolith Architecture.
+--------------------------
+
+->Single Application Contains all the funtionalities
+
+cons :
+------
+1.Single Point Failure : If application get small error in application, which leads to whole application down
+
+2.Re-Deployement:If we make small change in appliation then we have to deploy the whole application.
+
+3.Maintenece: When ever make small changes in code , we need to recompile whole code and Re-Deploy whole code so leads maintaince is heavy and if we make small change in application which may leads to exception some functionalities in application.
+              ->Complete Code available at one place, if we make changes at one place, remaining code may get   effect.
+	 
+4.Stick To Single Technology : If we developing all the fucntionalities in single application, we have to use any one programming languauge to develope the application.
+                              -> we can't develope different different functionalities with diff diff Technologies.
+
+5.Performance Issue: All the functionalities developed in single project which runs on single server, hence all the requests will comes to one server and load will increase hence performace will decrease.
+							  
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+->In order to Overcome with Monolith Architecture design pattern ,we use "Microservices" architecture.
+
+Microservices:
+==============
+->Microservice is not a Programming Languauge
+
+->Microservice is not a FrameWork 
+
+->Microservice is an Architectural Desingn Pattern.To Develop applications with Loosely Coupling  
+
+->MicroService is an collection REST APIs
+
+->One REST API is known as ONE-MicroService.
+
+Note : Developing requirements by dividing to multiple Rest Apis
+
+->If we develop a project withe Microservices desin pattern , we have collection of rest apis in application
+  Each rest api know as One Microservice and each Microservice or REST api can maintain individual and different DataBases.
+  
+                                         MAKE-MY-TRIP
+				                             |
+                                             |   											 
+            Hotels(Rest api)(Java)  Tains(Rest Api)(Python)    Flights(Rest Api)(.Net) 				
+				  |						|                             |
+			   DB(Oracle)   	     DB(Mysql)                       DB(h2) 
+  
+
+->We can use advance Cqrs(Command Query Pattern) patterns to develope the separate resr api or microservie for DAO LAYERS OF DBs of all the rest apis of Microservice-project, If any service wants to connect with db, they have to connect with db rest api. 
+
+->One Microservice will contains DATA BASE LOGIC IS is known as CQRS Pattern.
+
+->In Microservices One Rest Api contains Only One Functionality.
+
+->Instead of developing all the funtionalities in one service, we develop in multiple services.
+
+Note : In REST APIS we give JSON data as Input and We get Json Data as Output(B2B Communication)
+
+->Every Rest Api in Microservice Application is a separate spring boot project.
+
+->Every Rest Api will runs on separate Server.
+
+->If one rest api won't work in project, it won't effect the other rest apis beacuase every rest api is separate spring boot project and runs on diff server.
+ 
+->for all the rest apis , we have One UI project will available where front developers will develope whole front end logic for all backend rest apis
+
+Note : Any Programming Language can use MicroServie Architecture to develop Project.   
+ 
+Note : In MonoLith Architecture EveryThing will develop in single project like front end and backend and database.
+
+->MicroService is a architectural desingn to develope an application with loosely coupled.
+
+->In Microservice-project,every Micro-Service is a individual or indpendent rest api that will executed on separate server
+
+->In Micro-Service Project , if we make changes in One Rest Api we have to deploy That updated rest api not remianining rest apis
+
+->In Microservice architectural project One UI is available and Several backend Rest Apis will available and all the rest apis connected with One UI
+
+Note : Micrservice Project menas collection of rest apis and every rest responsible for One Functionality.
+
+->Every Rest Api MicroService-Project Independently Maintainbale and excutable and Deployable and Testable.
+-------------------------------------------------------------------------------------------------------------------------
+PROS WITH MICROSERVICE:
+-----------------------
+1.Easy Maintanice: 
+------------------
+->If we make changes One Rest Api only that microservice will complie and package and deploy.
+
+
+2.High Availability:
+--------------------
+->If we one Micro-Service is down, remaining services will available or accessible to clients
+
+
+3.Fast Developement:
+--------------------
+->Development will be fast because developing single functionality so we can rapidly develop and test it and deploy
+
+4.Quick Releses:
+-----------------
+Deployment Will FASTER , AS fast as developent and testing is done, quick releases is possible
+
+
+5.Technology Independently:
+---------------------------
+->Every Rest Api is different project , so we can develope diff rest apis is diff languages
+
+6.DataBase Independent:
+----------------------
+->Different MicroService can use differnet databases.
+-------------------------------------------------------
+CONS OR CHANLLENGES WITH MICROSERVICE:
+-------------------------------------------------------
+1.Bounded Context:
+-------------------
+->Deciding Number of Microservices for Project is very difficult Identify OR Estimate
+
+->Like If  Client comes with 50 requirments , do we need to develope 50 Microservices or can we accomodate 40 requirments in 2o rest apis so identify the number of MicroService for For Requirments is Tough.
+
+
+2.Lot Of Configurations:
+-------------------------
+->In every Microservice we have write common configurations
+  like : Data Source and SMTP and Kafka and Redis and Security etc 
+  
+->Every Microservice is separate projct and runs on different server, so we have to write lot of configurations in every microservice    
+
+3.Visibility:
+-------------
+->Team Members will not get whole project knowledge
+
+->If we working on microbased projcet , we can't get complete clarity or visibility on project.
+
+->Becuase In Microservice-project has number of Rest Apis , we may get a chance to work with few Rest Apis not all Rest apis in project.So we can't get complete clarity on project when we are work with Micro0Services based project
+
+Note : In Banking Sector Projects we can't get the FDD alos due to Security Reasons
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MicroServices Architecture:
+---------------------------
+->In Microservice Architecture there is no fixed architecture where as spring mvc we have fixed architecture like dispacther servlet and handler mapper and controler and view resolver etc.
+
+->According to requirement customize the Microservice Architecture.
+
+->But Most of The Projects Uses Frequently Used  MicroService Architecture to follow and Develope the project and that we discuss below. 
+
+Note :3rd Party Api Means Developed By Some other company
+
+Micro-Services-Common-Architecture-Components:
+=============================================
+1.Service-Registry OR (Eureka Server):
+-------------------------------------
+->Service Registry Maintain or contains list of Rest Apis Available in MicroServices Projects
+       a.Name Of the rest api
+	   b.Url of the rest api
+	   c.Status of the Rest api(Up or Down)
+	   
+Note :We can use Eureka Server As Service Registry
+
+Note : Spring Cloud Netflix Liabrary Provides Eureka Server to work with servcie registry
+
+Note : In an interview,Interviewer may ask which version of spring cloud(2021.0.7) used like for eureka server.
+
+
+Note : If our service registry runs 8761 port number , then clients or rest apis will automatically register with service registry, if service registry runs on different port numner then our backend rest apis should manually register with Service-Registry.
+
+Developement:
+*************
+->Add Spring cloud netflix eureka server dependecy 
+->Annotate start class with @EnableEurekaSerevr to represent a project as Service Registry or Eureka Server.
+
+->default port number for eureka server is 8080.
+
+Note :With adding web starter in pom.xml we can get embeded default server as Tomcat in Eureka Server dependency.
+
+Note : If we keep port number of Eureka Server as 8761 , it's all cleint  rest apis will auto register with Eureka Server, we don't need to manually regiister our rest apis with eureka server manually if we keep port number as "8761"
+
+->After keeping 8761 as port number to  service registry service, self application i.e service registry will automatically reguster with eureka server in order to disable self registration of eureka server project we use follwing config property in YML file
+
+application.yml:
+----------------
+eureka: 
+   client:
+     register-with-eurka: false:
+
+2.Admin Server:
+---------------
+->Generally we use Actuators used  to Monitor and Manage the Api or Rest Api 
+
+->Admin Server provide a DashBoard to monitor and manage the apis actuators at one place
+ 
+->Admin Server used to Monitor and Manage the All apis actuators at one place.
+
+->To Manage and Monitor the individual apis in Microservice-project will become complex, so we use admin server where our all apis will registered and Admin server will provides a dashboard to monitor and Manage the all actuator endpoints of rest apis at one place
+
+->What are the rest apis we have in microservice-projcet those all the apis we want to manage at one place , then we go for Admin Server.
+
+->To monitor all the apis at one place we user Admin Server
+ 
+Note:RestApis in Microservice-project acts as a Client to Service Registry and Admin Server.
+
+Note :Admin server is used to manage and monitor all the rest apis actuators endpoits at one place.
+
+Note : Admin server is used to manage and monitor all the rest apis at one place
+Developement:
+*************
+->Add Spring-Boot-Admin-Server dependency in pom.xml
+
+->Spring-boot-admin-server version "3.3.2"
+
+->Annotatae start class of boot project with @EnableAdminServer to work with admin server.
+
+Note :ADMIN SERVE defaultly uses Netty as embeded server 
+
+3.ZipKin Server:
+---------------
+->ZipKin Server is used for Distributed Tracing.Distributed Tracing Means how much taken by each  Rest Api to process the Single request.
+
+->By Using ZipKin Sever we can identify or find Rquest processed by how many  apis or request processed by single api and if request processed by api how much it taken and If request proccessed by multiple Apis how much time taken that Complete information we can trace or fetched by using ZipKin Server
+
+->Distributed Tracing Means how much time taken by each api to process our request
+
+->Distributed Tracing Means one Request processed by Multiple Rest APIs
+
+->In Microservice-project our request will be distributed to multiple apis , so we have to caluculate how much time taken by each api to process the request and what is the total time taken for request processing and which api is slow in processing and which api is fast in processing that will trace by ZipKin Server.
+
+Developement:
+*************
+->ZipKin server we No need to develope manually as Eureka Server and Admin Serever.
+
+->ZipKin Server already available as Jar File.
+
+Note : We package our boot application as Jar file
+
+->ZipKin Server is a one of the spirng boot application and we can download the jar file and we can jar file zipkin.
+
+->Navigate to google and download zipkin jar file from "https://zipkin.io/pages/quickstart.html"
+
+->After downloading jarfile open cmd from where jar file downloaded
+
+->To run the jar file in cmd we use 'java -jar jarfilename(zipkin-server-2.24.3-exec.jar)'
+
+Note : Download compatible Zipkin jar file from web site.
+
+->By Zipkin server we can easily finds which resr api processed our request and how much time taken to process the request. 
+
+->default port number for zipkin-server is 9411
+
+Note : Eureka and Admin and ZipKin servers are used to monitor microservices 
+
+
+REST APIS DEVELOPEMENT TO WWORK WITH MIICROSERVICES-ARECHITECTURE
+----------------------------------------------------------------
+GREET REST-API
+--------------
+
+Dependencies:
+*************
+
+  1.Web
+  2.Actuator(To monitor and manage actuator endpoints at one plcae and this will use with Admin server)
+  3.Eureka client 
+  4.Admin clinet
+  5.Zikin 
+  6.Sleuth(To communicate zipkin server {add spring cloud starter sleuth})
+  7.devtools
+  
+  <parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.3.2</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.prop</groupId>
+	<artifactId>03_SBMS_GREET_REST_API</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>03_SBMS_GREET_REST_API</name>
+	<description>Developing MicroServices Rest Api</description>
+	<url />
+	<licenses>
+		<license />
+	</licenses>
+	<developers>
+		<developer />
+	</developers>
+	<scm>
+		<connection />
+		<developerConnection />
+		<tag />
+		<url />
+	</scm>
+	<properties>
+		<java.version>17</java.version>
+		<spring-boot-admin.version>3.3.2</spring-boot-admin.version>
+		<spring-cloud.version>2021.0.7</spring-cloud.version>
+		                         2023.0.3
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-client</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-sleuth-zipkin</artifactId>
+		</dependency>
+	
+		<!--
+		https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-sleuth -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+  
+  
+  YML.file
+  --------
+  
+  
+server:
+  port: 8081
+
+
+spring:
+  application:
+    name: 03_SBMS_GREET_REST_API
+
+#to connnect with admin server  url
+  boot:
+    admin:
+      client:
+        url: http://localhost:1111/  
+
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
+    
+    
+#To enable all actuators endpoints of rest api            
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'        
+        
+
+
+Note : we use @EnableDiscoveryClienta annotation top of spring booot stasrt class to act as our rest api as client to Service Registry.
+
+Note : Every Api should have Name in application.yml file then only rest api name will display in Service-Registry.   
+
+Note : In Machine we can run multiple applications which means multiple servers are running on our computer and each application one jvm will runs.
+
+Note :One Rest Api is called One MicroService
+
+->If we have 10 Rest Apis in our project 10 rest apis will shown in service registry once those apis registered with eureka server
+
+Note : If eureka server port is not 8761 then we need to configure a property in rest api that where is eureka server running.
+
+Note : As of now our Eureka and rest api runs on same machine but in real time may be eureka server may runs on different machine then we have manually configure our rest with eureka server in app.yml file.
+
+Note : Once Admin sever started successfully, then we able to register our rest api with admin server we able to our rest api actuators with beautiful UI and we can easily access enviroment and loggers and threads and beans and mappings and memory and health etc of rest api with UI.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Interview Qusetion : 
+--------------------
+1.Can we change the log level of application with out restarting the application
+A.We can do change the log level manually in yml file logging.level.info or debug etc but we have to restart the server to get changed the log level.but we can do with out restarting the server by directly updating or changing the log level in admin server logger section so that we can do log changing level with out restating the server , this is how we managing the rest api like changing the log level. 
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+->Admin Server is used to manage and monitor all the rest apis at one place and every rest api
+  actuators available, to access all the actuators at one plcae we use admin server.
+  
+->ZipKin server is used for distributed tracing how much time takes by rest api to process the request and how rest apis are involved to process the request.
+
+Note: Collection of Rest Apis is known as One MicroServices Project  
+
+->Microservice projcet means a projcect which contains collection of rest apis and which can be deployed independently.
+
+->There are two types of communication in rest apis 
+---------------------------------------------------
+  
+  1.Inter service communication: Communication between microservice project rest apis
+   ---------------------------------
+   ->To establish inter service communication we use FEIGN CLIENT.We use feign client to establish inter service communication between two rest apis that are regostered with eureka server or service registry.
+   
+   2.External Service Communictio: Communication  between Our project to external company project i.e 3rd party developed by orther company
+
+4.ApiGateWay:
+------------
+->ApiGateWay is used to manage the all backend rest apis
+
+->ApiGateWay will act as a Entry Point for all the rest apis available in Microservice-project
+
+->ApiGateWay will provide single entry point for all the rest apis available in our microservice-projcet 
+
+->What ever the request comes to our microservice-projcet that request comes from ApiGateWay only , so it will act as entry point for all the rest apis available in our project.
+
+->ApiGateWay will acts as mediator between Incoming Request and BackEnd Rest Apis.
+
+->Request validation will happens at ApiGateWay only, whether Incoming requesy has to process or not that will be validated AT APIGATEWAY 
+
+Note : We use Spring Cloud Gateway(Open Source) as ApiGateWay in microservice-projcet and which is open source free to available
+
+      ->ApiGee can be used as ApiGateWay which is commercial and developed by Google
+
+Note : Before we used Zull Poroxy as ApiGateWay but zul becomes deprecated in latest spirng boot version      
+
+->APIGATEWAY is a entry point for all our microservices.
+
+->Any Request  comes to MicroServcies that will go through Api-Gateway
+
+->In Api-Gateway we can write Filter Logic and Routing Logic.
+
+->Filter Logic means any unwamted requests coming we can stop it, we can apply validation on apigate way to stop processing the request 
+
+->Request validation will be implmented in apigateway and if request valid we can route the request to which rest api to process the request.
+
+Note : Filter and Routing will be available in Api-Gateway
+
+->Filter means which request we want to process ,which request we don't want to process
+
+->Api Gateway act as a mediator between UI and Backend Apis , whether incoming requests has to process or not that filtering and validation will be done in api gateway
+
+->In api gateway we perform filter the request and routing the request.
+
+->In ApiGateWay we implement filter and routing
+
+->Filter is used to verify whether the resquest is valid or not and validate required data coming or not that will be managed by Filter
+
+->Routing is used to forward the request to particular api in the backend
+
+->Which request should goest to which api in the backend that will be managed by Routing in api gateway
+
+->We use Spring Cloud Api GateWay As ApiGateWay(Free of cost) for performing Filter and Routing.
+
+Note:ApiGee is paid api gate way given by Google
+
+Note :Api-Gate-Way  also Act as a Discovery clinet, so Api-Gate-Way also register with Eureka Server or Service Registry
+
+->Annotate Api-Gate-Way Entry point class with @EnableDiscoveryClient
+
+Dependencies:
+-------------
+1.web-starter
+2.Eureka Client
+3.Cloud-Gateway
+4.devtools
+
+POM.XML
+--------
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.3.2</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.prop</groupId>
+	<artifactId>05_SBMS_API_GATE_WAY_MICRO_SERVICES</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>05_SBMS_API_GATE_WAY_MICRO_SERVICES</name>
+	<description>Developing Spring Cloud Api Gate Way</description>
+	<url/>
+	<licenses>
+		<license/>
+	</licenses>
+	<developers>
+		<developer/>
+	</developers>
+	<scm>
+		<connection/>
+		<developerConnection/>
+		<tag/>
+		<url/>
+	</scm>
+	<properties>
+		<java.version>17</java.version>
+		<spring-cloud.version>2023.0.3</spring-cloud.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-gateway-mvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
+
+
+
+
+->Do rounting configuraions in Api-Gate-Way YML file 
+
+->In Routing we implement routing logic when ever request comes with Welocome url pattern, request should forwarded to Welcome Rest Api in back end.
+
+->When request comes to APIGATEWAY, like if request has welcome url pattern , we forward the request to welcome rest api and so welcome rest api may have multiple urls, so we should configure rest apis name with Routing in Api-Gate-Way not api url bcz urls may change.
+
+->We configure routes in APIGATEWAY YML file to which url pattern which api should excute.
+
+Note : Feign Client and Load Balancing both can do Load Balancing. 
+
+Application.YMl File
+--------------------
+spring:
+  application:
+    name: API_GATE_WAY
+    
+  cloud:
+    gateway:
+      discovery.locator:
+        enabled: true
+        lowerCaseServiceId: true    
+      routes:
+        - id: Greet_api
+          uri: lb://GREET_REST_API
+          predicates:
+            - Path=/greet/**
+        - id: welcome_api 
+          uri: lb:// WELCOME_REST_API
+          predicates:
+            - Path=/welcome/**  
+server:
+  port: 2222    
+
+
+Note : We Implemented Routes based on the predicate.
+       predicate means matching the path of url pattern, if the path is matching with given request then routing will happens
+	   
+Note : If we have 10 Rest apis 10  Routes we should write in yml file.	   
+
+Filter :
+--------
+Note : If we want to peform some operation on request before going to process the request then we use Filter.
+
+->we can read each request that comes to api gateway by filter logic
+
+->When Implement Filter and Routing in Api Gate-Way , if we made a request to Api-Gate-Way internalyy in apigateway filter and routing will be excutes
+
+->ServerWebExchange object contains complete Request Information
+
+->ServerWebExchange.getRequest(); is used to capture the complete request coming from browser.
+
+->In request,  Headers and  Body will be available.
+
+->Header means requested path url and Body will be json data.
+
+->Headers will have the data in key value pair
+
+Note : When we send a request with url in browser , browser will prepare HTTP request with the Headers and browser will send the request with headers to server i.e backend servers.
+
+->We can get request header information  by ServerWebExchange object in filter method of GlobalFilter 
+
+ HttpServletRequest request=  ServerWebExchange.getRequest();
+ HttpHeaders headers=request.getHeaders();
+ set<String> keys=  headers.KeySet();
+ for(String key:keys){
+     syso(key+"--"+);
+	 syso(header.getValuesAsList(key));
+ } 
+ 
+package com.api.gateway.filter;
+
+import java.util.Set;
+
+import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.stereotype.Component;
+import org.springframework.web.server.ServerWebExchange;
+
+import reactor.core.publisher.Mono;
+
+@Component
+public class ApiGateWayFilter implements GlobalFilter {
+
+	@Override
+	public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+		
+		
+		ServerHttpRequest request = exchange.getRequest();
+		HttpHeaders headers = request.getHeaders();
+		Set<String> keySet = headers.keySet();
+		for(String key:keySet) {
+			System.out.print(key+"==");
+			System.out.println(headers.getValuesAsList(key));
+		}
+		
+		
+		
+		return chain.filter(exchange);
+	}
+
+}
+
+Note : We can Implements Multiple filters application depends upon the requirement like prefilter and postfilter like for security we implement PreFilter.
+
+Note : In MicroServices Rest Api Contains only one RestController and Rest Controller will have  class level request mapping or URL pattern 
+
+Interview Question :
+--------------------
+Q.From which source or from where request is coming to our application whether it is browser or PostMan or ThirdParty application ?
+A. We can get to know from where request is comes to our application by Filter Object in Api GateWay
+   ->As we know every request is comes to our application through Api Gate Way , so in api gate way  we implements Filter and Routing logic,
+     In Filter class filter ovverided method from GlobalFilter which our Filter Class Impements , so we have ovveride the Filter Method which has two parameters like Server web exchage and GlobalFileter chain
+     so using Serverwebexchange object we can capture the incoming request data like headers and body
+   -> ServletHttpRequest request=  Serverwebexchange.getRequest(); which captures the request object
+   -> from request object we extract the Headers by 
+         HttpHeader header= request.getHeader();
+       Set<String> key=  header.keySet();
+   ->Header data available in key value pair , so we have to iterate and print the header by iterating header data for each loop and and prints the header data where we can find key token with postman or google browser we can find
+
+       PostMan-Token [eaj139009-rc-2eee]    
+-----------------------------------------------------------------------------------------------
+
+Note : we can get to know request is coming from where by headers of request , if request comes from PostMan , postman token will be generated in header and request header doesn't contain PostMan token then we have to assume request is coming from application or browser.
+
+Note : In Api-Gate-Way we implement Routing logic in Application.YML file and Filter Logic in java class which implements GlobalFilter Interface.
+
+Note : If request is validate or Filtered successfully in Filter class then only request will be forwarded to backend rest apis based on the reuquest url pattern 
+
+Note : We make ApiGateWay as clinet to Service Registry
+
+
+
+ 
+ 
+ 
+ 
+Note : Every Request will comes microservice project, ApiGateWay will receive the request and Api-Gate-Way has the filter logic.
+
+Note :We can write Security Logic in Filter
+
+->In filter we can write logic validate the request.If request valid process the reques else if reuqest not valid decline the request
+
+Note : The logic which common for all the rest api, instead of writing logic in every rest api like security logic, we can writen that common logic  in APIGATEWAY to validte the request.
+
+Note : Filter logic in ApiGateWay will executes for every request.Filter will validate the request and if it's valid request , then we route the request means requested  url pattern forward to which sevice or rest api
+
+Note : In Api-Gate-Way First Filter Will excutes then Routing will executes.  
+  
+
+
+
+
+
+
+---------------------------------------------------------------------------------------
+5.ConfigSerever:
+----------------
+->ConfigSever is used to separate the project and project  configuration properties.
+
+->ConfigServer maintain the configuration properties of application.
+
+->ConfigServer maintains cofiguration properties in the form YML of application.
+
+->We separete config props from application to achieve loosely Coupling.If we change any thing in config properties don't need to complie and repackage the application which reduse the maintaince problem.
+
+->Application should load the properties dynamically, to load the application properties dynamically we use Config Server.
+
+6.Redis Server :
+----------------
+->Redis Server is used to maintain distributed CACHE.Redis Server is used to Reduce the number db calls to database hence our application performance will improves
+
+->In database we have two kind of tables one static(data in db won't change) and dynamic(data will change regularly) so we keep the static data in redis server and if application wnats static data which will get the data from redis server process, which cause reduce in db calls to database.
+
+->Distributed Cache means multiple Rest Apis will get the same data from cache.Multiple apis will access the data from cache
+
+->Redis Server is used to reduce the number of database calls.If number of db calls are reduced performance will be incresed of application.  
+ 
+->Application contains the Static and Dynamic data and to delete the static data we redis server and to deal with dynamic data we application database
+
+->Cache means a storage where we keep the data in form Key and Value pair.
+
+Note :In redis cache we maintain the data in Key Value Format.
+
+->Cache is temporary storage.
+
+->By using cache data we can reduce thr number of database calls from application.
+  Database calls always costly like it db calls will take more time to execute.
+  
+Note : When  our application communicating with databse it will take more time to execute becuase load the driver and get the connection and query execution and close the connection so lot of steps will execute internally when we communicate with data base from application.
+
+Note : To reduce the Number of Database calls from our application we use Redis Server. 
+ 
+->Redis Server is one of the open source data source available in market
+
+->In order to communicate with redis sevrer we use 'Spring-boot-starter-redis' dependecncy.
+
+->We will use below components to communicate with redis server.
+  **************************************************************
+  
+   1.jedisConnectionFactory :
+    -----------------------
+    ->To establish the connection with Redis Server.
+	
+   2.Redis Template :
+     ----------------
+     ->Redis Template is used to perform operations by using redis.
+	 
+   3.OpsForHash:
+     -----------
+	->From redis template we get OpsForHash
+    ->OpsForHash will provide some  methods to commincate with Redis Server.
+   
+    Methods :
+	-------
+	1.put(k,HK,v) :To store the data in Key and Value pair. 
+	2.get(k,HK)  : Based on key get the value
+	3.entries(HK) : 
+	4.delete(K,HK)
+	
+->Once redis server is intalled , open the file folde and run the file called 'redis-server.exe' which will runs the Redis Server on defalut port number '6379'.
+
+->After the redis server is started, then execute redis.cli.exe file and which will acts as redis client and connect to redis server.
+
+->Then our boot application can connect with redis server.
+
+Note : Redis Server can suppors 30+ programming languages.
+
+->In order to verify our redis client successfully connected with redis server or not by executing commnads in redis.cli.exe cmd promt
+
+     127.0.0.1:6379> ping
+     PONG
+->By executing ping command we get pong command which means our redis client has successfully connected with redis server.
+
+->we can store the data in redis server by key valu pair, so we have to excute commad
+
+  127.0.0.1:6379>SET i 10
+  ok 
+  
+  Note : Here 'i' is key and '10' is value
+  
+->we can get the data from redis by providing 'key' name and with that we get value of that key
+   
+   127.0.0.1:6379>get i
+    "10"   
+
+Note : Redis is data store and which is acting as a cache.Redis will store the data in the form of Key Value pair
+
+->Develop spring boot application to communicate with redis server.    
+
+Note : Fisrt we need to download the redis server from web
+
+Note : Then Extract the downloaded zip file and excute redis-server.exe and redis-client.exe(to test whether the redis server is successfully intsalled or not ping command which gives pong out put whihc means successfully installed )
+   
+->Then we follow below steps to create boot application to communcate with redisn server and store the data.
+
+Note : In real time we need to take the static data from db and store into redis server and multiple micrservices can communicate with redis server and get the data.   
+  
+   dependencies :
+   -------------
+   1.spring web
+   2.devtools
+   3.Spring-boot-starter-data-redis
+   
+   y>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+
+
+
+->Create one binding class and we will store that binding class data in redis server
+
+->Then Create confoguration class and write down methods for jedisconnectionfactory and RestTemplate and OpsForhash
+
+Note: We use @Bean annotation in configurationn class to define customized bean that will mange by spring container.
+
+Note: To customize the object creation we use redis template				 
+
+Note : The methods which annotate with @Bean annotation which will be called by IOC container
+
+Note : @Configuration Annotation reprsents our java class as a configuration class
+
+Note : @Bean annotation is used to annotate method which should be called IOC container and annoated method will return a object and that object will represented as spring bean
+
+Note : In jedisConnectionFactory bean method we didn't mention redis server properties if redis server and boot application running on same machine, if redis server runs on another machine and our boot application runs other machine then  we prefer redis properties mentioning in jedisConnectionFactory method
+
+Note : To Customize the object creation we use @Bean annotation
+
+->In redis configuration class first we create jedisConnectionFactory object then we create Redis template bean and we specify jedisConnectionFactory to redistemplate to communciate with  redis server
+
+->jedisConnectionFactory objects created first and we inject that jedisConnectionFactory bean to Redis Template and from Redis Template we get OpsForHash.
+
+package com.redis.server.binding;
+
+import java.io.Serializable;
+
+public class Country implements Serializable{
+
+	private Integer sno;
+	private String contry;
+	private String coutryCode;
+	public Integer getSno() { 
+		return sno;
+	}
+	public void setSno(Integer sno) {
+		this.sno = sno;
+	}
+	public String getContry() {
+		return contry;
+	}
+	public void setContry(String contry) {
+		this.contry = contry;
+	}
+	public String getCoutryCode() {
+		return coutryCode;
+	}
+	public void setCoutryCode(String coutryCode) {
+		this.coutryCode = coutryCode;
+	}
+	
+	
+}
+
+Note : Here java class implements serializable interface because we are java object transferring from java applicatioin to redis server, so wehave to serialize then only we able to trasfer data to redis cache.
+
+Note : Serializable Interface means Marker Interface which menas No methods.
+   
+package com.redis.server.configuration;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.web.client.RestTemplate;
+
+import com.redis.server.binding.Country;
+
+@Configuration
+public class RedisConfig {
+
+	@Bean
+	public JedisConnectionFactory jedisConnectionFactory() {
+		JedisConnectionFactory connectionFactory=new JedisConnectionFactory();
+		//TODO : if redis server is on different machine configure Redis Server properties in here other wise if redis server and boot application runs on same server no need to mention details
+		//Redis Properties like host,port etc
+		
+		return connectionFactory;
+	}
+	
+	@Bean
+	public RedisTemplate<String, Country> restTemplate() {
+		RedisTemplate<String, Country> redisTemplate=new RedisTemplate<>();
+		redisTemplate.setConnectionFactory(jedisConnectionFactory());
+		return redisTemplate;
+		
+	}	
+}
+Note : We use @bean annotation to customize the object
+
+
+package com.redis.server.rest;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.redis.server.binding.Country;
+
+import jakarta.annotation.PostConstruct;
+
+
+@RestController
+public class CountryRestController {
+	
+	private HashOperations<String, Object, Object> opsForHash=null;
+	
+	public CountryRestController(RedisTemplate<String, Country> rt) {
+		 opsForHash = rt.opsForHash();
+	}
+	
+	@PostMapping("country")
+	public String counryAdd(@RequestBody Country country) {
+		//TODO: process POST request
+		opsForHash.put("Countries", country.getSno(),country );
+		return "country added Successfully";
+	}
+	
+	@GetMapping("/country")
+   public Collection<Object> getCountries(){
+		Map<Object, Object> entries = opsForHash.entries("Countries");
+		Collection<Object> values = entries.values();
+	return values;
+	   
+   } 
+	
+}
+
+Note:-> we use jedisconnectionFactory to establish communiction with redis serevers
+
+     ->Then we use RedisTemplate to perform some operations and get the OpsForHash class.
+	   We configure jedisConnectionFactory to redistemplate to specify wehere our redis server is present
+     ->we use opsForHash object get methods and perform operations redis server.
+       we get opsForHash by RestTemplate getOpsForHash();
+     ->so by using opsForhash methods we store the data redis server in key value pair and get the data based on keys 
+	 
+	 Note : In project we use redis server to maintain static data , because to reduce the number of db calls whihc leads more time to process so we keep static data in redis server and get it from there if we need.
+	 
+	 Note : Redis Server is distributed cache.Distributed means multiple applications can connect with same redis server.
+	 
+	 ->If we have the data in redis cache multilple microservices can take the data from redis cache. 
+ 
+Note :Redis is a Data Store and which is used to store the application static data in Key and Value Pair.
+      Connecting with the database always costly operation and which takes much time to execute the queries in db so improve the application performance we use redis cache to improve the application performance by storing the static data in redis and we communiate with redis cache for fetch static data and so we dirctly not communcate with db hence application performnace will be improves 
+
+Note : So we load the app static data from db and store into redis cache and from redis cache our boot application will take the static data and performs the operations.
+ 
+=========================================================================================================================================================
+CLOUD CONFIG SERVER:
+--------------------
+->Cloud Config Server is used to separate the application and application config properties.
+
+  Example: Config properties will be Data Source and SMTP Props and App Msgs
+
+->As of Now What ever the configuration properties that we required we keepn in application.properties or yml file
+
+->We keep data source and smtp or other configuration properties in application.yml or applicatio.properties file
+
+->So in real time if we want to deploy our application we to package application as jar or war file , so in that file data source properties will be available 
+  So data source properties will change form Enviroment to enviroment like for dev envi we have separate dev data source properties and QA Envi we have separate Data Source propeties and for UAT we have separate DS propeties , so when we package the application then jar file will be created , so we can run that jar file anywhere we want.
+  So if we want change the ds properties, again we have to package application and run it, it will be tighlty couple approach due to application.properties and source code bothe are available in same project so application will become tightly coupled.
+  To avoid that problem we Clouf Config Server to separate the application and application config properties to achive loosely coupled code  
+
+-> We can externalize the  application config props from application using Config Server
+
+->So we keep our Rest Apis Configuration properties i.e yml files and that yml files created based on project name and keep in them in  Git Hib Repository and we develop Config Server application where we give Git Hub Repo Link to get Config Properties from git hub repo. and we develop Individual Rest Api which will connect with Config Server to load configuration properties to Rest Api.
+
+
+        Git Hub Reopo 
+       ------------          ___________________
+         Greet.yml  _________|                 |-------------Greet Rest Api
+         Welcome.yml  ______ |Config Server App|-------------Welcome Rest Api          
+         Admin.yml	________ |_________________|-------------Admin Rest Api
+            
+->So now if config properties changes in git hub repo , so rest api will automatically fetch the props to rest api by connecting to Config Server, so for that we no need to again and again packge and our application and run the application to get config properties data to project auotmatically our rest api will take latest changes in config file form config server which is reponsible to get load yml file data from git hub repo.
+
+->Config Server is used to separate application and application config properties.
+
+->We can externalize configuration properties by using config serever 	   
+
+->We have to make sure yml name and rest api name should same
+
+Note : Application Specific Configuration properties will be maiatain in git hub repo and config sever will communicate with git hub repo and get the ymm files and rest api will get yml data based project name from config server by connect with it.
+
+->We will maintain application configuration yml file in git hub repo.
+
+->Config Server Application will connect with Git Hub Repo to load All Yml Files.
+
+->Our Rest Apis will connect with the config sever application to load the yml data based application name.
+
+Note :If we use config server then we no need to re-package our application when we make changes in properties file in git hub.	   
+
+Note : Application Config Props should be one place and application soruce code should be one place, so when we make changes in yml file no need to re-compile and re-package the code again and again when we make changes in yml file.
+
+Note : The Role of Config Server is to load the yml files available in git hub repository
+
+Note : We just externalize the config properties from our rest api not removing config file, we load properties file data dynamically from config server.
+
+Note : So when we get the config property data from condfig server to rest api ,actually we don't see that fetched property in rest api but we get dynmically in our rest api we can't see the properties, that will available in config server application , like that data source and smtp and app messages we dynamically load to rest api but we can't see that in rest api.but all those configurations will be available in config server which connect with git hub repo.
+
+Note : Every Rest Api Has It's own yml file
+
+Note : How our rest api will know that which yml file it has fetch by keeping the application name and yml file name should be the same. 
+
+Config Sever Application Devlopement;
+#####################################
+
+dependencies:
+*************
+1.spring-cloud-config-server 
+   
+->We need to annotate the main class with @EnableConfigServer to enable config server
+
+Note : For config server application we need to tell where our yml files available by configuring property in config server application yml files
+
+Config Server.yml
+*****************
+Spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/ashokitschool/configuration_properties
+          clone-on-start:true
+management:
+  security:
+    enabled:true
+
+
+->Run The Application 	
+
+Note : clone-on-start:true 
+       which means clone the git repo in  config server and automatically does not need to wait for client to send to request ymk then git repo should clone , so git repo will be auto clone with out wait untill send request to yml 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Config Server Client Development :
+----------------------------------
+dependecies:
+------------
+spring cloud client
+web-starter
+devtools
+
+Note : We add config client dependency to register the rest api with config server
+
+<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+		
+
+->We specify url of the config server in yml file of rest api,then rest api will connect with config server and get the configure properties from config server and config server will fetch the config properties from git hub.
+
+->Config server will load the yml file based on the rest api application name.
+
+Note : we load the application.properties or yml property based on the  into java class variable by @value("${key}") annotation		
+		
+Note :Application name and yml file name in github repo should be same then only config server will identify the yml file with application name in rest api yml file spring application name then only config server will load the data into rest api.
+
+Note : For Rest Api we should tell where is config server is running by configuring property rest api yml file.
+
+Note : We get to know whether our rest api is connected with config server or not by seeing console meessage after running rest api by following message like
+      "Fetching config from server at : http://localhost:4050"
+
+Note : Our Backend Rest Api Getting the data from the Config Server and ConfigServer getting the data from the Git hub Repository
+
+->Our MicroService will act as client to ConfigServer.If we have 20 Rest apis in microservices project we have 20 yml files in github
+
+@RestController
+public class GreetRestController {
+
+	@Value("${msg}")
+	private String message;
+	
+	@GetMapping("/greet")
+	public String greet() {
+		return message;
+	}	
+}
+
+
+Application.yml
+
+
+server:
+  port: 4051
+
+
+spring:
+  config:
+    import: optional:configserver:http://localhost:4050
+
+  application:
+    name: greet
+	
+Note : Like that we do above configuration for differenct back end micrsservices rest apis in order to connect with config server
+       and fetch or load the yml data from config server and config server will load the yml file based on the application name we have given properties yml file and yml file name in git hub.
+
+Note : Config Server is used to separate the applicaton and application config properties and application will fetch the app config properties dynamically from config server.Config Server will fetch the config properties from git hub
+
+Note : So if we do chages in yml file of rest api in github , we no need to repackage and re run the application, So application is loosly coupled with configuration properties. Config properties may change in future so config properties change it should not effect on the application, so to separate the application and application config properties we use Config Server  	   
+	
+Note : Our BackEnd Microservice are loosely coupled from application config properties
+
+Note : By Config Server we can't recomplie and re-package the code application whene ever made changes in yml file because yml present in git hug not in application.
+
+Note : Appliaction and application cofifuration properties file yml file loosely coupled 
+
+NOTE : In real time One Rest Api or Application will not have the only one yml.
+       Based on the environment we have multiple ymls
+	   Like dev and uat and qa and production yml files
+	   Based on the profile we set in rest api config property our rest api will fetch the yml file based on profile we set
+	   ->We have dev profile and qa profile and uat profile etc.
+	   ex:greet-dev.yml
+	      greet-uat.yml
+		  greet-qa.yml
+		  greet-prod.yml
+		  
+Note : We have to configure a property in rest api yml like which yml file we should load based on profile property we set in yml
+
+       spring:
+	     profiles:
+		   active: prod
+	Note : Which mean greet-dev.yml file will be loaded
+           if profile is dev then greet-dev.yml file will be loaded
+     
+	 
+Greet.yml:
+---------
+spirng:
+  profiles:
+    active:dev or prod or qa 	
+-------------------------------------------------------------------------------------------------------------------------------------------------------Not
+7.ApacheKafka:
+--------------
+->Apche Kadfka is a message broker and which is used to send the info from one application to another application.ApacheKafka is used to develope Event Driven Microservices(send the info from one app to another app).
+
+->Based on the events if we want to execute the logic we use Apache Kafka.
+
+->To exchange the data from one application to another application we use Message Broker.  
+
+Note : Example if we search a product in amazon and then we use facebook and in facebook we see amazon product add that we have searched, so here amazon and facebook exchanging the data using Apche Kafka
+
+->Like if request comes to one api then we want to send info to another api then we use apache kafka or rest calls 
+ 
+8.Rest Apis:
+------------
+->Rest Apis means apis which are contains the Business Logic.Based on the functionalities we develope the Rest Apis
+
+
+Note : 3rd Party apis communication we can done by RestTemplate and web clients
+       RestTemplate is Synchronus and WebClient is Asynchronus  
+   
+
+Note : Interservice communication  bewteenm rest apis can be done by using Feign Client.
+
+Note : Bothe Eureka Server and Admin Server both provides a dashboard to manage the rest apis.
+
+->Rest Api means One MicroService.Our Backend Rest Apis will act as Client to Service Registry and Admin Server and Zipkin Server.
+
+
+Note :Actuator dependency to monitor the rest api or application.
+
+Note : In order to perfrom distributed tracing back end rest api should have the Sleuth dependency to communicate with zipkin server.
+
+Note :Rest Apis in Microservice-project acts as client to Eureka and Admin and Zipkin Server 
+
+->ZipKin Server is also a ready made spring boot project that will packaged as jar and freely as jar file in web and we download and run the jar file in cmd.
+
+Note : For each application one server will be available and each application will be runs on separate jvm
+
+Rest Template :
+--------------
+->Rest Template is used to establish communication between one api to another api.
+
+->Rest Template is used to send the http request programatically.
+
+->By Rest Temolate we can communicate with one rest api from another rest api
+
+@RestController
+public class GreetRestController {
+	
+	@GetMapping("/greet")
+	public List<Integer> greet() {
+		return Collections.EMPTY_LIST;
+	}
+}
+
+
+@RestController
+public class WelcomeRestController {
+	
+	@GetMapping("/welcome")
+	public String welcome() {
+		
+		RestTemplate restTemplate=new RestTemplate();
+		ResponseEntity<String> responseEntity = restTemplate.getForEntity("http://localhost:8081/greet",String.class);
+		String body = responseEntity.getBody();
+		
+		return body + "welcome to Microservices";
+	}
+	
+}
+
+O/P: [] welcome to Microservices
+
+Note : In Microservice RestTemplate approach is not recommended  because for communication between rest apis due to
+       here we hard coding the URL of rest api whic we want to communicate, in future url may change so then we may rest api won't work
+       ->Suppose the rest api we want to communiate, in future that rest api will get more requests, so in order reduce load on  rest api , we run rest api on mulyiple servers, so url will be changes
+         so we points to single hardcoded url in RestTemplate so that's not recpommended
+      
+	   ->Same api can have multiple urls ,so we don't recommend RestTemplate because in RestTemplate url hardcoded.
+      
+	  ->In RestTemplte we give rest api or service URL
+
+Note : RestTemplate won't talk to service registry 
+
+ 
+FEIGN CLIENT:
+-------------
+->InterServiceCommunication Means One Api Communicating With Another Rest Api
+
+->Feign Client is used to establish communication between two rest apis with out url.
+
+Note : The main difference between Rest Template and Feign Client is  with url we communicate rest apis and with out url one apis will communicate with another rest api.
+
+->In Rest Template we hard code the URL
+
+->In Feign Client we don't hard code the URL, we give Rest Api Name what we given in yml file and with that name rest api will registered in Eureka Server.
+
+Note :Abstract Method means method with no body 
+Note : Concrete Method Means Method With Body
+
+->In Feign Client We service or rest api Name not url.Url will be fetched by service registry not Feign client.
+
+->Actually we give abstract method in feign client interface so implementaion wil  be provided in runtime by PROXY DESIGN PATTERN when that Communciation happened by feign client
+
+->So for feign interface implementaion will be provided by spring cloud in runtime
+
+Note : When we want to work Feign Client We Should annotate main class as @EnableFeignClients.
+
+@FeignClient(name="GREET_REST_API")
+public interface GreetFeignClient {
+	
+	@GetMapping("/greet")
+	public String invokeGreetMethod();
+	
+}
+
+
+package com.welcome.rest.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.welcome.feignclient.GreetFeignClient;
+
+@RestController
+public class WelcomeRestController {
+	
+	@Autowired
+	private GreetFeignClient feignClient;
+	
+	@GetMapping("/welcome")
+	public String welcome() {
+		
+		//TODO: RestTemplate Approach
+		
+		//RestTemplate restTemplate=new RestTemplate();
+		//ResponseEntity<String> responseEntity = restTemplate.getForEntity("http://localhost:8081/greet",String.class);
+		//String body = responseEntity.getBody();
+		
+		//TODO : Feign-Clinet Approach
+		
+		String body = feignClient.invokeGreetMethod();
+		
+		return body + "welcome to Microservices";
+	}
+	
+} 
+
+->First we need write Feign Client Interface and Feign Client Name according and annotate feign client with @FeignClinet(name="Name-Of-Rest-Api-We-Want-Communiate") and then write a abstarct method based in to which rest api controller method we want to send request in abstract method syntax
+  Then autowired feign client where ever we want in application and use feignclient method then internbally feign cleeint will approach metioned rest api we want communcate and send the request based on method we called and fetch the response.
+  
+->FeignClient will communicate with Service Registry based on the given rest api name and look for rest api and found and send the request rest api with given request details like controller method in Greet Rest Api in feign client and get the response.  
+  
+Note : In Feign Client Url is not hardcoded, we jsut give rest api we want to connecct, based on that rest api name service registry will get url of rest api and send request and get the response.
+      
+Note : In RestTemplate we hardcode the URL and we don't give URL of service.
+
+Note : Feign Client Used to Communicate with the rest api.In Feign Client we didn't hardcode the URL , we give rets api name , so feign client will communiate with Service Registry based on the service whihc given, if it founds, feign client will get rest api url , if rest api contains one url simply
+       communicate with that url rest api, if rest api have multiple url in service registry , feign internalyy uses RoundRobbin Tech to which url we rest api should communicate.
+==========================================================================================================================================================================================================================================================================================================
+Load Balancer using Ribbon:
+--------------------------
+->Load Balancer is used to distribute the incoming requests to multiple servers which are running our application.
+
+->In real time our application will not runs on single server
+
+->Server will handle the limited number of requests only, if users increases and sends more requests to server our application may hnadle the requests , so our application will deploys on multiple servers in order to handle the N number of requets.
+
+Note : If runs our application on single server , if more requests to application which is in single server ,server may crash and performance will be decrease and application will not executes the requests if run our application on single server.
+
+->In Load Balancer conept if our application runs on 3 servers and internally load balancer uses RoudnRobbin Technique to distribute the requestst severs which are running our application like if 1st requests comes request will be distributed to 1st server and 2nd request comes , distributed 2nd server and 3rd comes distributed 3rd server , if 4th request comes distribute to 1st server and if 5th comes distrbuted 2nd server and 6th comes distributed 3rd sever like that requests will distributed using Round Robbin Technique.
+
+->RoundRobbin Technique means one after other the request will be processed.
+
+->We runs our application on multiple servers to achieve load balancing among application for request.
+
+->Load Balancing means which is used to distribute the load to multiple servers.
+
+Note : We can run our application on multiple servers with hardcoding the Port Number on yml file and we should run our application as run configuraions i.e vm arguments which means we want to supply port number in runtime by using vm arguments.
+
+Command Line Aruguments : The command or Argument we give as input to main methd
+
+VM Argument : The Arguments we give as input JVM directly
+
+Note : CMD arguments means input for main method Where as VM arguments input for JVM 
+
+->So if we run our applicatiion by run as springboot app, automatically application will be runs embeded tomcat server with default port number 8080.
+
+->If we run application as run as Run Configurations 
+
+Note : Program arguments Commadn Line anD VM argumets JVM
+
+Note : Load Balacing is already present in application we no need to do any extra coding for  that.
+
+Note : In order to achive the Load Balnacing We should not maintain sever.port property in yml file.
+
+Note : If we use Rest Template to achive InterSevrvice Communication, where we hard code the URL of Rest API, so all request comes to same server hence load will be increases , so in load balacing our will not runs on single server so, mutiple urls will with diff port number , so we can't achive load balancing with Rest Template.So we prefer Feign Client. 
+
+Note : We never run Rest api in single server
+
+Steps To Run Application In Multiple Servers:
+---------------------------------------------
+Note : Make sure application shouldn't contain server.port property in yml file,then only we able to run application on multiple servers
+
+1.Right Click On Application and Choose "Run As"
+
+2.Click on Run Confifgurations
+
+3.Choose SpringBoot App and select the rest api or application which we want to run on multiple servers
+
+4.Click on Aruguments panel on right side of the screen and choose VM arguments and enter arguments 
+
+    a.-Dserver.port=8081
+5.Click on apply and run
+
+
+Note: To run different server just update the port number of VM Arguments -Dserver.port=8082 like that we can run our application on multiple servers.
+
+->So consider Our Greet Api runs on 3 servers and Welcome runs single server and welcome rest api communicates with Greet API USING feign Clint,
+  so when we send request to welcome controller method  in welcome rest api , internally wecome api controller method commincates with Greet Rest Api which runs 3server so here Feign Clinet Welcome Rest gets Ambiguity Problem to communicate with Greet Api Instance or Url or port number
+  To resolve the ambuguity Feign Client will communicates with spring cloud concept like Ribbon helps which url feign clent should use to communicate with Greet Api , internally ribbon will use Round Robbinn Technique to which url Rest Api should communicate based on Number of servers application runs, so one after other concept will be used here.
+ 
+->Load Balancing is used to distribute the requests to multilple servers which are running application
+
+->We can achieve the Scalability by based on the demand we increase the servers and if demand is less we can decrease the serevers also.
+
+Note : In loadBalancing Ribbon will helps us to choose which intsance or server should excute for our request.
+
+Note : We go for load balancing to achieve high availabilty of the application.  
+
+Note : For InterService Communication we choose Feign Client becuase load balancing is available
+
+Note : Rest Template and WebClint inerservice communication approches are not recommend because they hard code the url to communicate.
+
+Note : So far we did Load Balancing with Manually 
+
+Note : We can't predict the how many request will comes to our applicatio on mins basis or hors basis, so we can't predict the how many servers we need to have runs our application on multiple servers.
+
+-> We use AutoScaling concept to auto matically increase or decrease the servers based on demand
+
+AutoScaling:
+------------
+->In auto scaling systerm will decide how many servers are required based on incoming requests.When the traffic is more serves will be increase and if the request traffic is less servers will be reduced that kind auto scaling will be there but we should go for Cloud Computing like AWS OR AZURE those platforms will provide autoscaling for us.
+
+->Automatically severs will be increased or decreased based on the demand
+
+->ScalUP and ScalDown will be happens automatically
+
+Manual-Scaling:
+------------
+Adding the server and removing the servers that will done manually by us.
+ 
+ 
+->Load Balancing is used to distribute the load or requests to multiple servers.
+  With Load Balancing We achive the performance. So every server will take the request in round robbin fashion 
+
+Note : Ribbon Cloud Concept is a in build concept Feign Client
+
+->With FeignClient we can't bother about if application runs on multiple servers, beacuse internally feign client communcaites with Ribbon concpet to which serevr we want to communicate 
+
+Note : Feign Client is the best option for InterService Communciation with Load Balancing Technique
+
+Note : If One Rest Api wants to Communicates with multiple Rest Apis, then we have to create Rest Specific Feign Clients In Rest Api which want to communicate.
+
+Note : We can Communicate With 3rd party Api by Feign Client but we should give 3rd party api url. 
+
+
+==========================================================================================================================================================================================
+
+CIRCUIT BREAKER IN MICROSERVICES:
+---------------------------------
+->Circuit Breaker is a electrical concept.
+
+->Circiut Breaker is our home applicances we use to protect our home whenn excess power and low power comes.
+
+->To overcome the problems Comes with High Voltage and Low Voltage Power to home electric devices we use circuit breaker to supply constant voltage power to home electric devices.
+
+->Circuit Breaker is used to handle High and Low Voltage Problems which are occuring with Power.
+
+->Circuit Breaker won't supply the power to elecrical device when High and Low Voltage Power Comes. 
+
+->We use circuit breaker to handle the scenario in our Microservices application where our services are failing to process the request.
+
+->When our services are  failing to process the request that leads to throw an exception and that exeption will sends as a response user,so instead of sending error message we should excute fall back logic in case of failure in service while 
+  Processing the request.To Excute the FallBack Logic We Use Circuit Breaker.
+  
+Note: Circuit Breaker In Microservices we used to handle the failure or fault situations.   
+  
+Note : Fall Back Logic means when Main Logic is Failed to execute then execute alternate logic is know as FallBack Logic.
+
+->In order to handle the fault or failure situations in applications we use circuit breaker.
+
+Note: Like we have two Services like Service-A and Service-B in microservices Prooject, so we have Logic like Service-A communicates with Service-B to process the request and
+   Assume Service-A has a medthod like M1() and Which communicates with Service-B M2() and M2() connect with db to get the data and sends back to Service-A M2() and Service-A M2() methods will returns Success response to user, so this is Noraml Scenario.
+   Assume Service-A M1() meetod commincates with Service-B M2() and Service-B M2() is down or throwing exceptions or unable to process the request. So in that scenario M2() method of Service-B may throw exception or error which leads to Service-A not able to process the request because Service-A m1() method communicates with Service-B M2() and Servicee-B is down so Service-A M1() Methods throw error to user, so that not good practice to send the error to enduser when error occurs,so we have to
+   Excute Fall Back Logic i.e alternative logic when Service Methods failed to execute like Service -A M1() failed to communicates with M2() of Servic-B, so we call FallBack logic when M1() method is failed.
+
+->Fall Back Logic Means Alternate Logic
+
+->Fall Back Method means When original method not working then only we call or executes Fall Back Logic is know as Fall Back Method
+
+->Fall BACK Method will called when there is problem or failed to excute original Method
+
+->If exception or error occurs in original method then only we execute fall back method.    
+
+Note : We can get question like why need to use Circiut Breaker instead of Try Catch block like when exception occurs in Service-A m1() method calls M3() Fall back logic in catch block when ever exeption occurs .
+       
+	   public Stirng m1(){
+	   
+	   try{
+	 
+	   //Logic To Call Service-B through Feign Client
+	   
+	   }catch(Exception e){
+	   
+	   return m3();
+	   }
+	      
+	   
+	   return str;
+	   
+	   }
+	   
+	   public String m3(){
+	   
+	   //alter logic
+	   
+	   }
+	   
+->But the above  code i.e whenever exception occurs catch block will executes and fallback logic will executes but this is not recommended approach because every time service-B failing exeption occurs in try block of m1() of Service-A for a specific time i.e 24 hours or 48 hours, so it keep on failing and we executing  the catch block where we have fall back logic and it is not recommended to use try catch block ,becuase we are contineously executing failing try  block again anad again that we know we already it is failing , so it is not a recommended approach to call keep on calling failing try block then executes catch block.
+
+Note : In real time what we do like use Circuit breaker, if Service-A M1() method has logic to call Service-B M2() so if M2() method in Service-B is down we use circuit breaker in m1() of service-A which calling m2 () of Service-B which is keep on failing, so we use CircuitBreaker in Service-A where our M1() fail to communicate with Service-B , so we Circuit Breaker Logic for that CB we tell like hey CB observe the all requests to m1() method of  Service-A , if 5 requests are failing contineously don't call the M1() of Service-A because 6th and 7th and 8th requests will be fail, so don't call the m1() method of service-A for 6th request , call the Fall Back Method i.e M3() from 6th request onwards.Like that for some time 30 mins call the FallBack Logic M3(), after 30mins again call the M1() method of Servicce-A ,if Service-A M1() method successfull continue with method, if not successfull then continue with FallBack Logic i.e M3() Method. That's where we use Circuit Breaker in our application.
+
+Note : We don't use the try catch block if one service is down to call fall back logic catch block becuase we keep on calling the Failing try logic which we already knoww it will fail for some time ,so we use CB to observer the method which gets failing for specified reuqest , then don't call the method , call the fallBack method which has alternate logic for some time and after some time again service method which previously failed , if it is successfull continue with taht other wise continue to  call CB which has Fall Back logic.   
+    
+NOTE :Circuit Breaker is used to Handle the Fault or Fail Scenario in our MicroServices Application.
+
+Note :Circuit Breaker is a Design Pattern to develop fault tolerance applications.
+
+->Fault Tolerance means if there is a failure in Service, with out sending the failure messsage ,process that request with fallback logic and send some response to the Client.
+
+->Like if there is a Failure occurs in M1() method of Service-A ,in that case with out sending the exception or error to client , we use CB fall back logic to send some meanigfull response to Client.
+
+Note :  if we go with Try and CATCH BLOCK for handling failed Scenarios, with that problem is always execuets try block and exception occurs call catch block which has fallback logic, so I don't want to execute try block every time, if it is failing what is the use of executing the try block, that's where we use ciucuit breaker for the method which failing keep on and excute the fall back logic for some time when ever reuqets comes to sevice method which handling request.
+
+->We Configure the CircuitBreaker for the Service Method which Failing contineously instead of tryc catch block .we configure CB to method which contineously failing by Annotating the method with @CircuitBreaker(name of CB, fallback method),
+
+Note : The Benefit with CiucuitBreaker is don't need to use Try And Catch block .
+
+->When request is failed in service method call the CB for return fall back logic.
+
+Example:
+--------
+
+   @CircuitBreaker(name="",fallbackmethod="m3")
+   public Stirng m1(){
+   
+   //Logic To Call Service-B m2();
+   
+   return str;
+  
+  }
+
+  public String m3(){
+  
+  //Alternate Logic
+  
+  return "alternate Logic";
+  
+  }
+
+ 
+Note : If Request  Failed in Service Method , that method will excute CB fall back logic, CB  that we already configured above method which may get fail
+
+->To develop Fault Tolerance Applications we use Circuit Breker.
+
+Note : Fault Tolerance Applications also called as Resillence Applications.
+
+->Resillence Applications developing a applications like when there is a Failure in application use Fall Back logic and send the appropriate or meaning full message to Client isntead of sending Error Message.
+
+Circuit Breaker Have Following States:
+--------------------------------------
+
+1.Closed State 
+
+2.Open State
+
+3.Half_Open State
+
+->Circuit Breaker Will Comes into Scenariop when main logic is failing , then Circuit breakerr fall back logic will execute.
+
+->When Fall Back Logic should execute that will be configured Circuit Breaker Configuration
+
+->Like we have 2 rest apis like Servic-A and Service-B , Service -A is has logic to communicate with Service-B , so when bothe are working as expected then we don't need circuit breaker , if Service-A is unable to commincate wiith Service-B i.e Service-B is down then we use CircuitBreker to handle the fault scenarios.
+
+1.Closed State:
+--------------
+->When service are working as expected or sucessfully runnig then CircuitBreaker will be in Closed State.
+
+->CircuitBreaker will be sleeping when Rets Api are wokring as expected
+
+Note :When Requests are processing successfully in rest apis  then CB will be in Closed State.
+
+
+2.Closed State:
+----------------
+->When Requests are not processing succesfully with given failure monitor requests number like 5 requests then Circuit Breaker will be in Open State.
+
+->Open State means there is a failure in application
+
+->Like we configure Moniotr Failure Request Number as 5 , if service-a is commincate with service-b to process the request so when service - b is doown then service-a is failed to process the request because service-b is down, so like that service-a is failed process the request continouesly 5 times , then instead of excuting servicr-a method which communicate with service-b we directly excute fallback logic wriiiten service-a method instead of service-m1() for some time.
+  After some again incoming request will goes to service-a origlanl method if again service-a m1() method failes to process the request for specified moniotro request in CB again CB will goes to OPEN state  
+
+->When ever theres is failure in original method we execute fall back logic of CB.
+
+3.Half_Open:
+-----------
+
+->When Services are unable to process the requets , we CB in open state and execte fall back logic for some time, after some time CB allow Sercvice to send limited number of request to check the request are successfully processing or not which means CB in HALF_OPEN state
+
+
+Note : When the requets  are processing successfully and services-a is able to commiunicate with service-b to process the requests then CB will be in CLOSED STATE
+
+Note : When requests are failing to process the  rest apis with configured  request numbers contineously then circuit breaker will open and fall back logic will executes instead of execuiting original method of service because service is contineously failing to process the request with given number of requests to monitor 
+       In Closed State Only Fall Back Method or logic will execute not original method when Client Sends Requests.FOR Some time fallback logic will executes.
+	   
+Note : After SomeTime in Open State of CB, then CB will comes to Half_Open State here limited number of requets goes to Original Method of service for tetsting purpose wheteher the Request are successfully process or not Orginal Method in service if request are failed then CB will comes to OPEN state.OPen state means only fall back logic will executes.
+       Suppose after some time OPEN state in CB , CB will moves to Half_Open State here CB will send number of requests will be send to original method to check whether Original Method of Service request processing successfully or not if succesfull CB moves to Closed State .Close Means every thing working fine or Requests are processing successfully by original method of serviice.	   
+	   
+->If we use evry time original logic will execute if it as failes goes to catch block and executes fallback logic , so again and again excutes try block originla method then fall back logic in catch so why we need to send requestes to original method which already failing, it's not a good approach, so we use CB to handle the fault or failure scenarios like
+  if original methods contineously failing for certain number of requests then don't send request to original logic send request to fallbakc logic for sometime, after time CB will allow send limited of numer of reqeust to Original method and then check if they are working if working allow sends reuqets to original else allows requets to fall back method
+  
+  
+->CB works on States i.e Closed and Open and Half_Open
+  ->Closed: Services are up and running and there is CB Nothing to do and requets are processing sucessfully
+  ->OPEN: If theres is problem in services , CB Will OPened and only Fall Back Logic will executes not original method logic for some time.
+  ->Half_Open :After SomeTime in open state then  Limited Number of Requests goes to original method of service if they are successfull CB will open else if requests failes then goes to Open State.
+
+Note : CB comes into picture when "communication between two services"  
+
+	 
+
+
+
+
+	                  When num of remote calls
+	   _____________     failure% > given ______________
+	  |             |        threshold   |              |
+      | CLOSED      |------------------->|  OPEN        |
+      |_____________|             ______>|_____________ |
+	          |                  |                |
+	          |                  |                |
+	          |       If LimitNum| of calls Faile |
+	          |          ________|________        |
+	  if NumOf|         |                |        |
+	  limited |_________|  HALF_OPEN     |<_______|       
+of calls success	    |________________|       AfterTimeOut Perid 
+
+
+
+->Circuit Breaker is used to develop Fault Tolerance Sytem which menas when ever there is exception occurs in service or application instead of sending error responsee to Client we execute Fall Logic for that we are going to develop a CB
+
+->Circuit Breaker Close State means two service are comminicate well and up and running.In this State CB will Count or  examine or Monitor the Number of Requests or calls  are coming to Service Contineously.
+
+->Circuit Breaker Open State means theres is Down in service. As soon as percentgae of failing APi calls or requests exceeding the given threshold then CB Open State will be enabled
+  When Services are Failing to interact with each other when request comes , then CB OPEN state will Enabled
+
+->Circuit Breaker Half_Open State Means when CB staying in OPEN state for given time out period, CB will automatically moves to Half_Open.
+  In this state limited number of api calls to pass thorugh service and if remote api calls failure count greater than this Limited Number then breaker will go backs to OPEN state else moves to Closed State.
+
+
+Note : When Two Service are communcate well and process the requests well CB nothing to do it will be CLOSED state, due to some issue if two services are failed to communicate which leads to excepton occurs so which error response we get instead of sending error response we execte 
+       fall Back Logic and Open State specified num of request fail that greater than or equals given threshlod like for 5 continueosly fail then we verify threshlod with failure request count if gretaer then OPEN state enbaled in this request will dircect pass to Fall Back Logic mot Serive Orginal method for given time period.
+       After given time out period CB will automatically moves Half_Open  state and make api specified request calls to service and if sepcified number failing then again CB moves to OPen else reuqets are sucessfull moves to CloseD state.
+	   
+Note : Previously we use Hystrix Liabraty to develop Fault Tolerance CB Application
+
+Note :Hystrix is out dated Now ,we use currently Resiliance 4j liabrary which is easy to use liabrary from Netflix-Hystrix to develop CB Fault Tolrance applications 	   
+
+Note : When service is down we use CB to handle fault scenarios
+
+
+->We have to configure Properties in YML to work with CB
+
+Note :failureRateThreshold : 50 -->which means from given number of calls specified which are failed  greter than or equls 50% of threshlod then Open state will be Enabled.Suppose we have we made 5 request contineously if all are failed which means 100% failure rate is there so threshlod we set 50 but here request call failure 100 so 100 greater than failure threshold 50 then circuit breaker will OPEN.
+
+Note : mininumNumberOfCalls: 5 --> how many number of remote api calls allow to verify whether CB has to OPEN or not.If given 5 calls  3 are failed contineoulsy CB moves OPEN state.
+
+Note : permittedNumberOfCallsInHalf_OpenState: 3 s --> which means how many callss allow in half_open state to check sevice are successful process or not like if mention 3 given calls  failed OPEN state enabled
+
+Note : slidingWindowType:COUNT_BASED --> Based on the request count set the behaviour of CB in Rest API
+                                         We can have Time Based Circuit-Breaker like based on given time remote api calls failure.
+										 
+         
+Note : slidingWindowSize :10 -->We telling CB to observe 10 requests.
+
+
+Note : Based on the CB configurations when to call Original Method Rest api and when to call fall back method that will be decide
+
+->The main Purpose of CB to develop Fault Tolernace Sytem or Resilence System
+
+Note : To Implement CB in REST API we jsut have to annotate a method with @circuitbreaker and write config properties in yml file of application.
+
+Note : CB is Design Pattern which is used to develop Fault Tolerance Systems which means when ever exception occured in application we execte fall back logic isstead of throwing exception we send some meaning response to client.
+       Why we need to go for CB instead of try-catch block , the issue or problem with try-catch block is to every time try excutes and then catch block fall back logic when ever contineiusly Failed requests are comes to service, so why we need to execute unneccessarly when service method conitneosuly when service is down , it's not good approach  , so use CB to handle Fault Tolerance Situation like when evere requets failing continueosly don't execute original execute fall back logic for some time.
+
+Note : We Use CB when two services are communicating each other.	   
+
+Note : To Implement CB we use Resilance 4j. Previously we used Netflix Hystrix which is outdated.
+
+Note : We access the one service from another service by communication called Rest Template or Feign Client or Web Client
+
+Note : For CB in  service, for that CB WE Configure Properties in yml file and based on CB Name what we given service method, based on that name we configure properties in yml file.
+       CB Name is the link between CB and CB properties in YML file
+
+->CB Properties plays big role in application to develop Fault Tolerance Application.
+
+Note : To get the CB health we configure a property like managemnet.health.circuitbreaker.instnaces: true
+
+Note : When we need to go for CB Design Patterns , when we want to develop Fault Tolerance System we use CB.Fault Tolerance Means When ever theres is problem execute fall back logic.Fault Tolerance System also called as Resiliancee4j.To Implement the CB we use Resiliance4j.	   
+
+
+
+Developement : 
+-------------
+Resiliance4J CircuitBreaker
+Actuator -- To health of applicationa and CB
+web      -- we get Rest Template in web dependecncy
+
+
+
+@Data
+public class RateOfIntrestResBean {
+
+	private Integer id;
+	private String type;
+	private Double roi;
+	
+}
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
+
+import com.loan.cb.dto.RateOfIntrestResBean;
+
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import lombok.extern.log4j.Log4j;
+
+@Service
+public class LoanService {
+
+	@Autowired
+	private RestTemplate restTemplate;
+	
+	private final static String urlOfLoanService="http://localhost:8080/roi/{type}";
+	
+   private static final String Circuit_Breaker_Name="loan-service";
+	
+	@CircuitBreaker(name="loan-service", fallbackMethod = "fallBackMethodForRoi")
+	public RateOfIntrestResBean getRateOfIntByType( String type) {
+		System.out.println("................Orginal Method Called.............");
+		ResponseEntity<RateOfIntrestResBean> responseEntity = this.restTemplate.getForEntity(urlOfLoanService, RateOfIntrestResBean.class, type);
+		RateOfIntrestResBean body = responseEntity.getBody();
+		return body;
+	}
+	
+	public RateOfIntrestResBean fallBackMethodForRoi(String type,Exception e) {
+		
+	 System.out.println("..........Fall Back MethoD Called..........");
+		
+		return new RateOfIntrestResBean();
+		
+	}
+	
+	
+}
+
+
+spring:
+  application:
+    name: loan-service
+
+server:
+  port: 8081
+  
+management:
+  endpoint:
+    health:
+      show-details: always
+    
+  endpoints:
+      web:
+        exposure:
+          include: health
+  health:
+    circuitbreakers:
+      enabled: true
+      
+      
+resilience4j:
+  circuitbreaker:
+    instances:
+      loan-service:
+        register-health-indicator: true
+        failure-rate-threshold: 50
+        minimum-number-of-calls: 5
+        automatic-transition-from-open-to-half-open-enabled: true
+        wait-duration-in-open-state: 90s
+        permitted-number-of-calls-in-half-open-state: 3
+        sliding-window-type: count-based
+        
+        
+              
+Note : When Loan Service Original Method Trying to  Connect with RATE Service which is down , when client send reuqest to original method request will be failed and fallbacklogic will be executed like that we configured the
+       failure rate threshlod and mininumnumber of calls what we configured based on that if orignalmethod contineously failed and that failure call percengae greater than given threshlod then CB Open state will enabled where for some time when client send resquest will goes to FallBack Method not original method so for specifed CB configuration time out in open state for that fall back logic executed and after time out period reaches
+      CB moves Half_Open State will enabled here specified number of calls allowed if specified number of calls failed CB will moves OPEN state , else specified number of calls success CB closed .Like that CB will work.	   
+
+
+Note : What Original Method has Return type same retrun type should has Fallback method
+      ->What original method has parameters,same parametrs should have FallBackMethod with Exception parapmeter beacuse usually CB execute when Exception occurs in original method , so what kind of exception we get in original method that can be identified by Exception parameter in fallback method bases on that we send user friendly message to User.
+ 
+Note : FallbackNMethod should be present in same class where original method presents  
+ 
+                 
+
+
+
+
+
+ 
+
+Circuit Breaker Configuration Properties :
+----------------------------------------- 
+->We can configure CB properties When CB Should Open and Half_Open and how ,huch many requests should send in half_open and how much 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+							  
+							  
+							  
+							  

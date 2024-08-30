@@ -1,0 +1,14 @@
+
+Points To Ask Shiva Sir :
+-----------------------------
+
+->How you deploying the code to  dev environement
+
+->In which server you are deploying application.
+
+-> 
+
+
+
+  
+ 
