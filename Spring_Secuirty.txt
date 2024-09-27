@@ -1,0 +1,1634 @@
+                        Springp-Security
+					-----------------------
+
+->As part of Spring Security we have Authentication and Authorization
+
+1.Authentication :
+------------------
+->Authentication is a process of verifying User Credentials correcct or not , whether User Credentials are correct or not
+
+->Can this User can access or uses  our application or not, that will be decided by Authentication Functionality.
+
+Note : Once Authentication Got Suceesesfull then we go for Authorization
+
+
+2.Authorization :
+-----------------
+
+->Can Authenticated User Access Specific Functionality or not , that will be decided by Authorization Functionality
+
+Note : By Using Sprinh Security We can Implement both Authentication and Authorization
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+->To Protect our application and Application Data , we need to Implement Security Logic
+e
+Note : When we add Spring-boot-Starter-dependency in our class path,by default  our application will be secured.
+       When we try to access our application , application will ask us to Login to access the application
+	   When we add security dependency in class path of application, by default Authentication will be provided. Application will ask us to enter credtentails to validate and access to application
+	   
+	   
+Note : When we add Spring Security dependency in our application, by default application wii generate password in console.and User name will be user
+
+Note : When we add Spring Security in our application, spring secuirty starter will provide HTTP BASIC AUTHENTICATION to our application
+
+->Http Status Code 401 means UnAuthorized whihc means , we can't access this application or rest api.
+
+Note : When we add Spring Secuirty In Our Application, our application will be authenticated by Httpm Basic Authentication
+
+Note : When our rest api is having Security, then we need to provide securiry credentails in  request header of post man , when we try to access application from PostMan
+
+
+Note : When we access application from browser ,  spring security will provide default login page to login or authenticate to access the application.
+
+Note :If we try or want to access the Rest Api or Application from POSTMAN tool, when we send the request to Rest Api we don't get any Login Page to enter credentials to access the application like browser
+      So in order to access rest api from PostMan we need to enter credentials in authorization header tab in postman and choose the Basic Auth functionality under the Authorizarion tab and enter username and password to access secured rest api
+	  
+	  
+Note : Authentication is a process of validating user credentails correct or not
+       Authorization is a process of validating authentoiicated user can access that functionality or not. That is to which source or functionality user sending request that can be user access or not.Like if normal user sending reququest to access admin functionality, then that functionality can access or not that will be decided by Authorization.
+	   
+->We can call it as  AutoConfiguration like we added security dependecny by default basic authentication will be implemented to application and credentials will be validated automatically so this all will be automatically done secuirty dependecy , so automatically all config will be done
+  and when we add spring data jpa dependecy automatically connection pool will be crerated to data base to establish connection and when we add web startet automatically tomcat server will be ready to deploy our application this are related AutoConfiguration feature.
+
+->AutoConfiguration means providing configurations to application based on dependecies provided in class path.
+  Like for security dependency - Basic Authebntication Screens are  implemented
+  
+           Web Starter - Tomcat Server will be Implemented 
+
+           Data - Jpa - To Esatablish Connection pool to connect with database           
+   
+       	   
+Note : When we Spring-Security Dependency in class path, automatically all the rest controller methods will be secured. 
+
+Note : When we access the any method in application , application will ask to enter credentails to validate and if credentails correct user will access the application, if user trying to acess the another method then login is not required because for web appplication login is required for first time not all the time.
+
+Task : How to develop Client Application to access Secured Rest Api
+       Send Request With to Secured Rest Api with Request Header and Key as Authorization and value will be Basic encoded(username:password)
+
+	   
+       
+
+		 
+Ovveriding Default Credentials provided By Spring Security 
+-----------------------------------------------------------
+->If we not satisfy with the default credentail provided by th spring security i.e username is user and password will generated on console.
+  If we want to provide our own UserName and our own password we need to ovveride credentails provided by security
+  
+->To ovveride the default credentails provided by the spring security, we use application.properties file or application.yml file where we write properties related to spring secuity customized user name and password credentails
+
+apoplication.yml 
+----------------
+
+   spring :
+     security :
+       user :
+          name: naresh 
+          password : naresh@45
+          		  
+ 
+Note : If we want to access application or rest api we have to enter above credentails to access the application  
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+How To Secure Speccific Urls In Application
+------------------------------------------
+
+->In Our project we have several functionalites so for some functionalities we need security and for some functionalites we no need security .Like sign up and sign in and contact us functioanlity don't need security and like course class notes to acccess we need to apply secuirty to that functionality.
+
+->So In project some functionl 
+
+Note : By default spring secuirty will secure the all methods available in our application.
+
+->When we add Spring Security Starter in class path of application, by default all the methods in application get authenticated or secured and in real time some methods won't required to secured to access likw home page method or contact us method
+  So we have customize the security configuration like to which method security required and to which methods security not required we have to customize that configuratiions in application
+
+->Secure Specific Methods in application is also called as method level security.
+  
+->When we add Security Starter in application by default for all the methods security will be apply for all the HTTP Methods or Rest Controller Methods in application
+
+->But In reality we need secure few methods in application not all the methods in application
+
+->Example we have Banking Application
+
+    /Login ----> Security Not Required
+	/Balance Check ---> Securoty Required
+	/Contact Us ----> Security Not Required
+	/Trasfer ---> Security Required.
+	
+Note : The default behaviour secuirty dependency is to apply the secuirty to all the Http Methods available in application	
+	
+Note : To represent java class as configuration class we use @configguration annotation
+
+Note : @Bean annotataion is a method level annotation and  @Bean Annotation is used to tell Spring Ioc container to create the object for mentioned method return type
+
+->@EnableWebSecurity annotation is a class level annotation and which is used to enable secuirty configurations in application.Represent annotated class is secuirty customization class according to our requirement
+
+->HttpSecurity.build method is used to build or create the SecuirtyFilterChain object
+
+->HttpSecurity.antMatcher() method is used to specify whihc requests should allow and which requets we shouldn't allow.
+
+->SecurityFilterChain is used to hold Secuirty Context , what are the secuirty config available that will be loaded and kept in secuirtyfilterchain conetxt
+
+->HttpSecurity is used to customize the secuirty acc to our requirment
+
+Note : we let the IOC Container to call the @Bean annotated method and create the object for the method.
+
+Note : If we create SecurityFilterChain method won't write any logic inside that method , by default all the method won't authenticated , so we have to configure to which methods authentication required and which methods not.
+
+Note : SecurityFilterChain Will be called only Once while application is starting.
+
+@RestController
+public class WelcomeRestController {
+	
+	@GetMapping("/logincheck")
+	public String loginCheck() {
+		return "Welcome , You Can Login ";
+	}
+
+	@GetMapping("/contact")
+	public String contact() {
+		return "call us : 983987129389";
+	}
+	
+	@GetMapping("/welcome")
+	public String welcome() {
+		return "hi, welcome ";
+	}
+	
+	@GetMapping("/hello")
+	public String hello() {
+		return "hi, hello ";
+	}
+}
+
+
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+@EnableWebSecurity
+public class SecuirtyConfig {
+	
+	@Bean
+	public SecurityFilterChain securityFilter(HttpSecurity http) throws Exception {
+		
+		http.authorizeHttpRequests((req)->req.requestMatchers("/contact","logincheck").permitAll()
+				.anyRequest()
+				.authenticated()
+				).httpBasic(Customizer.withDefaults());
+		
+		return http.build();
+	}
+
+}
+
+
+Note : Here we customizing the Security Cinfiguration like for specific http methods doesn't allow authentication and rest of all methods should have the authentication by HttpSecurity is a class whihc is used to customize the secuirty for InComing http request like with specified http requets shouldn't authenticated and rest of all methods should authenticate with basic http login 
+       SecuirtyFilterChaib is a interface and it's impl class like DefaultSecurityFilterChain class has secuirty context like what are the security config we have in application.
+
+Note : Above SecurityFilter will execute only one time that is at the time of application starts not for every request
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Internal Working of validating User Credentenrtail By Spring Security
+----------------------------------------------------------------------
+
+DataBase Authentication
+------------------------
+->When User Credentails available in database table how spring security validate user given credentails in login page with DaseBase User Credentials correct or not that will see below
+
+Note : BY Default Spring Secuirty Providing Login Page to enter user credentails
+
+Note : As of now we configured user credentails in yml file and when user trying access our application , application asks user to authenticate , when user enters credentails if that are matching with credentails in yml file , user can access application, so here we didn't write any logic to validate user given credentails with yml file credentails , spring secuirty internally has a logic to validate the credeantials
+
+->Here in this scenario Spring Secuirty comes into picture  between UI LogIn Page and Backend Ymlfile where user credentails available and when user credentail in UI Login Page Sprring Security will validate the Entered Credentaails with Yml file credentails mathcing or not.
+
+->So Internally Spring Security Has Components to validate the user given credenetials with  Credentails available backend application that will be in yml file or data base table
+
+    1.User
+	2.UserDetailsService
+	3.Authentication Manager
+	
+1.User :
+---------
+->The user , username and password what ever we  configure in yml file or db table spring secuirty will consider that as One 'USER' Object
+
+->Here USER is a predefined class in spirng security.
+
+->What ever the user credentials we configure in yml file or db table that credentails will be loaded to Spring Security User Class Object  
+
+
+2.Authentication Manager :
+---------------------------
+->AutheticationManager is a predefined component in spring security
+
+->AuthebnticationManager is used to validate the user given credentails inn login form with credentails loded in spring security User object 
+
+->AuthebnticationManager Interface has method called authenticate() whcih will compare the user given credenetials in login page with user object data(User object has credentails of user)
+
+3.UserDetailsService:
+----------------------
+->UserDetailsService is predefined component in Spring Secuirty 
+
+->To load the User Object available in spring secuirty by AuthenticationMnager , AuthenticationManager uses UserDeatilsService Compoment to load the user object to authenticationManager to validate the user login credentails with User Object data.
+
+Note : UserDeatilsService will act as Mediatot between User Object and AuthenticationManager.
+
+Note : UserDetailsService will load the User Object and gives User Object to Authentication Mnager and AuthenticationManager will verfiry the User Login Credentials with User object data matching or not, if credeantials are matching AuthentcationMnager will allow the request , if credentials not matching send message as bad credentials
+
+->We have to let AuthenticationManager to use Database user data not yml file user data for credentials validation of user
+
+       ___________             _____________
+      |           |            |            |     ____________
+      |           |            |     User __|____| username=**|
+      |           |            |       |    |    | Password=**|
+      |username:**|            |       |    |    |____________|
+      |Pwd  : *** |            | UserDetails|
+      |           |            |    Service |      databse table or yml file
+      | LOGIN     |            |       |    |
+      |           |____________|__AuthManger|
+      |___________|            |____________|
+        LoginPage
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+Spring Security With JDBC Authentication
+-----------------------------------------
+->We need to let spring secuirty authentication manager to load the user data from database for validate the user login credentails with that 
+
+->As Of now we confgure credentails in yml file, from now configure credentail in database
+
+->Take two tables in db 
+  1.Users table : Maintain Users Data
+  
+  CREATE TABLE spring_secuirty_jdbc_authentication.users(
+  username VARCHAR(50) NOT NULL,
+  password VARCHAR(120) NOT NULL,
+  enabled TINYINT(1) NOT NULL,
+   PRIMARY KEY (username) 
+   );
+  insert into spring_secuirty_jdbc_authentication.users values ('admin','$2a$12$py8d9MIXlLsCOnXsfU/.BO5PdA1tVWN5ITlFEL0BuRn2HsMwbtx32',1);
+  insert into spring_secuirty_jdbc_authentication.users values ('user','$2a$12$nHFDf7ksV72lwmPo8F0WF.0Xs4iIXn7kFQxMoiyKDMht0roZ2kMm6',1);
+  
+  2.Authorities table : Maintains Users Roles 
+  
+  CREATE TABLE spring_secuirty_jdbc_authentication.authorities(
+  username VARCHAR(50) NOT NULL,
+  authority VARCHAR(50) NOT NULL,
+  KEY username (username),
+  CONSTRAINT authorities_ibfk_1 FOREIGN KEY (username)
+  REFERENCES spring_secuirty_jdbc_authentication.users (username)
+         );
+		 
+  
+
+insert into spring_secuirty_jdbc_authentication.authorities values('admin','ROLE_ADMIN');
+insert into spring_secuirty_jdbc_authentication.authorities values('admin','ROLE_USER');
+insert into spring_secuirty_jdbc_authentication.authorities values('user','ROLE_USER');		 
+  		 
+Note : here in authorities table for admin user has two roles like ADMIN_ROLE and USER_ROLE , so admin can user access admin and user funcrtionalities both
+       Normal user can access only normal user functionalities not admin functionalities.
+		 
+Note : Hers two tables users and authorities have same coloumn i.e username and each user has authortiry and based on authority user can access specific funtionaloities in application		 
+
+->here we implement role based secuirty.
+
+->Like some rest controller methods should be accessible by Normal User and All Methods in application can be accessible by Admin User.
+
+->Based On User role applications method will be accessible
+
+->Insert data into bothe users and authorities table and make sure password in user table should be Encrypted.
+
+->Use any site to encrypt the given password and store that in database users table password section.
+  use "https://bcrypt-generator.com/"
+  
+Note : Authorities Table represents the roles of the user.
+
+->Database set up done
+
+->Now we have to let spirng security Authentication Manager to load the user data from database table not from yml file
+
+Development Of Spring Secuirty With Jbdc Auth 
+----------------------------------------------
+dependecies:
+
+1.web starter
+2.security-starter
+3.data-jdbc
+4.mysql-connector
+5.lombok
+6.devtools
+
+Note : If we declare a method with @Bean Annotation , spirng IOC will call that method and create the object for method return type
+
+datasource:
+    url: jdbc:mysql://localhost:3306/spring_secuirty_jdbc_authentication
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver  
+  jpa:
+    show-sql: true
+	
+
+@RestController
+public class JdbcAuthRestController {
+
+	@GetMapping("/admincheck")
+	public String admin() {
+		return "Hi, Admin";
+	}
+	
+	@GetMapping("/usercheck")
+	public String userCheck() {
+		
+		return "Hi , User ";
+	}
+	
+	@GetMapping("/welcome")
+	public String welcome() {
+		return "Welcome all";
+	}
+	
+}
+
+
+Note : Here  /admincheck http method will be accessed by the user who  successfully logged in or authenticated and user role is ADMIN 
+      
+  	/usercheck http method can access by user who successfully logged in and whos role has whether ADMIN OR USER 
+	
+	/welcome http method can be accessed by any user wheter ADMIN OR USER OR PUBLIC user 
+	
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+	
+	@Autowired
+	private  DataSource dataSource;
+	
+	@Autowired
+	public void authManager(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+		
+		authenticationManagerBuilder.jdbcAuthentication()
+		.dataSource(dataSource)
+		.passwordEncoder(new BCryptPasswordEncoder())
+		.usersByUsernameQuery("select username,password,enabled from users where username=?")
+		.authoritiesByUsernameQuery("select username,authority from authorities where username=?");
+		
+		}
+	
+	
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+		
+		httpSecurity.authorizeHttpRequests(req -> req.requestMatchers("/admincheck").hasRole("ADMIN")
+				      .requestMatchers("/usercheck").hasAnyRole("ADMIN","USER")
+				      .requestMatchers("/welcome").permitAll()
+				      .anyRequest().authenticated()
+			).httpBasic(Customizer.withDefaults());
+		
+		return httpSecurity.build();
+		
+		
+	}
+
+}
+
+	
+	
+	
+Note : Here we confgured Role Based Security. Based On the User Role method can access
+	
+->We have to let secuirtyt manager to load the user data from db table and validate with user loginn page credeantials
+
+->So we use DataSource Object to let spring secuirty to which database we need to connect
+
+->We configure our database configurations in yml file and whenever application loaded , database configurations will be loaded to DatSource Object and we can use DataSource object any where in application and use it
+
+->DataSource Object creates the connection with databse
+
+->We have to tell spring security authenticationMaanger to load the user data from db table based on the specified query  and validate the credentials with user login page credentails
+
+->So we need to customize the authentication manager object to load the user data from db
+
+->By AuthebnticationManager communicates with UserDeatilsService and UserDeatilsService connect with User Object and compare the user object data with form login data , if matches allow request else don't allow request
+
+Note : We specify AuthenticationManager to Datasource Obejct, In DataSource Object we have DataBase Configurations like what is schema and db tables and we let AuthebnticationManager to take the User Data From given Datasource object and compare with user Login Page credeentails , if data matches allow user to access the application functionality else throw Bad Credentials Message  	
+	
+->We  mention authenticationManager to  customize authentication technique to perform authentication like wehere user data available like database by using AuthenticationManagerBuilder Component.
+
+->AuthenticationManagerBuilder component used to build the authentication technique for authenticationManager
+
+->We Specify few configurations like type of authentication like jdbcAuthentication and Datasource object  and passeord encryption type(generally user password stored as encrypted usinf Bcrypt alogorithm) and queries to load the user data 
+  
+Note : To perform JdbcAuthentication DataSource is required.
+
+->SecurityFilterChain contains the logic like to which methods security required and which method secuirty not required and which method can access by whom that kind of info we configure in SecuirtyFilterChain objecct
+
+->JdbcAuthentication Means Credentails Are available in database
+
+Note : We SecurityFilterChain Object to which url to be secure and which url not be secured that can be configured in SecurityFilterChain.
+
+Note : If User Credentails Available in DataBase, we validate those user credentials using JDBC AUTHENCTICATION.
+
+=============================================================================================================================================================================================================================================================================
+
+In-Memory Authentication
+------------------------
+->In-Memory Authentication menas programmatically OR Program we configuring User credeantials for authentication purpose
+
+                           OR 
+						
+->Stroing User Credentials In Program for authentication Purpose
+
+Note : Generally we didn't use In-Memory Authentication In Real Time.
+  
+->We use InMemoryUserDetailsManager to configure users who can access secured rest api or web application.
+
+Note : InMemoryAuthenctiction we configure user credentails within application.
+
+->InMemoryUserDetailsManager contains logic to which user can access application and those UserDetails will be maintained in InMemoryUserDetailsManager. 
+ 
+->Internally When user try to login , spring security authentication manager comes into picture and authManager communicates with InMemoryUserDetailsManager for authentication purpose
+
+->InMemoryUserDetailsManager contains the user credentials. 
+
+Note : The Main Difference between JdbcAuthentication and InMemoryAuthenctiction is JdbcAuthentication user credentails available in database and where as InMemoryAuthenctiction user credentails avalaible in within application or programatically.
+
+@RestController
+public class WelcomeRestController {
+	
+	@GetMapping("/contact")
+	public String contact() {
+		return "Contact Us : 91 912124712947";
+	}
+	
+	@GetMapping("/welcome")
+	public String welcome() {
+		return "welcome to in memory authentication";
+	}
+
+	@GetMapping("/greet")
+	public String greet() {
+		return "Hi, how are you!!";
+	} 
+	
+}
+
+
+
+package com.in.memory.auth.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfigurer {
+
+	@Bean
+	public InMemoryUserDetailsManager userConfigurer() {
+	    
+	UserDetails user=	User.withDefaultPasswordEncoder()
+		                 .username("Naresh")
+		                 .password("Naresh@45")
+		                 .authorities("ADMIN")
+		                 .build();
+		
+	UserDetails userDetails = User.withDefaultPasswordEncoder()
+	                         .username("bharat")
+	                         .password("bharat")
+	                         .authorities("USER")
+	                         .build();
+		return new InMemoryUserDetailsManager(user,userDetails);
+		
+	}
+	
+	
+	
+	
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+		
+		httpSecurity.authorizeHttpRequests((req) -> req.requestMatchers("/contact").permitAll()
+				.anyRequest().authenticated()
+				).formLogin();
+		
+		return httpSecurity.build();
+	}
+	
+	
+}
+
+Note : Here we didn't used data jpa api , we just configure user details in program or with in application.
+
+Note : Basically InMemoryAuthenctiction used to configure user details in application
+
+Note : InMemoryAuthenctiction used in dev and test environments.
+
+Note : We shouldn't use this process for production environment
+
+
+=================================================================================================================================
+
+How To Work With UserDetailsService In Spring Security
+------------------------------------------------------
+->When we are working with Spring Secuirty several Components comes into picture to  perform authentication.
+
+->USER is one object  Spring Security that  reprsents the  user name and user password and authority or roles
+
+->UserDeatilsService contaisn the logic to load the User Data and UserDeatilsService will gives the user data to authenticationMaanger and authenticationManager will authenticate the user 
+
+->UserDeatilsService is a predefined component in spring security and which has the method like loadUserByName() and which load the user by given name and gives user to authentication manager and authentication manager will authencacte the user
+
+->UserDeatilsService Component has the loadUserByUserName() method where we can write the logic to get the User Data from db
+
+Note : When we use data-jpa in our application and if we want to use spring secuity for authentication purpose we don't use jdbcauthentication beacuse we already using dta jps in application.
+       When we are using data-jpa in our application we need to create a service class which implements the Spring Secuirty provided UserDetailsService. UserDeatilsService has loadUserByUsername(String username) and inside that method we write the logic to get the user data based on name and and retur that userdata 
+
+
+Note : When we don't use InMemoryAuth and JdbcAuthentication and HttpBasic auth then we use UserDetailsService to load the user data from data base by using loadUserByUsername(String username) method and that method returns the Spring Security Provided User Object. we return the object which is loaded from database based on username and AuthenticationManager will authenticate the user with form login data and userDetailsService class loadUserByUsername() method returns User Obejct , if data mathces allow user to acsess the application orelse not.
+	
+Note : The Main Purpose of to use loadUserByUserName(String username) to load the user record from db and return that user record for authentication purpose	
+	
+->loadUserbyUsername(String username)  method throws the 'UserNameNotFoundException' if username not found 
+    
+->So we need to specify spring secuirty like use MyUserDetailsService component not predefined UserDeatilsService for authenctication purpose to load the user
+
+Note : In Spring Secuirty when we submit login form and that will go to authentication manager for user authentication purpose
+
+
+
+          __________________                    _______________________________________
+         |                   |                 |                                      |
+         |AuthentcationMnager|---------------->|UserDeatilsService                    |
+         |                   |                 |   		                              |         ______
+         |__________________ |<----------------|loadUserByUsername(String username) --|------->|USER  |
+                    |                          |_____________________________________ |<-------|______|
+                    |                                          
+                    |
+                    |
+                 LoginForm
+	              
+	   
+
+->When user submits the login form and that user authenticate data goes to spring secuirty authenticationManager and authencticationManager communicates with customizedUserDeatils service that implemented in data jpa(user data in db) and UserDetailsService loadUserByUsername(String username) will fetch user data from database based on username and keep that user record in spring security USER object and returns back to authenticationmanager and authenticationmnager will verify the user login form data with UserDeatilsService user object, if matches we allow the user and process the request else won't process the request
+
+->We need to tell AuthenticationManagere like load the user data usinf MyUserDetailsService which implements the UserDetailsService Interface and ovveride the loadUserByUsername(String username) method to load the user from db or file and set that loaded user to SpringSecuirty USER object.
+
+Note : In Configuration Class if any method returns object then that method ashould annotate with @Bean and if method not returns suggests  to use @autowired  	 
+	   
+->We need to configure authentication  manager about UserDeatilsService to load user data and validate when user send request to secured url
+
+->For authentication purpose we use authentication manager with UserDetailsService
+
+->When ever request comes loadUserByUsername(Stirn username) method will be called and verfiy user data matching or not
+
+->UserDetailsService will be execute those methods which are secured not all the methods
+
+Note : We should user UserDeatilsService when we want to load the data from database or somewhere then we UserDetailsService 
+
+->We Customize the AuthenticationManager by AuthenticationManagerBuilder
+
+->Here when user  trying to access the rest api with url , login page will be diaplays and user will enters username and password and spring security authentication manager communicates with UserDeatilsService and calls the loadUserByUsername(String username) and where we write logic to load the user data from db or somewhere else and that loaded user data set to USER Object of Spring Security and returns that object as return type to loadUserByUsername() method and authentication manager compares the loign form user data and loadUserByUsername() method return data , if matches process the request else won't process the request.
+
+
+
+
+
+          __________________                   _______________________________________
+         |    2              |                 |       3                              |
+         |AuthentcationMnager|---------------->|UserDeatilsService                    |
+         |                   |                 |   		                              |         ___4___
+         |_______________7___|<----------------|loadUserByUsername(String username) --|------->|data  |
+                    |    |                     |_________________________5____________|<-------|base  |
+					|    |___                                    |                         User|______|
+                    |        |                                   | 
+                    |        |                                   |
+                 1  |        |                                ___|______
+                 LoginForm   |______________________________ | User  6  |
+                                                             |__________|
+
+
+
+
+@RestController
+public class WelcomeRestController {
+
+	@GetMapping("/contact")
+	public String contact() {
+		return "Contact Us : 91 912124712947";
+	}
+	
+	@GetMapping("/welcome")
+	public String welcome() {
+		return "welcome to in memory authentication";
+	}
+
+	@GetMapping("/greet")
+	public String greet() {
+		return "Hi, how are you!!";
+	} 
+	
+}
+
+
+
+import java.util.Collections;
+
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+@Service
+public class MyUserDetailsService implements UserDetailsService {
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+       //logic to load the user data
+	  // userRepo.findUserByName(String name);	
+        System.out.println("UserDetailsService Called");
+		return new User("naresh", "naresh@45", Collections.EMPTY_LIST);
+		}
+
+}
+
+
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfgiurerClass {
+	
+	@Autowired
+	private MyUserDetailsService userDetailsService;
+	
+	
+	@Bean
+	public SecurityFilterChain chain(HttpSecurity httpSecurity) throws Exception {
+		
+		httpSecurity.authorizeHttpRequests(req -> req.requestMatchers("/contact").permitAll()
+				                                      .anyRequest().authenticated()
+				                                      ).httpBasic();
+		 
+		return httpSecurity.build();
+		
+	}
+	
+	@Autowired
+	public void configureUersAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+		
+		authenticationManagerBuilder.userDetailsService(userDetailsService)
+		.passwordEncoder(NoOpPasswordEncoder.getInstance());
+		}	
+}
+
+
+Note : UserDeatilsService is a predefined component or interface in spring secuirty and which has a method called
+      public UserDetails  loadUserByUsername(String username) and we can database logic to get the user data based given name using data jpa or jdbc.
+
+================================================================================================================================================================================	  
+
+->When ever we are going for spirng security , mainly we need to understand the
+    1.SecurityFilterChain
+    2.AuthenticationManager 
+    3.UserDetailsService
+	  User
+	  
+	  
+	1.SecurityFilterChain:
+     ---------------------
+     ->SecuirtyFilterChain is used to specify which url are required securuity and which url doesn't required security that kind of secuirty configuration we do in secuirtyfilterchain and SecuirtyFilterChain will store the customized security config in SecurityContext and when ever application 
+	   loaded or started, spring ioc will load the secuityconetxt and create object.
+
+	       ___________________               ___________________
+	      |                   |             |                   |
+          |SecurityFilterChain|------------>|SecurityFilterChan |
+          |___________________|             |___________________|
+	
+	
+    2.AuthenticationManager : 
+	 ------------------------
+	 ->AuthebnticationManager is predefined component in spring secuirty and used to perform authentication of user.In Real Time we use UserDetailsService loadUserByUserName() method to load the user data from db and gives to authencticationManager and authenticationMaanger will verify the user login form data with UserDetailsService loadUserByUserName method return user object if both are matches request will be processed otherwise can't process the request 
+	  AuthenticationManager may use other user details configure apporcahe if we don't use UserDetailsServicee like default or yml or InMemoryAuth or jdbc auth.
+	  
+	3.UserDeatilsService :
+    ------------------------
+    ->UserDetailsService is used to load the user data by uisng loadUserByUsername(String username) method and sends that user to authencticationManager and authencticationManager will verfiy
+ 	the user and process the request if autentication success.
+	
+	 USER is predefined Object in spring secuirty and which contains the user data like username and password and authorities and that user will be compared by authencticationManager with  LoginForm User Data.
+	 
+	 Note : UserDetailsService Component loadUserByUsername(String username) method accepts the String username as the input and returns the User Object as Output
+	 
+	 Note : UserDetilsService component responsible to loadthe user and gives to spring security authentication nmanager to authentication purpose
+	                         ___________________               ___________________
+	                         |                   |             |                   |
+                             |SecurityFilterChain|------------>|SecurityFilterChan |
+                             |___________________|             |___________________|
+	  LoginPage                        |
+	  _________              __________|____________            _______________________
+	 |         |             |                     |           |   default             |
+	 |  SignIn |------------>|AuthenticationManager|---------->|   YMLFile             |  
+	 |_________|             |_____________________|           |   InMemoryAuth        |
+	     |                             |                       |   JdbcAuth            |  
+         |                             |                       |   UserDetailsServcic  |    
+	  ___|__                           |                       |______________________ |
+	 |	    |                          |	                 
+	 |	User|				 __________|__________
+     |______|			     |                    |
+                             |                    |
+                             |UserDetailsService  |
+                             |____________________|
+                                       |
+                                       |
+                              _________|_________
+		                     |                  |
+                             |  USER            |
+                             |__________________|
+
+			  
+Note : When ever Application is Secured , application will get default Login page when ever user trying to access the application.
+       That Login Page will be developed by Spring Security
+
+->There are Mulitple Ways Available to deal with the user credentials in our application like default credentails, yml file , InMemory Auth(Configure User Details in Application or program ),JdbcAuth(Configure user details in db) , UserDetailsService(Configure user details in db via data jpa or jdbc and by using loadUserByUsername(Stirng username) method we load the user from db) for authentication purpose.
+
+Note : In Yml File we confogure only one user not multiple users
+       If we want to configure multiple users we use InMemoryAuth and By using InMemoryUserDetailsManager we can configure multiple users
+       If user details confifured in databased then we can use JDBCAUTH to load the user data 
+	   If Our Project Using  Data JPA not jdbc then we use UserDeatilsService Interface and implment that interface an ovveride the loadUserByUsername(Stirng username) method to load the user based on the username and that method will return One User Object and we compare that user objecct with the LoginForm User Data by AuthenticationManager
+	   
+	   
+NOTE : In RealTime we UserDetailsSerevice to load the user data from db and gives it to AuthenctionMmanger and AuthManager will verify the user login form data with userDetailsService loadUserByUserName method given user object if it matches then process the user requets else not
+
+===============================================================================================================================================================================================================================================================================================================================================================
+
+OAUTH2:
+--------
+->To Establish the Security Integration Between Two Applications we use OAUTH2.
+
+->To Allow Users To Access The Application With Out Creating Account We Use OAuth
+
+->Some users are not intrested to create the account in application but want to access the application with out creating the account , then we use OAuth to allow users to access the application with out creating the account.
+
+->Like A User wants to purchase a product in amazon website but to purchase a product in amazon user need a account, but don't want to create a account in amazon but wants purchase a product in amazon website because user may has a concern like if user a creates a account in amazon, they may miss use the user data like sell to loan apps , loan aaps will call or message user to take loan like that etc and amazon itself will send daily reminder messages to purchase the product by keep on sending the message to user register mobile number so that's the reason user may wants to don't create the account but want to access the application.Then we use Oauth to with out create the account in application and we can access that application by sign in  with another trusted application account like Google.So we login with Google account and access the amazon application.
+
+Note : To Integrate the Two Applications we use Oauth.
+
+->To Allow Users to access the application with out creatng the account, some users are not intrested to create the account but we still attract the users to use the accout in different approach like log in to already user account existed in recommended application like Google or linkedIn, GitHub
+
+->Like an Example we have HackerRank WebSite that we want to access and to test coding skills , So when user landed on website to access the HackerRank , HackerRank will suggest some options like
+  Provide usrname and email and password to crreate account in HackerRank and access the HackerRank and if we don't want to create the account in HackerRank and want use access the HackerRank , then HackerRank will suggest some options like singn in with google or linkedIn or GitHub etc, So User has account in given suggested Application, user can sign in into that application and access the HackerRank website
+ 
+->Like we user has account in GitHub and want to access the HackerRank , so internally HackerRank has a integration with GitHub to usera can access the website.
+
+->So here HackerRank Should talk to GitHub and GitHub should talk to Hackerrank then only integration possible and access the website.So In order to establish that communication between HackerRank and Github we use Oauth to establish communication between two apps and make user to access the HackerRank website with out crreating account in HackerRank and by loggin into GitHub account
+
+Execution Flow Of OAuth Secuity
+-------------------------------
+                                       ________________
+                                      |                |    
+                                      |                |
+                          3           |                |
+	___________ Clientid-CleintSecret |                |
+   |           |--------------------->|                |
+   |      2    |                      |                |                 __________________
+   |HackerRank |7 Valid-Token(alp-num)|                |                |                  |
+   |           |<---------------------|                | 6 Authencticate|                  |
+   |_________|_|                      |   Git Hub      |--------------->|    DataBase      |
+     |       |                        |                |                |                  |
+     |       |                        |                |                |__________________|
+     |8      |                        |                |
+     |       |1		                  |                |
+	_|___________	4 LoginPage		  |                |
+	|			|<--------------------|                |
+	|End-User   |	5 LoginCredentails|                |
+	|___________|-------------------->|                |
+                                      |________________|
+
+->Here User landed in HackerRank application and chooses the GitHub  as the login option
+
+->When user chooses GitHub as option to login in HackerRank appliction, request will goes to GitHub from HackerRank Application, Then Github will send Login Page for user 
+
+->When User Chooses a GitHub as a option to login into application and access the HackerRank , Then HackerRank will send a request from HackerRank to GitHub , So here HackerRANK WILL send a Client-Id and Client-Secret to GitHug to let github to this request is a redirecting requet and not a direct request and  redirecting thta request  from HackerRank then Git hub will understand like One of My github user want to access the HackerRank appplication by using user github account, then github will verify the user has account in github by sending the login Page to User
+
+->Then User will enter GitHub Login Credentails and Submitting the Login Form and Login credentails will go to GitHub and Then Git Hub will receive the Login credeantials of user and authenticate the user login credentails with GitHub database credentails and credentails matches , github will send a Valid Login Token to HackerRank and HackerRankank will understand like this user has account in github and Lands user into dashboars page of HackerRank website.So this is called Oauth Secuirty
+
+->If User Given Credeantials not valid then GitHub will send a invalid login token to HackerRank and let the HackerRankank don't allow this user to access the HackerRank website , because user don't have account in ->OAuth is one of the security technique to secure our application and OAuth is used to provide Login Access for the applicationgithub. 
+
+Note : If our website has good brand in market then users will create a account and access the our website, if user thinks , user don't want create a account in application, then Oauth we use to allow the user to access our website and by signup into any suggested application accounts in website.
+
+Noote : Client-Id and Client-Secret represents the request is s redirected request from Hackerrank not a direct request to git hub.
+        Client-Id and Client-Secret reprsent from which application request is coming and is a direct request or indirect request that can be easily indenty by third party application.
+
+Note : Token Means AlphaNumeric Text
+
+Note : After User Successfull Authentication at the GitHub, Git Hub will send a User Details to HackerRank but not complete data like username or email or phn number like that only specific info will sent to HackerRank from GitHub , we can restrcit it what kind of data ,we want to send to HackerRank
+       Depends Upon the client requst we send neccessary data to HackerRank 
+Note : Here we accessing Hackerrank website , by GitHub Account, GitHub will share our data to HackerRank but not all the data, share only neccessary data like name or email
+
+->OAuth is one of the security technique to secure our application and OAuth is used to provide Login Access for the application, without creating the account in application directly, we can access those application by the help of some third party application account
+  By OAuth we can allow users to access our application by using third party application accuont. With out creating account in our application directly , they can access our application
+
+Developemnt :
+------------
+->develop a rest api that should be secured by OAuth security technique and user who wants to access our rest api with out creating account in rest api , and user wants login thorugh GitHub account, if user github credentials are valid allow user to access our rest api otherwise won't
+ 
+
+
+                                       ________________
+                                      |                |    
+                                      |                |
+                          3           |                |
+	___________ Clientid-CleintSecret |                |
+   |           |--------------------->|                |
+   |      2    |                      |                |                 __________________
+   |Rest-Api   |7 Valid-Token(alp-num)|                |                |                  |
+   |           |<---------------------|                | 6 Authencticate|                  |
+   |_________|_|                      |   Git Hub      |--------------->|    DataBase      |
+     |       |                        |                |                |                  |
+     |       |                        |                |                |__________________|
+     |8      |                        |                |
+     |       |1		                  |                |
+	_|___________	4 LoginPage		  |                |
+	|			|<--------------------|                |
+	|End-User   |	5 LoginCredentails|                |
+	|___________|-------------------->|                |
+                                      |________________|
+	   
+  	   
+	   
+->I want to develop a restapi which is secured with GitHub Integration, if anybody wants to access the restapi they should loggin into their github account, If user have valid account in github then can access the restapi, otherwise they can't access rest api
+
+Note : Before developing Rest Api With OAuth, Create OAuth Application in GitHub or thirdparty application.
+       By Creating OAuth Application in github we get Client-id,Client-Secret
+       and we register our rest-api in git hub, to get client-id and client secret for restapi
+
+      github -> settings -> DevloperSettings -> OAuth Apps -> New OAuth App
+            
+      ->After Chosing New OAuth App, give details of Oauth name and Homepage url(when rest api redirects the request git hub.(http://localhost:/8080) and restapi description and Callback url(http://localhost:8080/dashboard) means restapi after receiving the token from github , which endpoint or method or pagge should be user has to access like dashboard url or w 
+        Then clieck on register application, Then we get Client id and Client Secret.With this Client-id and Client-Secret we integrate with OAuth otherwise can't   
+        Sample Cleinid :Ov23liH4RnIOXLn1v1je,
+               Client-Secret : 59472fee5938424ab31452260bdc89a1309b26df
+    		
+Note : We can update OAuth application for our restapi like homepage url or callbackurl etc.
+
+Dependencies :
+------------
+web
+devtools
+springsecurity
+OAuth Client (Our Rest Api will act as a client to git hub)
+
+->Properties To Integrate the RestApi with OAuth
+  Application.yml
+  ----------------
+  spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: Ov23liH4RnIOXLn1v1je 
+            client-secret: 59472fee5938424ab31452260bdc89a1309b26df  
+
+  
+ @RestController
+public class WelcomeRestController {
+
+	@GetMapping("/")
+	public String hello() {
+		return "Hello, Welcome TO OAuth";
+	}
+	
+	
+}
+
+Note : Here when our application starts , our spring boot rest api will read the oauth configuratiions present in rest api and when user send request to "/" url then our rest api will redirect the request to git with client id and client secret what ever present in rest api and if client id and client secret matches with github client client id and clien secret , then git hub will opens login page for user who wants to access the rest api and user has to enter github account credentilas , if credentails are valid, github will send a valid login token to restapi and allow and land the user in restapi appplication as per callaback url we configure in github oauth application.  
+
+Note : OAuth is used to secure the our application, based on the accounts available in third party application , then we can go for OAuth.
+
+=============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+    
+	JWT Secuirty:
+    -------------
+->JWT Stands for Json Web Token.
+->JWT is Used to Secure Web Applications.
+
+Note : In Software Industry JWT is very famous Security Technique.
+
+->JWT TOKEN Contains AlphaNumeric Characters.
+
+->JWT TOKEN divided into 3 Parts.
+
+->Every Part In JWT TOKEAN divided by dot operator '.'
+
+->In JWT TOKEN first part we called as 'Header' and Second Part called as 'Payload' and third part we called as 'Signature'.
+
+->JWT Token Contains AlphaNumeric Characters and JWT  Token divided into 3 parts.Every part divded by dot '.' .First Part We called as HEADER and Second Part called as PAYLOAD and Third Part we called as SIGNATURE.
+
+->We use jwt.io web site to generate the token and decode the token
+
+->When we decode the JWT Token, First Part Called Header Part Contains the Alogorithm Type and Token Type to generate the Token
+
+      Example :
+	  
+	  JWT TOKEN 
+	  
+	  hwehfhbbuwd984bnbndjw9kl
+	  .ejddii2ende983njd34jwdd
+	  .diirdndwjdn3rnf13n9jwjn
+	  
+	  Decode Of Jwt Token  :
+	  ----------------------
+	  Hearder Part : 'hwehfhbbuwd984bnbndjw9kl' represents the Alogorithm Type and Token Type to generate the token
+	  
+	  
+	  {
+	  "alg" : "HS256",
+	  "type":"jwt"
+	  }
+	  
+     Payload Part : In payload part we can keep any information what we want.Like Sub and name and id . Basically we can keep any information what we want.
+	 
+	 {
+	 "sub":"131287397",
+	 "name":"johny deep",
+	 "id":"1233412941"	 
+	 }
+	 
+	 Note : Payload is used to Identify , this token generated for which Client or User.
+
+    Signature Part:In Signature concatination of encoded of Header part and Payload Part with some Secret Code
+
+    HMACSHA256(
+	base64UrlEncode(header)+"."+
+	base64UrlEncode(payload),
+	your-256-bit-secret
+	)secret base64 encoded 
+	 
+	Note : By Combining All these 3 Parts one JWT Token Will be Generates. 
+
+->We Use JWT Token to if two applications wants to communicate securely then JWT Token will used as Mediator to establish secure communication between two parties or applications 
+
+Note : If One Application Wants To Communicates with Another Application Securley we use JWT
+
+->The Main Purpose of JWT Token to Establish the Secure Communication between two applications.
+
+Execution Flow Of JWT Token :
+-----------------------------
+
+->Taken an Example of Two applications are there Application 1 and Application 2 
+  Application 2 has a Method or URL called /data and Application 1 wants to communicates with Application 2 to access the /data method.
+  /data url in Application 2 is secured with JWT Token , to access that method called /data Application 1 should have the token.
+  So in order to access the /data endpoint with the token, fisrt Application 1 has to send the request with the uname and pwd that given by Application 2 to authenticate method available in Application 2.If Uname and Pwd are validated successfully, JWT will be generate with expiry date or timme like  1hour token expiry or 8 hours or 1day token expiry so after token specified time, token  will be used after that token will be expired and no longer to use
+  So we have to use that token with in expiry time, if expiry time completes, again we have to get the token by sending Uname and Pwd to /authenticate method of Application 2. 
+  
+ 					             _________________                ________               3
+					  1         |                 |             2|        |        __________
+    _______________ uname&pwd   |                 |------------->|Validate|------>| JWT Token|
+    |  	          |------------>| /authenticate   |              |________|       |__________|
+	|			  |	4 jwt token |                 |                          ___________|    
+	|             |<------------|                 |                         | 
+    |Client App   |             |                 |                         |6
+    |             |5req with jwt|                 |               __________|_____
+    |             |------------>|                 |              |                |
+	|             |  response   | /data ----------|------------->|Secured Rest Api|
+	|_____________|<------------|_________________|              |________________|
+       APP 1          7             APP 2
+	
+->here APPLICATION 2 has /data method which is secured with JWT Secuirty and any one who wants to access that method , client should send the request with jwt token
+  To get the token , client has to send request to /authenticate method with uname and pwd , if uname and pwd of user successfully validated then jwt token with expiry will be generated and returns back to Client.
+  now client can send actual requets to application 2 along with Token, Then application 2 internally extract the token from request and validate the token is expired and validate token or not , if token is valid and not expired then process the request and send the reponse to client.
+  
+->This is the Flow JWT Token in Application.  
+
+Note : Here Client App May be Postman or Browser.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Development :
+-------------
+->Components We Will Take in Application to Develope application with spring JWT Secuirty.
+   1.AuthencticateRequest.java(username and passowrd (request binder class)) : this class responisble to capture the user authenticate data 
+   2.AuthenticateResoponse.java(jwt(ResponseBinder class)) : This class responsible to send the jwt token response to cleint if clinet credentails are succeessfully validated for authenticate url or method.
+   
+   3.JwtUtil.java (Methods to generate the token and Validate The Token and Check Token Expiry): JwtUtil.java is a special class and imporatant class in this application and conatains the several methods to  generate the token and validate the token.
+   
+   4.MyUserDetailsService.java: For Authentication purpose user record is required , so to load the user record for authentication purpose we use MyUserDetailsService class whihc is implemnts UserDetailsService Interface and ovveride the loadUserByUsername(String username) method to load the user based on the username and retuens the user object , and that user object will send to AuthenticationManager to authenticate the login form user with UserDeatilsService Component loadUserByUserName method returns user , if user data matches JWT token will be generate else jwt token will not be generates.We use this UserDetailsService Class to load the user by username with help loadUserByUsername method
+   
+   5.SecuirtyConfigurer.java : This class has methods  to which url are need to secured with jwt security and which url no need to be secured and we have another method like confogure AuthenticationManager with UserDetailsService i.e AuthenticationManager is responsibel to authenticate the user data , so we have let authenctacionManager to compare the user login date with UserDeatilsService compenent loadUserByUserName methods reurns user object, so we let the User to authenticationMnanager to User object to compare with Login User Data by configure the UserDetailsSerevice WITH AuthebnticationManagerBuilder.Basically we Use SecurityConfigurer Class to customize the secuirty configuration according to our application requirement
+
+   6.Filter Class.java : Filter Class used to Pre-Process the request like In our application other than /authenticate method if any request comes to other /* methods like /data , fisrt of all that request Pre-Processces like if request has token or not by reading authorization header BearerToken , if token comes along with request then only process the request otherwise won't allow the request, if request comes with token then extract the data or values from token and validate that token is valid token or not and token is expired or not, if bothe criteria macthes then only process the request otherwise won't process the request.
+                         This Filter will execute for every request other than /authenticate method.Filter will Pre-Proess the request before request directeed to actual method request.
+                         Filter Class contains the logic to check jwt token coming in request or not and if comes validate the token and proceess the request.
+                         Note : In Security Configration We need to let the SecurityFilterChain to this Filter Class Logic Should Exceute for every request other /authenticate method
+                         ->This Filter class will execute Once Per Every Request						 
+                         Note : Filter Should Not Execute For /authenticate Method or Url
+						 Note : In Filter we write logic like get the header from request and extract token and validate the token , if token is valid process the request else won't process the request
+						 ->Filterc Class will extract the token  from request header and calls the jwtuitl class validateToken method to vakidate the token , if token is valid process the request else won't process the request
+						 
+						 
+Execution Flow :
+----------------
+JWT Stand For Json Web Token and JWT is used to establish the communication between two applications securely.That JWT Token contains the 3 Parts.Header part and Payload part and Signature Part are avalilable
+If we want to secure our methods  using jwt secuirty in rest api, first we need to develope one method for authentication and that method will authenticate the user credentails and returns JWT Token if  user credentails are successfully authenticated,THEN Client will send the actual request along with token and when client the request with token , Filter will execute and filter will validate the token came in request and if token is vlaid Filter will proces the request else won't process the request.
+This is the flow of JWT Security in application.  
+
+
+->Like we have MakeMyTrip Application and MakeMyTrip Application wants to communicate with IRCTC to book the ticket, IRCTC booking method secured with JWT token , if MakeMyTrip application wants to access the IRCTC BOOKING method , So MakeMyTrip will send the username and pwd credentials to IRCTC and get the token then MakeMyTrip will send passenger details along with token to booking method in IRCTC to book the ticket.
+
+Note : In RealTime Most of the applications secured with OAuth and JWT only 
+
+      ________________                            ___________________
+     |                |                          |                   |
+     |   Postman      |                          |    Rest Api       |
+     |________________|                          |___________________|  
+            |                                              |
+	        |1.Login With Uname and pwd                    |
+	        |--------------------------------------------->|---------
+	        |                                              |         |2.Creates Jwt Token(If Client Authenticated Sucessfully)
+	        |  3.Sends the jwt to postman client           |         |
+	        |<---------------------------------------------|<--------
+	        |                                              |
+	        |                                              |
+			|  4.Sends Jwt in auth header with Request     |
+			|--------------------------------------------->|---------
+            |                                              |         |
+            |			                                   |         |5.Checks the jwt and extract the user info from token 
+			|  6.Sends the response to client              |         |  and Validate the token(If token validated successfully send the response) 
+			|<---------------------------------------------|<--------       
+
+
+
+Development:
+------------
+
+dependencies :
+-------------
+web 
+devtools
+spring security
+jjwt 
+ 
+ <dependecny>
+ 
+ <groupId>io.jsonwebtoken</groupId>
+ <artifactId>jjwt</artifactId>
+ <version>0.9.1</version>
+ 
+ </dependecny>
+
+
+jaxb-api
+
+  <dependecny>
+ 
+   <groupId>.javax.xml.bind</groupId>
+   <artifactId>jaxb-api</artifactId>
+   
+  </dependecny>
+
+Note : jjwt and jaxb-api dependency both are used to implement jwt security
+			
+Note : We Builder Design Pattern to create the token
+
+->We used HS256 Alogirithm to create the token			
+			
+->We need to let the SecurityFilterChain to authenticate the urls with jwt secuirty other than /authenticat, so we have to implement the Filter which executes before prcoessing the request like checks request has jwt token or not, if reuquuest comes with token validate  and process the request other wise won't process the request , that Filter Logic will execute for every request otherthan /authenticate or other ulr which don't has security configurations and we have develope that filter and confgiure it in SecurityFilterChain to authenticate the every request with jwt secuirty using Developed Filete and 
+  Filter Contains Pre Processing logic to vakidate the request and checks for token and validate the token and So based on secuirty configuration in SecuirtyFilterChain spring secuirty will authencticate the user reuqests.
+
+
+
+@Entity
+public class Customer {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer cid;
+	private String username;
+	private String password;
+	public Integer getCid() {
+		return cid;
+	}
+	public void setCid(Integer cid) {
+		this.cid = cid;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+}
+
+
+public class AuthenticateUser {
+	
+	private String username;
+	private String password;
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+
+}
+
+
+
+package com.security.jwt.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.security.jwt.entity.Customer;
+
+public interface CustomerRepository extends JpaRepository<Customer, Integer> {
+
+	public Customer findByUsername(String username);
+	
+}
+
+
+
+
+package com.security.jwt.rest;
+
+import org.apache.catalina.connector.Response;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.security.jwt.bind.AuthenticateUser;
+import com.security.jwt.entity.Customer;
+import com.security.jwt.repository.CustomerRepository;
+import com.security.jwt.util.JwtUtil;
+
+@RestController
+public class DataRestController {
+	
+	@Autowired
+	private AuthenticationManager authenticationManager;
+
+	@Autowired
+	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private JwtUtil jwtUtil;
+	
+	@GetMapping("/data")
+	public String data() {
+		return "welcome to jwt authentication!!";
+	}
+	
+	@PostMapping("/savecustomer")
+	public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer){
+		
+		customerRepository.save(customer);
+		
+		return new ResponseEntity<>(customer,HttpStatus.OK);
+	}
+	
+	@GetMapping("/authenticate")
+	public ResponseEntity<String> authenticateUser(@RequestBody AuthenticateUser user) {
+		
+		try {
+			
+			Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+			if(authenticate.isAuthenticated()) {
+				String token = jwtUtil.createToken(user.getUsername());
+				return new ResponseEntity<String>(token,HttpStatus.OK);
+				
+			}
+			
+			
+		}catch (Exception e) {
+			
+		}
+		return new ResponseEntity<String>("invalid credentials",HttpStatus.BAD_REQUEST);
+		
+	}
+	
+}
+
+
+
+package com.security.jwt.service;
+
+import java.util.Collections;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import com.security.jwt.entity.Customer;
+import com.security.jwt.repository.CustomerRepository;
+
+@Service
+public class MyUserDetailsService implements UserDetailsService {
+	
+	@Autowired
+	private CustomerRepository customerRepository;
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		Customer customer = customerRepository.findByUsername(username);
+		return new User(customer.getUsername(), customer.getPassword(), Collections.EMPTY_LIST);
+	}	
+}
+
+
+
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/springjwt
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    
+    
+    
+  jpa:
+    show-sql: true
+    
+    hibernate:
+      ddl-auto: update
+	  
+	  
+	  
+package com.security.jwt.util;
+
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwt;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
+@Component
+public class JwtUtil {
+	
+	public static final String SECRET_KEY="218y3edb3hd8hehs28";
+	
+	
+	private Claims extractAllClaims(String token) {
+		return Jwts
+		.parser()
+		.setSigningKey(SECRET_KEY)
+		.parseClaimsJws(token)
+		.getBody();
+	}
+	
+	
+   public <T> T extractClaim(String token,Function<Claims, T> claimsResolver) {
+	   final Claims claims=this.extractAllClaims(token);
+	   return claimsResolver.apply(claims);
+   }	
+	
+   public String extractUsername(String token) {
+	   return extractClaim(token,Claims::getSubject );
+	   
+   }	
+   
+   public Date extractExpiration(String token) {
+	   return extractClaim(token, Claims::getExpiration);
+	   }
+   
+   
+   public Boolean isTokenExpired(String token) {
+	   Date expiration = this.extractExpiration(token);
+	   return expiration.before(new Date());
+   }
+   
+   public Boolean validateToken(String token,UserDetails userDetails) {
+           String username = this.extractUsername(token);
+	   return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
+	   
+   }
+   
+   
+	public String createToken(String username ) {
+		Map<String, Object> claims=new HashMap<>();
+		return generateToken(claims, username);
+	}
+	
+
+	public String generateToken(Map<String,Object> claims,String username) {
+		
+	return 	Jwts.builder()
+		.setClaims(claims)
+		.setIssuedAt(new Date(System.currentTimeMillis()))
+		.setExpiration(new Date(System.currentTimeMillis()+1000*60*1))
+		.setSubject(username)
+		.signWith(SignatureAlgorithm.HS256,SECRET_KEY )
+		.compact();
+		}
+	
+
+}
+
+
+
+
+package com.security.jwt.filter;
+
+import java.io.IOException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import com.security.jwt.util.JwtUtil;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+@Component
+public class JwtFilter extends OncePerRequestFilter{
+	
+	@Autowired
+	private JwtUtil jwtUtil;
+	
+	@Autowired
+	private UserDetailsService userDetailsService;
+
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+			throws ServletException, IOException {
+		
+	   //TODO : Get the authorization header from request 
+		String header = request.getHeader("Authorization");
+
+		String jwtToken=null;
+		
+		String username=null;
+		
+		//TODO : Get the Token from authorization header
+		if(header!=null && header.startsWith("Bearer ")) {
+	    	//Extracting the token i.e actually Bearer also present in token so we removed bearer text and get the exact token
+	    	 jwtToken = header.substring(7);
+	    	username = this.jwtUtil.extractUsername(jwtToken);
+	    	
+	    }
+ 
+	 //TODO : If username find validate the token and and set the token data in spring security context holder and set authentication and allow the request to process	
+		
+	   if(username!=null && SecurityContextHolder.getContext().getAuthentication()==null) {
+		   //validate the token using jwt util class method based on userdetails of userdetailsservice
+		   UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+		   
+		   if(userDetails!=null) {
+                 Boolean validateToken = this.jwtUtil.validateToken(jwtToken, userDetails);	
+                 if(validateToken==true) {
+                	 UsernamePasswordAuthenticationToken authentiatioToken=new UsernamePasswordAuthenticationToken(userDetails, null,userDetails.getAuthorities());
+                	 authentiatioToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                	 
+                	 SecurityContextHolder.getContext().setAuthentication(authentiatioToken);
+                	 
+                 }
+		   }
+		   
+	   }
+		
+		
+		filterChain.doFilter(request, response);
+		
+	}
+
+}
+
+
+
+package com.security.jwt.rest;
+
+import org.apache.catalina.connector.Response;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.security.jwt.bind.AuthenticateUser;
+import com.security.jwt.entity.Customer;
+import com.security.jwt.repository.CustomerRepository;
+import com.security.jwt.util.JwtUtil;
+
+@RestController
+public class DataRestController {
+	
+	@Autowired
+	private AuthenticationManager authenticationManager;
+
+	@Autowired
+	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private JwtUtil jwtUtil;
+	
+	@GetMapping("/data")
+	public String data() {
+		return "welcome to jwt authentication!!";
+	}
+	
+	@PostMapping("/savecustomer")
+	public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer){
+		
+		customerRepository.save(customer);
+		
+		return new ResponseEntity<>(customer,HttpStatus.OK);
+	}
+	
+	@GetMapping("/authenticate")
+	public ResponseEntity<String> authenticateUser(@RequestBody AuthenticateUser user) {
+		
+		try {
+			
+			Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+			if(authenticate.isAuthenticated()) {
+				String token = jwtUtil.createToken(user.getUsername());
+				return new ResponseEntity<String>(token,HttpStatus.OK);
+				
+			}
+			
+			
+		}catch (Exception e) {
+			
+		}
+		return new ResponseEntity<String>("invalid credentials",HttpStatus.BAD_REQUEST);
+		
+	}
+	
+	
+	
+}
+	  
+package com.security.jwt.configuration;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.stereotype.Service;
+
+import com.security.jwt.filter.JwtFilter;
+import com.security.jwt.service.MyUserDetailsService;
+
+@Configuration
+@EnableWebSecurity
+public class SecuirtyConfiguration {
+	
+	@Autowired
+	private MyUserDetailsService userDetailsService;
+	
+	@Autowired
+	private JwtFilter jwtFilter;
+		
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+	
+		return  httpSecurity.csrf().disable()
+		.authorizeHttpRequests()
+		         .requestMatchers("/savecustomer","/authenticate").permitAll()
+				.anyRequest()
+			    .authenticated()	
+			    .and()
+			    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+			    .and()
+			    .authenticationProvider(this.authenticationProvider())
+			    .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class).build();
+		        
+			}
+	
+	
+	@Bean
+	public AuthenticationProvider authenticationProvider() {
+		DaoAuthenticationProvider authenticationProvider=new DaoAuthenticationProvider();
+		authenticationProvider.setUserDetailsService(userDetailsService);
+		authenticationProvider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
+		return authenticationProvider;
+	}
+	
+	@Bean
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+		return configuration.getAuthenticationManager();
+	}
+
+}
+
+
+Note : JwtRequestFilter will interccept the each reuqest and verify the token valid or not.
+
+Note : We create the  JwtRequestFilter which extends the OncePerReuestFilter class to execute this filter class logic for every request othertnan /authentciate and to extract  the the token from request authorization header and verify the token is valid or not.
+
+->In Payload of the Token we are using username of the user as Subject in Payload.
+
+->By Using Request Filter we able to get the authorization header and based on authorization header we able to get the Baerer Token and Based on Token we able to get the username of usign jwtutil class extractUsername method which returns the username of user from token.
+
+Note : What ever the token we get in request header that we need to set in secuirty context for authenticate the request with the token and process the request if token is valid.
+
+Note :Based On Username only we generated token.While authenticating request we extract username from token 
+
+Note : SessionManagement and SessionCreationPolicy we have set as Statesless due to session should not store previous request data or information
+
+Note : In Interview, Interviewer may asks like what is jwt and how it works then we should answer like JWT is one kind of secuirty technique in spring secuiryt whihc is used to secure the application endpoints by json web token and 
+       JWT has 3 parts and each part separated by . and firts part we called as Header(Header consist of type algo and token type ) and second part we called as Payload(which consist of user info like name and token issue data and expiration data etc) and third part we called as Signature(Encode of header and payload with secret code).
+       and we implement JWT application in way of first we create a end point for user authenticaion like requesting authorized user or not so user will send the username and password , if user credentails matches token will be created and send backs to user 
+       then user will send actuals request with token and in server side we implement logic like to get the token from request and extract the username and based on username we get the userdetails and validate the token like for this user we generated token or not , if token is valid process the request else won't process the request.
+
+
+	   
+ 
+			
+			
+			
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+->Spring Security is a Module in spring framework and used to secure the application
+
+->Authebntication is a process of validating user credeantials valid or not
+
+->Authorizarion means verifying user can access which methods or url in application based on user role
+
+->AuthebnticationManager is one of the component in spring security and which is responsible for validate the user login data with userDetailsService user record, if data macthes allow the request to process else won't allow the request to process
+
+->UserDetailsMnanger is a component in spring secuirty used to load the user based on given name using loadUserByUsername method whihc accepst string username as arguments and throws UserNameNotFoundException exxception if username not found and loaded user will be sends back authenctacionManager to varyf the user with login user 
+
+->SecuirtyFilterChain is component in spring secuirty and used to customize the secuirty in appplication according tom our requirement like which url need to be secure and which urls don't need security and whci urls accessed by which user based on user role that can be configured in SecuirtyFilterChain and finaaly Spring Secuirty will loads that configuration into Security conetxt and secure the application according configuration
+
+->Security Context where, what ever the data given by secuirtyfilterchain that will Configured into Secuirty Context  
+  For One Application there will be a only one security context will be there and SecuirtyFilterChain will give the Customized SecuirtyConfiguration to SecuirtyContext and Application will behave acc to SecurityContext for security of application
+  
+->OAuth 2.0 which is used when we want to access or secure  our application uisng 3rd party account
+
+->JWT , Json Web Token  which is used to communicate the two applications securrely then we JWT and in jwt token we have 3 parts header and payload and signature.In JWT secuirty Server application Method will be secured with JWT Security Technique and if we want to acces that method we need token and to get the token, client has sends the username and pwd and those credentails will be validated and if valodte successful jwt token will be sent to Client then client will send the actual reqest with token and at server side Filter will be executed and which is responsible for pre process the request and extract the token from request header and vakidate it, if token valid request will be processed else request will be denied
+  
+Note : Authentication Proivder is nothing but who will provide the authenticaion details to authmanager to authenticate like userDetailsService proviider or JdbcAuthentication provider or InMemoryAuthenctiction Provider.        
+
