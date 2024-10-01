@@ -1,0 +1,474 @@
+Spring Batch :
+--------------
+->Spring Batch is used to perform operations on bulk of records.
+
+->Batch is used to perform bulk operations.
+
+->Bulk Operations menas 
+   1.Sending Monthly Salaries To The All the Employess in Organisation
+   2.Sending Greeting Messages or Announenents to all the employes in organization.
+   3.Sending Bank Statements to all the account holders at month end.
+   4.Sending Credit Card Bill Statements to all the card holders
+   5.Sending reminder message for pending invoices 
+   
+Note : Bulk Operation means doing the same operations for multiple records is known as Bulk Operations
+
+Note : By Using Spring Batch We can Process Million Recors in fraction of seconds    
+  
+->Some Common Use Cases in Real Project Developement regarding Spring Bacth is 
+   1.Read CSV data from CSV FILE and store into database table
+   2.Read Data From DB and Store into CSV File
+   
+Note : By Batch we can process millions of records in single shot
+Note : Batch is a SpringBatch Framework used to develop Robust(low failure rate) Batch Applicaions    
+
+
+                                                 Process
+                                           ___________________                 Destination
+        Source                             |                  |                __________  
+	 ___________________                   |                  |                |         |
+	 |                  |                  |                  |                |         |
+     |    CSV FILE      |----------------->| Spring   Batch   |--------------->|DataBase |
+     |                  |                  |     Applicaion   |                |         |
+	 |__________________|                  |                  |		           |_________|                         |                   |
+										   |__________________|                   
+
+
+SpringBatch Terminology :
+-------------------------
+
+1.Job Launcher : What ever the Batch Application we are creating and  to Launch that Batch Application we use Job Launcher.JOb Launcher Will Lancuh the JOb 
+
+2.Job : JobLaucher will launch the job and Job Means what operation we are going to perform i.e known as Job Launcher and that job we are going to configure as Job In JobLauncher.Job Will execute steps.Job Can has the Multiple or N Number of Steps
+
+3. Step : For Job We are going to provide a Step.Each Step Confogure with 1 ItemReader + 1 ItemProcesser + 1 ItemWritter 
+
+4.ItemReader : For Step we provide ItemReader.ItemReader is a Class in Spring Batch and used to read the data from source.
+
+5.ItemProcesser : ItemProcesser is one of the component is spring batch. After Reading the data from source using ItemReader we use ItemProcessor to process the data which is loaded and process can manipulate the data and apply some caluculations to data etc we perform in ItemProcessor
+
+6.ItemWritter: ItemWritter is important component in Spring Batch which is used to write the data into destination after  ItemWritter Process the data 
+
+7.Job Repository: Job Repository Maintains the execution flow of Job
+
+Note : Between the ItemReader and ItemWritter we have the ItemProcesser to process the data like filtering the readeded data 
+
+->This ItemReader and ItemProcessor and ItemWritter we can give it to the Step . To read the data and to pocess the data and to write the data we can call it as One Step.
+      
+	  1 Step =ReadData+ProcessData+WriteData
+	  
+->Then Step Will Configured with Job	  
+
+Note : In One Job, We can  Configure Multiple Steps.
+
+Note : For  Every Step one-reader and one-processor and one-writter will be available 
+
+Note :ItemReader will read the data from Source i.e CSV etc and ItemProcessor after the Itemreader read the data from source we process the data i.e filtering data and manipulate the data etc and Procssing The Data by ItemProcessor then We use ItemWritter to write the data into Destination.This one-reader and one-processor and one-writter will configured as One Step and One step will configured to Job.A Job Can Contains The Multiple Steps. Each Step =1 ItemReader + 1 ItemProcesser + 1 ItemWritter
+
+->ItemReader and ItemProcessor and ItemWritter will configured with One-Step and Step will Configured with Job  and Job will be started or Launched By JobLauncher
+
+->JobLaucher and job and Step  and all those inforation will be maintained in JobRepository.
+
+Note : JobRepository will maintain job execution details.
+
+Note : JobLauncher is used to execute or start the Job Execution details and Job Will Execute the Step and Step will execute the ItemReader and ItemReader and ItemWritter
+
+Note : JobRepository maitains the job execution details
+                                                                        1      ______________            
+                                                                     |------------|ItemReader    |
+                                                                     |            |______________| 
+                                                                     |             ______________      
+           ____________         __________ 1     N_______      1     |      1     |              |
+          |JobLaucher  |<------|  Job     |<-----| Step  |<----------|------------|ItemProcessor |
+          |____________|       |__________|      |_______|           |            |______________|
+               |                    |                 |              |            
+         ______|____________________|_________________|_____         |  
+        |                                                   |        |             ______________
+        |__________________Job Repository___________________|        |       1    |ItemWritter   |
+                                                                     |------------|______________|   
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------- 
+Developement:
+-------------
+
+->For Developement as of now, we are going to develop one bacth application which will process the bulk operaions like read the data from csv and store into databsed table in fraction of seconds   
+   -> Here we can have the thousands and lakhs of records in csv file and that we can read all those millions or lakhs or thousands of records in single shot or fraction of seconds to process the data into database
+   
+Dependencies :
+-------------
+1.web 
+2.batch
+3.data-jpa
+4.my-sql-driver
+5.Lombok
+6.Devtools 
+
+Note : Keep the CSV file of customers in "src/main/resources" folder in project
+
+Note : In YML File we have the spring.batch.jdbc.initialize0schema=always which means if tables are not available for batch,then schema should create the bacth related tables automatically.
+                   or 
+        spring.batch.jdbc.initialize0schema=always which indicates that when ever our bacth applications starts it will create or initialize the batch related tables automatically.like Batch_Job_Instance and Batc_Job_Execution and Batch_Step_Execution 				   
+
+->In CSV File One Row Represents One Customer Data
+
+->Here in this application we need to develop a class for Batch_Configuration which represents the configuration of batch components like ItemReader and ItemProcesser and ItemWritter and Step and Job and JobLauncher and JobRepository.
+     
+->For ItemReader we need to tell what is the Source to read the data like CSV. In CSV Each Row reprsents One Customer record.
+
+->In ItemReader we need to specify each coloumn in csv represents the field in Entity class.
+
+->ItemReader will read the data from CSV and ignore the first row because first row contains the header part and take the data from coloumns and set it to entity fields.
+
+->We Use FlatFileItemReader class whihc is component of the bathc and used to read the data only from CSV
+
+Note: We Use LineMapper in spring batch which is used to convert the each one  line in CSV file to One Customer Object.
+
+->Every  Line In CSV File Act As One Customer Object.
+
+Note : By LineMapper we read the from Line of CSV and Convert it to Customer Object.
+
+->Note : DelimitedLineTokenizer.setDelimiter(",): method used to read the data from csv by comma separated value.
+ 
+->DelimitedLineTokenizer.setNames("","",""); this methods represents how many field coloumns available in CSV File 
+
+->BeanWrapperFieldSetMapper is used to map data to customer object what we get in DelimitedLineTokenizer.setNames(); from CSV file.
+
+Note : What ever the fieldnames we have given in Entity exactly should match the Field Names in CSV File Field Names or Header Names. and order also maintain entity class asper CSV File Fields order
+
+Note : LineMapper will contain the data like what is the delimiter like based on what data is separated in CSV File and what are the fields available in CSV File and Set that Fields Values to Customer object by BeanWrapperFieldSetMapper class methods 
+
+Note : here we use FlatFileItemReader to read the data from CSV File 
+       RepositoryItemWritter to write the data to data base repository and For RepositoryItemWritter we need to mention what is the reposiorty name and which method we use to insert the record in database.
+	   Note : We don't have the predefined Itemprocessor as ItemReader has FlatFileItemReader and ItemWritter has RepositoryItemWritter , so application to application Itemprocessor will be differ  because every one has their logic to process the data so  here we use a class called CustomerProcessor which implements the ItemProcessor  
+	   
+Note : ItemReader and ItemWritter will be provided by batch 
+       ItemProcessor will be provided by Programmer
+	  
+Note : LineMapper is used to process the each line available CSV file and Convert that into Customer Object or Java object
+       LineMapper we configired in ItemReader
+	   
+	   
+	@Data
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+public class Customer {
+
+	@Id
+	@Column(name="customer_id")
+	private Integer id;
+	private String firstName;
+	private String lastName;
+	private String email;
+	private String gender;
+	private String contactNo;
+	private String country;
+	private String dob;
+	 
+}
+
+
+package com.spring.batch.configuraion;
+
+import org.springframework.batch.core.Job;
+import org.springframework.batch.core.Step;
+import org.springframework.batch.core.configuration.JobRegistry;
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
+import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
+import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.job.builder.JobBuilder;
+import org.springframework.batch.core.repository.JobRepository;
+import org.springframework.batch.core.step.builder.StepBuilder;
+import org.springframework.batch.item.data.RepositoryItemReader;
+import org.springframework.batch.item.data.RepositoryItemWriter;
+import org.springframework.batch.item.file.FlatFileItemReader;
+import org.springframework.batch.item.file.LineMapper;
+import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
+import org.springframework.batch.item.file.mapping.DefaultLineMapper;
+import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.transaction.PlatformTransactionManager;
+
+import com.spring.batch.entity.Customer;
+import com.spring.batch.repository.CustomerRepository;
+
+@Configuration
+@EnableBatchProcessing
+public class BatchConfiguration {
+	
+	@Autowired
+	private CustomerRepository  customerRepository;
+	
+//	@Autowired(required=true)
+//	private StepBuilder stepBuilderFactory;
+	
+	@Autowired
+	private JobRepository jobRepository;
+	
+	@Autowired
+	private PlatformTransactionManager platformTransactionManager;
+	
+//	@Autowired
+//	private JobBuilder jobBuilder;
+	
+	
+	//ItemReader
+	
+	@Bean
+	public FlatFileItemReader<Customer> flatFileItemReader(){
+		
+		FlatFileItemReader<Customer> itemReader=new FlatFileItemReader<>();
+		itemReader.setResource(new FileSystemResource("src/main/resources/customers.csv"));
+		itemReader.setName("Customer-Item-Reader");
+		itemReader.setLinesToSkip(1);
+		itemReader.setLineMapper(lineMapper());
+		
+		return itemReader;
+		
+	}
+	
+	//LineMapper
+	public LineMapper<Customer> lineMapper(){
+		DefaultLineMapper<Customer> lineMapper=new DefaultLineMapper<>();
+		
+		DelimitedLineTokenizer delimitedLineTokenizer=new DelimitedLineTokenizer();
+		delimitedLineTokenizer.setDelimiter(",");
+		delimitedLineTokenizer.setNames("id","firstName","lastName","email","gender","contactNo","country","dob");
+		//if data not present in coloumn ,by default null or empty data will be assihned
+		delimitedLineTokenizer.setStrict(false);
+		
+	   //to map the CSV data fields data to Customer class Fields  	
+	   BeanWrapperFieldSetMapper<Customer> fieldSetMapper=new BeanWrapperFieldSetMapper<>();
+	   fieldSetMapper.setTargetType(Customer.class);
+     
+	   lineMapper.setLineTokenizer(delimitedLineTokenizer);
+	   lineMapper.setFieldSetMapper(fieldSetMapper);
+	 
+	   return  lineMapper;
+	}
+	
+
+    //ItemProcessor	
+    @Bean	
+	public CustomerItemProcessor customerItemProccessor() {
+		return new CustomerItemProcessor();
+	}
+	
+    
+    //ItemWritter
+    @Bean
+	public RepositoryItemWriter<Customer> repositoryItemWriter(){
+    	
+    	RepositoryItemWriter<Customer> itemWritter=new RepositoryItemWriter<>();
+    	
+    	itemWritter.setRepository(customerRepository);
+    	itemWritter.setMethodName("save");
+    	
+
+		return itemWritter;
+	}
+	
+    @Bean
+    public StepBuilder stepBuilder() {
+    	return new StepBuilder("sb",jobRepository);
+    }
+    
+    @Bean
+    public JobBuilder jobBuilder() {
+    	return new JobBuilder("jb", jobRepository);
+    }
+    
+	@Bean
+    public Step step() {
+		
+		return stepBuilder().<Customer,Customer>chunk(10, platformTransactionManager)
+				.reader(this.flatFileItemReader())
+				.processor(this.customerItemProccessor())
+				.writer(this.repositoryItemWriter())
+				.build();
+					
+    }
+    
+    @Bean
+	public Job job() {
+ 
+		return jobBuilder().flow(this.step())
+				.end()
+				.build();
+				
+	}
+    
+    
+    
+
+}
+mport org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobParameters;
+import org.springframework.batch.core.JobParametersInvalidException;
+import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
+import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
+import org.springframework.batch.core.repository.JobRestartException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class CustomerRestController {
+	
+	@Autowired
+	private Job  job;
+	
+	@Autowired
+	private JobLauncher jobLauncher;
+	
+	@GetMapping("/launch")
+	public void executeJobLauncher() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
+		
+		JobParameters jobParameters=new JobParameters();
+		jobParameters.getLong("StartAt", System.currentTimeMillis());
+		
+		jobLauncher.run(job, jobParameters);
+		
+	}
+
+}
+
+
+
+@Component
+public class CustomerItemProcessor implements ItemProcessor<Customer , Customer> {
+
+	@Override
+	public Customer process(Customer item) throws Exception {
+		// TODO : apply the filter to get the specific record from resource and set those records into database
+		
+		return item;
+	}
+	
+
+}
+
+Note : In  Real Time we want to perform bulk operations then we need to use Spring batch to perform bulk operations.
+-------------------------------------------------------------------------------------------------------------------------------------
+->If We want to Read The data db and write into the CSV File we Have Following Batch Confifguration
+
+Note : We have to keep CSV file in src/main/resources where our database data will be written.
+
+package com.batch.configuration;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.hibernate.annotations.Sort;
+import org.springframework.batch.core.Job;
+import org.springframework.batch.core.Step;
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
+import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
+import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.item.data.RepositoryItemReader;
+import org.springframework.batch.item.file.FlatFileItemWriter;
+import org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor;
+import org.springframework.batch.item.file.transform.DelimitedLineAggregator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.FileSystemResource;
+
+import com.batch.entity.Customer;
+import com.batch.processor.CustomerItemProcessor;
+import com.batch.repository.CustomerRepository;
+
+@Configuration
+@EnableBatchProcessing
+public class CustomerConfig {
+
+	@Autowired
+	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private StepBuilderFactory stepBuilderFactory;
+	
+	@Autowired
+	private JobBuilderFactory jobBuilderFactory;
+	
+	//ItemReader
+	@Bean
+	public RepositoryItemReader<Customer> repositoryItemReader(){
+		RepositoryItemReader<Customer> itemReader=new RepositoryItemReader<>();
+		itemReader.setRepository(customerRepository);
+		itemReader.setMethodName("findAll");
+		
+		Map<String, org.springframework.data.domain.Sort.Direction> map=new HashMap<>();
+		map.put("id", org.springframework.data.domain.Sort.Direction.ASC);
+		itemReader.setSort(map);
+		return itemReader;
+	}
+	
+	//ItemProcessor
+	@Bean
+	public CustomerItemProcessor itemProcessor() {
+		return new CustomerItemProcessor();
+	}
+	
+	//ItemWritter
+	@Bean
+	public FlatFileItemWriter<Customer> flatFileItemWriter(){
+		FlatFileItemWriter<Customer> fileItemWriter=new FlatFileItemWriter<>();
+		fileItemWriter.setName("csvFileWritter");
+		fileItemWriter.setResource(new FileSystemResource("src/main/resources/customers.csv"));
+		
+		BeanWrapperFieldExtractor<Customer> beanWrapperFieldExtractor=new BeanWrapperFieldExtractor<>();
+		beanWrapperFieldExtractor.setNames(new String[] {"id","contact_no","country","dob","email","first_name","gender","last_name"});
+		
+		
+		DelimitedLineAggregator<Customer> delimitedLineAggregator=new DelimitedLineAggregator<>();
+		delimitedLineAggregator.setDelimiter(",");
+		delimitedLineAggregator.setFieldExtractor(beanWrapperFieldExtractor);
+		
+		fileItemWriter.setLineAggregator(delimitedLineAggregator);
+		return fileItemWriter;
+	}
+	
+	//Step Bean
+	
+	@Bean
+	public Step step() {
+		return stepBuilderFactory.get("Db_To_Csv").<Customer,Customer>chunk(10)
+				.reader(repositoryItemReader())
+				.processor(itemProcessor())
+				.writer(flatFileItemWriter())
+				.build();
+	}
+	
+	//Job Bean
+	@Bean
+	public Job job() {
+		return jobBuilderFactory.get("Db_to_Csv")
+				.flow(step())
+				.end()
+				.build();
+	}
+	
+Note : here we used FlatFileItemWritter to write the data to CSV FILE
+      RepositoryItemReeder to read the data from database.
+	
+
+	   
+	   
+	   
+
+	  
+	   
+ 
+
+        
+
+
+
+
