@@ -24,14 +24,14 @@ Note : Batch is a SpringBatch Framework used to develop Robust(low failure rate)
 
 
                                                  Process
-                                           ___________________                 Destination
-        Source                             |                  |                __________  
+                                                ___________________                 Destination
+        Source                                 |                  |                __________  
 	 ___________________                   |                  |                |         |
 	 |                  |                  |                  |                |         |
-     |    CSV FILE      |----------------->| Spring   Batch   |--------------->|DataBase |
-     |                  |                  |     Applicaion   |                |         |
-	 |__________________|                  |                  |		           |_________|                         |                   |
-										   |__________________|                   
+         |    CSV FILE      |----------------->| Spring   Batch   |--------------->|DataBase |
+         |                  |                  |     Applicaion   |                |         |
+	 |__________________|                  |                  |		   |_________|             
+					       |__________________|                   
 
 
 SpringBatch Terminology :
